@@ -31,20 +31,25 @@ The Vite app itself (`npm run dev`) is incidental; the showcase lives in Storybo
 
 ```
 src/
-  components/            # Components + co-located stories
-    AppButton.vue
-    AppButton.stories.ts
+  components/            # Components + co-located stories (Base* prefix)
+    BaseButton.vue
+    BaseButton.stories.ts
+    BaseTag.vue
+    BaseTag.stories.ts
   style.css              # Tailwind import + generic design tokens
 .storybook/
   main.ts                # Story discovery + addons
   preview.ts             # Global styles, decorators, controls
 ```
 
+Components use the `Base*` naming convention.
+
 ## Components
 
-| Component   | Description                                                                                       |
-| ----------- | ------------------------------------------------------------------------------------------------- |
-| `AppButton` | Button with variants (primary/secondary/ghost), sizes, disabled state, link mode, and icon slots. |
+| Component    | Description                                                                                       |
+| ------------ | ------------------------------------------------------------------------------------------------- |
+| `BaseButton` | Button with variants (primary/secondary/ghost), sizes, disabled state, link mode, and icon slots. |
+| `BaseTag`    | Tag/badge with variants (neutral/brand/success/warning/danger), sizes, pill shape, and an optional removable button. |
 
 ## Conventions
 

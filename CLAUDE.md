@@ -34,6 +34,10 @@ src/
 
 ## Conventions
 
+### Naming
+- Components use the `Base*` prefix (e.g. `BaseButton`, `BaseTag`). New components follow
+  the same convention.
+
 ### Components
 - Presentational and self-contained: **props in, UI out**. No router, store, API, or
   app-specific data dependencies. (That's what makes them previewable in isolation.)
@@ -64,11 +68,18 @@ src/
 - Scaffolded Vite (vue-ts), added Tailwind v4 (`@tailwindcss/vite` + `style.css`),
   initialized Storybook 10, removed the boilerplate example stories.
 - Wired Tailwind into `.storybook/preview.ts` and added a padding decorator.
-- Built **`AppButton`**: variants (primary / secondary / ghost), sizes (sm / md / lg),
-  `disabled`, link mode via `href` (renders `<a>`), and `iconLeft` / `iconRight` slots.
-  Story covers Primary, Secondary, Ghost, Disabled, AsLink, Sizes, AllVariants.
+- Built the first button component (later renamed to `BaseButton`): variants
+  (primary / secondary / ghost), sizes (sm / md / lg), `disabled`, link mode via `href`
+  (renders `<a>`), and `iconLeft` / `iconRight` slots.
 - Verified the full pipeline with `npm run build-storybook` (success).
 
+### Slice 2 — Base naming + BaseTag (done)
+- Adopted the `Base*` naming convention; renamed `AppButton` → **`BaseButton`**.
+- Built **`BaseTag`**: variants (neutral / brand / success / warning / danger),
+  sizes (sm / md), `pill` shape, and a `removable` close button that emits `remove`.
+  Slots: default label + `icon`. Story covers Default, Brand, Pill, Removable, Sizes,
+  AllVariants.
+
 ### Next up
-- Add more presentational components one at a time (e.g. Tag/Badge, Modal, Dropdown),
-  each as a fresh clean-room build following the `AppButton` pattern.
+- Add more presentational components one at a time (e.g. Modal, Dropdown, Input/Field),
+  each as a fresh clean-room build following the `BaseButton` / `BaseTag` pattern.
