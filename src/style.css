@@ -1,0 +1,15 @@
+@import 'tailwindcss';
+
+/* Generic, brand-neutral design tokens for the showcase. */
+:root {
+  --color-brand: #2b6298;
+  --color-brand-hover: #245480;
+  --radius: 0.5rem;
+}
+
+html,
+body {
+  margin: 0;
+  font-family: 'Helvetica Neue', Arial, system-ui, -apple-system, sans-serif;
+  color: #1f2d3d;
+}
