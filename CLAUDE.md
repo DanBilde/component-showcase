@@ -90,6 +90,25 @@ src/
 - Briefly trialed a green `--color-brand`, then reverted to the original blue (`#2b6298`,
   hover `#245480`); `BaseButton` primary and the intro hero use white text on the brand.
 
+### Slice 4 — BaseInput (done)
+- Built **`BaseInput`**: `v-model` text field with sizes (sm / md / lg), `type`
+  (text / email / password / number / search / tel / url), optional `label`, `placeholder`,
+  `hint`, and `error` state, plus `disabled` / `required`. Slots: `prefix` / `suffix`.
+  A11y: auto-generated `id` (via `useId`) links the label, with `aria-describedby` /
+  `aria-invalid` wired to the hint/error. Story covers Default, Required, WithHint,
+  WithError, Disabled, Password, WithPrefixAndSuffix, Sizes.
+- Added it to the `Introduction.mdx` component index.
+
+### Slice 5 — BaseModal (done)
+- Built **`BaseModal`**: `v-model`-controlled dialog rendered via `<Teleport to="body">`,
+  with sizes (sm / md / lg), `title`, and `closeOnBackdrop` / `closeOnEsc` / `hideClose`
+  toggles. Slots: default (body), `header`, `footer`. Behaviour: backdrop click + Escape
+  to close, body scroll-lock while open, listeners cleaned up on close/unmount. A11y:
+  `role="dialog"`, `aria-modal`, `aria-labelledby` → the title. Transitions use Vue's
+  custom transition-class props with Tailwind classes (no scoped CSS). Story covers
+  Default, WithoutFooter, Persistent, LongContent.
+- Added it to the `Introduction.mdx` component index.
+
 ### Next up
 - Add more presentational components one at a time (e.g. Modal, Dropdown, Input/Field),
   each as a fresh clean-room build following the `BaseButton` / `BaseTag` pattern.
