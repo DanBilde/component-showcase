@@ -1,0 +1,77 @@
+import { Meta } from '@storybook/addon-docs/blocks'
+
+<Meta title="Introduction" />
+
+<div style={{
+  background: 'linear-gradient(135deg, var(--color-brand), var(--color-brand-hover))',
+  color: '#fff',
+  borderRadius: 'var(--radius)',
+  padding: '2.5rem 2rem',
+  marginBottom: '2rem',
+}}>
+  <div style={{ fontSize: '0.8rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255, 255, 255, 0.85)' }}>
+    {`Vue 3 · TypeScript · Tailwind`}
+  </div>
+  <div style={{ margin: '0.5rem 0 0.75rem', fontSize: '2.4rem', fontWeight: 700, lineHeight: 1.1, color: '#fff' }}>
+    {`Component Showcase`}
+  </div>
+  <div style={{ fontSize: '1.1rem', maxWidth: '46ch', color: 'rgba(255, 255, 255, 0.95)' }}>
+    {`A small, clean-room library of presentational Vue components — each built from scratch as a generic, reusable building block and documented here in Storybook.`}
+  </div>
+</div>
+
+## What this is
+
+This is a personal, portfolio-safe component library. Every component is a **clean,
+generic, reusable building block** — written from first principles, with no ties to any
+app, brand, or employer codebase. That's what lets each one be previewed, themed, and
+dropped into any project in isolation.
+
+Use the sidebar to browse components. Every page is interactive: tweak props live with
+the **Controls** panel, read the auto-generated API docs, and check accessibility with
+the built-in **a11y** addon.
+
+## Principles
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1rem', margin: '1.25rem 0 2rem' }}>
+  {[
+    ['Props in, UI out', 'Purely presentational. No router, store, or API dependencies — so every component renders in isolation.'],
+    ['Variant + size API', 'A consistent variant and size prop pattern across components, backed by typed class maps.'],
+    ['Brand-neutral tokens', 'Theming flows through a few generic CSS tokens (--color-brand, --radius). Nothing company-specific.'],
+    ['Typed & documented', 'Written in <script setup lang="ts"> with typed props, and auto-documented via Storybook autodocs.'],
+  ].map(([title, body]) => (
+    <div key={title} style={{
+      border: '1px solid #e5e7eb',
+      borderRadius: 'var(--radius)',
+      padding: '1.1rem 1.2rem',
+      background: '#fff',
+    }}>
+      <h3 style={{ margin: '0 0 0.4rem', fontSize: '1rem', color: 'var(--color-brand)' }}>{title}</h3>
+      <p style={{ margin: 0, fontSize: '0.9rem', lineHeight: 1.5, color: '#4b5563' }}>{body}</p>
+    </div>
+  ))}
+</div>
+
+## Components
+
+<ul style={{ lineHeight: 1.9 }}>
+  <li><a href="?path=/docs/components-basebutton--docs"><strong>BaseButton</strong></a> — variants, sizes, disabled state, link mode, and icon slots.</li>
+  <li><a href="?path=/docs/components-basetag--docs"><strong>BaseTag</strong></a> — status variants, pill shape, and a removable close button.</li>
+  {/* As new components ship, add an <li> here following the same pattern, e.g.:
+      <li><a href="?path=/docs/components-baseinput--docs"><strong>BaseInput</strong></a> — short description.</li> */}
+</ul>
+
+## Stack
+
+- **Vue 3** with `<script setup lang="ts">` and the Composition API
+- **TypeScript** throughout
+- **Tailwind CSS v4** (config-less; tokens live in `src/style.css`)
+- **Storybook 10** with the docs, a11y, vitest, and chromatic addons
+- **Vite** for builds
+
+---
+
+<p style={{ fontSize: '0.85rem', color: '#6b7280' }}>
+  Browse the components in the sidebar to see each one in action. New components are added
+  one at a time, each as a fresh clean-room build.
+</p>

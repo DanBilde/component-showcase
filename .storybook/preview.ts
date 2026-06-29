@@ -3,6 +3,12 @@ import '../src/style.css'
 
 const preview: Preview = {
   parameters: {
+    options: {
+      // Keep the Introduction page pinned to the top of the sidebar.
+      storySort: {
+        order: ['Introduction', 'Components'],
+      },
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,

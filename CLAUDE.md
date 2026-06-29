@@ -80,6 +80,16 @@ src/
   Slots: default label + `icon`. Story covers Default, Brand, Pill, Removable, Sizes,
   AllVariants.
 
+### Slice 3 — Deploy + intro page (done)
+- Wired up the GitHub remote (SSH, `DanBilde/component-showcase`) and deployed the static
+  Storybook to **Vercel** via Git integration (auto-deploy on push to `main`). Config in
+  `vercel.json`. Live at https://component-showcase-alpha.vercel.app/.
+- Added `src/Introduction.mdx` — a docs-only landing page (hero, principles grid, linked
+  component index, stack) pinned to the top of the sidebar via `storySort` in
+  `.storybook/preview.ts`. Keep its component list in sync as new components ship.
+- Briefly trialed a green `--color-brand`, then reverted to the original blue (`#2b6298`,
+  hover `#245480`); `BaseButton` primary and the intro hero use white text on the brand.
+
 ### Next up
 - Add more presentational components one at a time (e.g. Modal, Dropdown, Input/Field),
   each as a fresh clean-room build following the `BaseButton` / `BaseTag` pattern.
