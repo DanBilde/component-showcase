@@ -165,6 +165,16 @@ src/
   movement between headers. Story covers Default, Multiple, AllClosed, WithDisabledItem.
 - Added it to the `Introduction.mdx` component index.
 
+### Slice 11 — BaseRadioGroup (done)
+- Built **`BaseRadioGroup`**: `options` array (`{ label, value, disabled? }`) with `v-model`
+  single value, `size` (sm / md / lg), `orientation` (vertical / horizontal), and the same
+  `label` / `hint` / `error` / `disabled` / `required` API as `BaseInput`. Uses **native
+  `<input type="radio">`** (visually restyled via a `peer` + custom control span) so arrow-key
+  selection, focus, and form semantics come for free; grouped in a `<fieldset>` / `<legend>`.
+  Story covers Default, Preselected, Horizontal, WithHint, WithError, WithDisabledOption,
+  Disabled, Sizes.
+- Added it to the `Introduction.mdx` component index.
+
 ### Next up
-- Add more presentational components one at a time (e.g. Checkbox/Radio, Badge/Avatar,
+- Add more presentational components one at a time (e.g. Checkbox/Switch, Badge/Avatar,
   Breadcrumbs), each as a fresh clean-room build following the `Base*` pattern.
