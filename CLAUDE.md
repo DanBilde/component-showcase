@@ -109,6 +109,62 @@ src/
   Default, WithoutFooter, Persistent, LongContent.
 - Added it to the `Introduction.mdx` component index.
 
+### Slice 6 — BaseSelect (done)
+- Built **`BaseSelect`**: a custom listbox dropdown (not a native `<select>`) following the
+  WAI-ARIA select-only combobox pattern. `v-model` selected value, `options`
+  (`{ label, value, disabled? }`), sizes (sm / md / lg), and the same `label` / `placeholder`
+  / `hint` / `error` / `disabled` / `required` API as `BaseInput`. Behaviour: click + full
+  keyboard nav (Arrow / Home / End / Enter / Space / Escape / Tab), type-ahead, disabled-option
+  skipping, click-outside to close, active option scrolled into view. A11y: trigger is
+  `role="combobox"` with `aria-haspopup` / `aria-expanded` / `aria-controls` /
+  `aria-activedescendant`; menu is `role="listbox"` with `role="option"` + `aria-selected`.
+  Focus stays on the trigger (active option tracked via `aria-activedescendant`). Story
+  covers Default, Preselected, WithDisabledOptions, WithHint, WithError, Disabled, Sizes.
+- Added it to the `Introduction.mdx` component index.
+
+### Slice 7 — BaseMultiSelect (done)
+- Built **`BaseMultiSelect`**: a sibling to `BaseSelect` for multiple selection. Array
+  `v-model` (`(string | number)[]`), reuses `BaseSelect`'s exported `SelectOption` type.
+  Selecting **toggles** an option (menu stays open); options render a checkbox and the
+  trigger shows **removable chips** for the selected values. Same keyboard nav / type-ahead
+  / click-outside / sizes / hint-error API as `BaseSelect`; listbox is
+  `aria-multiselectable="true"`. The trigger is a `div[role="combobox"][tabindex=0]` (not a
+  `<button>`) so each chip can hold a real remove `<button>`; **Backspace removes the last
+  chip**, and a per-size **`min-height`** stops the field jumping when the first chip appears
+  (it only grows when chips wrap). Story covers Default, Preselected, WithDisabledOptions,
+  WithHint, WithError, Disabled, Sizes.
+- Added it to the `Introduction.mdx` component index.
+
+### Slice 8 — BaseTabs (done)
+- Built **`BaseTabs`**: `tabs` array (`{ label, value, disabled? }`) with `v-model` for the
+  active value (works uncontrolled too, falling back to the first enabled tab). `variant`
+  (underline / pills) + `size` (sm / md / lg) class-map styling. Per-tab content via dynamic
+  named slots keyed by `value`; panels render with `v-show` to preserve state. A11y: full
+  WAI-ARIA tabs pattern — `role="tablist"` / `tab` / `tabpanel`, roving `tabindex`,
+  Arrow/Home/End navigation with automatic activation, disabled-tab skipping. Story covers
+  Default, Pills, WithDisabledTab, Sizes.
+- Added it to the `Introduction.mdx` component index.
+
+### Slice 9 — BaseTooltip (done)
+- Built **`BaseTooltip`**: wraps a trigger via the default slot and shows a floating label
+  on hover **and** keyboard focus; hides on leave / blur / Escape. `content` prop or
+  `content` slot, `placement` (top / bottom / left / right) with a matching arrow,
+  `openDelay` (ms), and `disabled`. Pure-CSS positioning (no floating-ui), fade transition
+  via Tailwind transition-class props. A11y: panel is `role="tooltip"`; the wrapper gets
+  `aria-describedby` while visible. Story covers Default, Placements, WithDelay,
+  OnIconButton, Disabled.
+- Added it to the `Introduction.mdx` component index.
+
+### Slice 10 — BaseAccordion (done)
+- Built **`BaseAccordion`**: `items` array (`{ title, value, disabled? }`) with an
+  always-array `v-model` of open values and a `multiple` flag (single-open by default).
+  Per-item content via dynamic named slots keyed by `value`. Height animates with the
+  pure-CSS `grid-template-rows: 0fr → 1fr` trick (no JS hooks); closed panels get `inert`.
+  A11y: header `<button aria-expanded aria-controls>` wrapped in a configurable
+  `headingLevel`, panel `role="region"` + `aria-labelledby`, optional Arrow/Home/End focus
+  movement between headers. Story covers Default, Multiple, AllClosed, WithDisabledItem.
+- Added it to the `Introduction.mdx` component index.
+
 ### Next up
-- Add more presentational components one at a time (e.g. Modal, Dropdown, Input/Field),
-  each as a fresh clean-room build following the `BaseButton` / `BaseTag` pattern.
+- Add more presentational components one at a time (e.g. Checkbox/Radio, Badge/Avatar,
+  Breadcrumbs), each as a fresh clean-room build following the `Base*` pattern.
