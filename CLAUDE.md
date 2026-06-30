@@ -175,6 +175,16 @@ src/
   Disabled, Sizes.
 - Added it to the `Introduction.mdx` component index.
 
+### Slice 12 — BaseCheckbox (done)
+- Built **`BaseCheckbox`**: a single checkbox with boolean `v-model`, an `indeterminate`
+  (tri-state) mode, `size` (sm / md / lg), and the same `label` / `hint` / `error` /
+  `disabled` / `required` API. Native `<input type="checkbox">` (visually restyled);
+  checked/indeterminate visuals are driven from Vue state (avoids Tailwind's `peer-checked`
+  descendant limit), while the native `.indeterminate` DOM property is synced for screen
+  readers. Story covers Default, Checked, Indeterminate, WithHint, WithError, Disabled,
+  Sizes, and a SelectAllGroup demo (parent reflects child state).
+- Added it to the `Introduction.mdx` component index.
+
 ### Next up
-- Add more presentational components one at a time (e.g. Checkbox/Switch, Badge/Avatar,
+- Add more presentational components one at a time (e.g. Switch/Toggle, Badge/Avatar,
   Breadcrumbs), each as a fresh clean-room build following the `Base*` pattern.
