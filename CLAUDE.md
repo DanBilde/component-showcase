@@ -185,6 +185,23 @@ src/
   Sizes, and a SelectAllGroup demo (parent reflects child state).
 - Added it to the `Introduction.mdx` component index.
 
+### Slice 13 — BaseSwitch (done)
+- Built **`BaseSwitch`**: an on/off toggle mirroring `BaseCheckbox` — boolean `v-model`,
+  `size` (sm / md / lg), and the shared `label` / `hint` / `error` / `disabled` / `required`
+  API. Native `<input type="checkbox" role="switch">` (sr-only `peer`) restyled as a
+  track + knob; the knob slides via a `translate-x` driven from Vue state, focus ring via
+  `peer-focus-visible`. Story covers Default, On, WithHint, WithError, Disabled, Sizes, and
+  a SettingsList demo.
+- Added it to the `Introduction.mdx` component index.
+
+### Slice 14 — BaseBadge (done)
+- Built **`BaseBadge`**: a compact status/count indicator, distinct from `BaseTag` (which is
+  a removable label chip). `variant` (neutral / brand / success / warning / danger),
+  `appearance` (subtle / solid), `size` (sm / md), and a `dot` option — a leading status dot
+  when there's content, or a standalone dot when empty. Rounded-full pill. Story covers
+  Default, Solid, WithDot, Counts, StatusDots, Sizes, AllVariants.
+- Added it to the `Introduction.mdx` component index.
+
 ### Next up
-- Add more presentational components one at a time (e.g. Switch/Toggle, Badge/Avatar,
-  Breadcrumbs), each as a fresh clean-room build following the `Base*` pattern.
+- Add more presentational components one at a time (e.g. Avatar, Breadcrumbs,
+  Progress/Spinner), each as a fresh clean-room build following the `Base*` pattern.
