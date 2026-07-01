@@ -202,6 +202,17 @@ src/
   Default, Solid, WithDot, Counts, StatusDots, Sizes, AllVariants.
 - Added it to the `Introduction.mdx` component index.
 
+### Slice 15 — BaseAvatar (done)
+- Built **`BaseAvatar`**: image avatar with a graceful fallback chain — image → initials
+  (derived from `name`) → default user icon, resetting on `src` change and handling `@error`.
+  `size` (xs–xl), `shape` (circle / square), optional `ring`, and a presence `status` dot
+  (online / away / busy / offline) in the corner. Initials get a deterministic soft color
+  from a name hash. A default **slot overrides the fallback** (e.g. a "+5" group-overflow
+  avatar). A11y: `role="img"` + `aria-label` on the non-image fallback; status has an
+  `sr-only` label. Story covers Image, Initials, BrokenImageFallsBack, IconFallback,
+  WithStatus, Shapes, Sizes, InitialColors, Group.
+- Added it to the `Introduction.mdx` component index.
+
 ### Next up
-- Add more presentational components one at a time (e.g. Avatar, Breadcrumbs,
-  Progress/Spinner), each as a fresh clean-room build following the `Base*` pattern.
+- Add more presentational components one at a time (e.g. Breadcrumbs, Progress/Spinner,
+  Alert/Callout), each as a fresh clean-room build following the `Base*` pattern.
