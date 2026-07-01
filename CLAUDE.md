@@ -213,6 +213,14 @@ src/
   WithStatus, Shapes, Sizes, InitialColors, Group.
 - Added it to the `Introduction.mdx` component index.
 
+### Slice 16 — BaseSpinner (done)
+- Built **`BaseSpinner`**: a rotating SVG ring (`animate-spin`) with `size` (xs–xl) and
+  `color` (brand / neutral / white / `current`). `current` inherits `currentColor` so the
+  spinner matches surrounding text (e.g. inside a `BaseButton`). A11y: `role="status"` with
+  an `sr-only` `label` (default "Loading"); the SVG is `aria-hidden`. Story covers Default,
+  Sizes, Colors, InButton.
+- Added it to the `Introduction.mdx` component index.
+
 ### Next up
-- Add more presentational components one at a time (e.g. Breadcrumbs, Progress/Spinner,
-  Alert/Callout), each as a fresh clean-room build following the `Base*` pattern.
+- Add more presentational components one at a time (e.g. Breadcrumbs, Alert/Callout,
+  Progress bar), each as a fresh clean-room build following the `Base*` pattern.
