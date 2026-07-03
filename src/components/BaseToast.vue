@@ -88,18 +88,12 @@ const roleFor = (v: Variant = 'info') => (v === 'error' || v === 'warning' ? 'al
 <template>
   <Teleport to="body">
     <TransitionGroup
+      name="toast"
       tag="div"
       :class="[
         'pointer-events-none fixed z-[60] flex w-[calc(100vw-2rem)] max-w-sm flex-col gap-2',
         positionClasses[position],
       ]"
-      enter-active-class="transition-all duration-300 ease-out"
-      enter-from-class="opacity-0 translate-y-2"
-      enter-to-class="opacity-100 translate-y-0"
-      leave-active-class="absolute transition-all duration-300 ease-in"
-      leave-from-class="opacity-100 translate-x-0"
-      leave-to-class="opacity-0 translate-x-6"
-      move-class="transition-transform duration-300"
     >
       <div
         v-for="t in toasts"
@@ -151,3 +145,29 @@ const roleFor = (v: Variant = 'info') => (v === 'error' || v === 'warning' ? 'al
     </TransitionGroup>
   </Teleport>
 </template>
+
+<style scoped>
+.toast-enter-active,
+.toast-leave-active {
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+.toast-enter-from {
+  opacity: 0;
+  transform: translateY(8px);
+}
+.toast-leave-to {
+  opacity: 0;
+  transform: translateX(24px);
+}
+/* Take the leaving toast out of flow so the rest slide up smoothly. */
+.toast-leave-active {
+  position: absolute;
+  width: 100%;
+}
+.toast-move {
+  transition: transform 0.3s ease;
+}
+</style>
+
