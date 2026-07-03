@@ -252,6 +252,24 @@ src/
   AllTypes.
 - Added it to the `Introduction.mdx` component index.
 
+### Slice 20 — BaseProgress (done)
+- Built **`BaseProgress`**: a progress bar with a determinate mode (`value` / `max`, animated
+  width) and an `indeterminate` mode (a sliding bar via a small scoped `<style>` keyframe —
+  the one place we step outside Tailwind utilities, kept self-contained in the component).
+  `variant` (brand / success / warning / danger / neutral), `size` (sm / md / lg), optional
+  `label` + `showValue` (percentage). A11y: `role="progressbar"` with
+  `aria-valuemin/max/now` (now omitted when indeterminate). Story covers Default, WithLabel,
+  Indeterminate, Variants, Sizes, and an Animated live demo.
+- Added it to the `Introduction.mdx` component index.
+
+### Slice 21 — BaseSkeleton (done)
+- Built **`BaseSkeleton`**: loading placeholder with `shape` (text / rect / circle), `lines`
+  (for text, last line 60% width), `width` / `height` (number → px), and `animation`
+  (pulse via Tailwind `animate-pulse`, shimmer via a scoped gradient keyframe, or none).
+  A11y: `role="status"` + `aria-busy`. Story covers Text, Rect, Circle, Shimmer, Sizes, and
+  a composed CardPlaceholder.
+- Added it to the `Introduction.mdx` component index.
+
 ### Next up
-- Add more presentational components one at a time (e.g. Progress bar, Pagination,
-  Skeleton), each as a fresh clean-room build following the `Base*` pattern.
+- Add more presentational components one at a time (e.g. Pagination, Slider/Range,
+  BaseToast stack), each as a fresh clean-room build following the `Base*` pattern.
