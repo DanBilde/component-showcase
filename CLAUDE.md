@@ -270,6 +270,16 @@ src/
   a composed CardPlaceholder.
 - Added it to the `Introduction.mdx` component index.
 
+### Slice 22 — BaseToast (done)
+- Built **`BaseToast`**: a teleported toast stack driven by a `toasts` array
+  (`{ id, variant?, title?, message?, duration?, dismissible? }`), `position` (6 corners),
+  and a default `duration`. The **container owns the auto-dismiss timers** (so the
+  `<TransitionGroup>` can animate removals) and emits `dismiss(id)` — the parent owns the
+  array. Animated enter (fade + slide-up), leave (fade + slide-out, `absolute` so siblings
+  reflow), and `move` transition. Reuses BaseNotification's variant palette + icons + severity
+  `role`. Story covers Playground (buttons push each type), TopCenter, Persistent.
+- Added it to the `Introduction.mdx` component index.
+
 ### Next up
 - Add more presentational components one at a time (e.g. Pagination, Slider/Range,
-  BaseToast stack), each as a fresh clean-room build following the `Base*` pattern.
+  Textarea), each as a fresh clean-room build following the `Base*` pattern.
