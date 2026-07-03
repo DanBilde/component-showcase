@@ -221,6 +221,37 @@ src/
   Sizes, Colors, InButton.
 - Added it to the `Introduction.mdx` component index.
 
+### Slice 17 — BaseBreadcrumbs (done)
+- Built **`BaseBreadcrumbs`**: `items` array (`{ label, href?, current? }`) rendered as
+  `<nav aria-label><ol>`. Items with `href` are links, the current/last crumb is plain text
+  with `aria-current="page"`, and href-less non-current items render as buttons emitting
+  `select`. Customizable `separator` (prop, or a `separator` slot for e.g. a chevron svg),
+  `size` (sm / md), and optional `maxItems` that collapses the middle to an ellipsis. Story
+  covers Default, ChevronSeparator, ChevronSlot, Collapsed, Small, TwoLevels.
+- Added it to the `Introduction.mdx` component index.
+
+### Slice 18 — BaseCard (done)
+- Built **`BaseCard`**: a slotted container with `variant` (outlined / elevated / filled),
+  `padding` (none / sm / md / lg), convenience `title` / `subtitle` props (or a `header`
+  slot), default body slot, and a `footer` slot. First-class **centered top icon**: an
+  `icon` slot rendered in a tinted circle, plus a `centered` prop for the classic feature-card
+  layout. Story covers Default, Elevated, Filled, FeatureWithIcon, WithFooter, CustomHeader,
+  FeatureGrid.
+- Added it to the `Introduction.mdx` component index.
+
+### Slice 19 — BaseNotification (done)
+- Built **`BaseNotification`**: an alert/callout with `variant` (info / success / warning /
+  error), each with a tinted container + leading icon (overridable via `icon` slot, hideable
+  via `icon` prop). Optional `title`, `dismissible` close button (emits `dismiss` — parent
+  controls removal), and an `actions` slot for buttons. A11y: `role` is `alert` for
+  error/warning (assertive) and `status` for info/success (polite). Non-dismissible
+  notifications auto-dismiss after a `duration` (default 4000ms, `0` disables; dismissible
+  ones wait for the user) with a fade-out; still emits `dismiss`. Doc stories set
+  `duration: 0` to stay readable — see the AutoDismiss story for the timed behaviour. Story
+  covers Info, Success, Warning, Error, MessageOnly, Dismissible, WithActions, AutoDismiss,
+  AllTypes.
+- Added it to the `Introduction.mdx` component index.
+
 ### Next up
-- Add more presentational components one at a time (e.g. Breadcrumbs, Alert/Callout,
-  Progress bar), each as a fresh clean-room build following the `Base*` pattern.
+- Add more presentational components one at a time (e.g. Progress bar, Pagination,
+  Skeleton), each as a fresh clean-room build following the `Base*` pattern.
