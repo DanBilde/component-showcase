@@ -25,11 +25,13 @@ here is copied from any employer codebase.
 
 ```
 src/
-  components/            # Components + co-located *.stories.ts
+  components/            # Components + co-located *.stories.ts (Base* prefix)
+  Introduction.mdx       # Storybook landing page (pinned first via storySort)
   style.css              # `@import 'tailwindcss'` + generic design tokens
+public/                  # static assets served at root (e.g. avatar.jpg)
 .storybook/
-  main.ts                # story globs + addons + framework
-  preview.ts             # imports src/style.css, padding decorator, controls
+  main.ts                # story globs + addons + framework + staticDirs
+  preview.ts             # imports src/style.css, padding decorator, controls, storySort
 ```
 
 ## Conventions
@@ -47,7 +49,11 @@ src/
   `src/style.css`: `--color-brand`, `--color-brand-hover`, `--radius`. **Do not**
   introduce company-specific theme tokens, assets, or naming.
 - Prefer a `variant` + `size` prop pattern with `Record<Variant, string>` class maps
-  (see `AppButton.vue`).
+  (see `BaseButton.vue`).
+- Tailwind utilities only, **except** where keyframe animations or pseudo-element styling
+  are unavoidable — then use a small scoped `<style>` in the component (e.g. `BaseProgress`
+  indeterminate, `BaseSkeleton` shimmer, `BaseSlider` thumb/track, `BaseToast` transitions).
+- Build accessibility in: semantic elements, ARIA roles/attributes, keyboard support.
 
 ### Stories
 - Co-locate `ComponentName.stories.ts` next to the component.
