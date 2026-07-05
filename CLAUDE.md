@@ -310,6 +310,33 @@ src/
   WithError, Disabled, Sizes.
 - Added it to the `Introduction.mdx` component index.
 
+### Slice 26 — BaseStat (done)
+- Built **`BaseStat`**: a bare KPI/metric block (composes inside `BaseCard`) — `label`,
+  big `value` (or `value` slot), optional colored `delta` with an ↑/↓ trend arrow,
+  `deltaSuffix` / `deltaLabel`, and an `icon` slot. `trend` auto-derives from a numeric
+  delta; `positiveIsGood` (default true) flips the up/down color mapping for metrics like
+  churn/refunds. `size` (sm / md / lg) scales the value. Story covers Default, Negative,
+  InvertedColor, NoDelta, WithIcon, InCard, Dashboard (grid of stat cards), Sizes.
+- Added it to the `Introduction.mdx` component index.
+
+### Slice 27 — BaseDivider (done)
+- Built **`BaseDivider`**: `orientation` (horizontal / vertical), optional `label` (or default
+  slot) with `labelPosition` (left / center / right) for horizontal, `variant` (solid /
+  dashed), and `spacing` (none / sm / md / lg, applied as margin per orientation). Vertical is
+  a self-stretching `border-l` line for inline use. A11y: `role="separator"` +
+  `aria-orientation`. Story covers Plain, WithLabel, LabelLeft, Dashed, Vertical, Spacings.
+- Added it to the `Introduction.mdx` component index.
+
+### Slice 28 — BaseList (done)
+- Built **`BaseList`**: renders an `items` array (`{ label?, description?, value?, disabled?,
+  href? }`) as rows. `variant` (plain / divided / bordered), `interactive` (rows become
+  hoverable buttons, or links when `href` set, emitting `select`), and `size` (sm / md / lg).
+  Slots: `leading` / `trailing` (scoped, per row) and `item` (scoped, full row-content
+  override). Semantic `<ul>`/`<li>`; disabled rows dimmed + non-interactive. Story covers
+  Default, Bordered, Interactive, WithLeadingAndTrailing (avatar + badge), CustomItem,
+  WithDisabledRow.
+- Added it to the `Introduction.mdx` component index.
+
 ### Next up
-- Add more presentational components one at a time (e.g. Stat/KPI, Divider,
-  List/DescriptionList), each as a fresh clean-room build following the `Base*` pattern.
+- Add more presentational components one at a time (e.g. EmptyState, KBD/Code,
+  DescriptionList), each as a fresh clean-room build following the `Base*` pattern.
