@@ -337,6 +337,27 @@ src/
   WithDisabledRow.
 - Added it to the `Introduction.mdx` component index.
 
+### Slice 29 — BaseEmptyState (done)
+- Built **`BaseEmptyState`**: centered empty-screen block — an `icon` slot (in a tinted
+  circle), `title`, `description`, a default slot for extra content, and an `actions` slot
+  (composes with `BaseButton`). `size` (sm / md / lg) scales the icon, heading, and padding.
+  Story covers Default, NoIcon, WithoutAction, TwoActions, InCard, Sizes.
+- Added it to the `Introduction.mdx` component index.
+
+### Slice 30 — BaseDescriptionList (done)
+- Built **`BaseDescriptionList`**: semantic `<dl>`/`<dt>`/`<dd>` key/value pairs from an
+  `items` array (`{ term, description? }`). `layout` (inline two-column / stacked), optional
+  `divided`, `size` (sm / md / lg), and a scoped `value` slot for rich values (e.g. a badge).
+  Story covers Inline, Stacked, Divided, WithCustomValue, OrderSummaryInCard.
+- Added it to the `Introduction.mdx` component index.
+
+### Slice 31 — BaseKbd (done)
+- Built **`BaseKbd`**: inline keyboard-key styling. `keys` prop (single string or array combo)
+  renders `<kbd>` elements joined by a `separator` (default `+`); omit `keys` to use the
+  default slot for one key. `size` (sm / md / lg). Story covers Combo, SingleKey, CtrlCombo,
+  SpaceSeparator, InText, Sizes.
+- Added it to the `Introduction.mdx` component index.
+
 ### Next up
-- Add more presentational components one at a time (e.g. EmptyState, KBD/Code,
-  DescriptionList), each as a fresh clean-room build following the `Base*` pattern.
+- Add more presentational components one at a time (e.g. Timeline, Rating,
+  Alert banner), each as a fresh clean-room build following the `Base*` pattern.
