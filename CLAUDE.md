@@ -280,6 +280,36 @@ src/
   `role`. Story covers Playground (buttons push each type), TopCenter, Persistent.
 - Added it to the `Introduction.mdx` component index.
 
+### Slice 23 — BasePagination (done)
+- Built **`BasePagination`**: `v-model` current page (1-based), page count from `total`/
+  `pageSize` or an explicit `pageCount`, `siblingCount` (neighbors shown), `size` (sm / md /
+  lg), optional `showEdges` (first/last buttons), and `disabled`. Numbered pages with
+  ellipsis truncation (first + last always shown, dots where the range is cut). A11y:
+  `<nav aria-label="Pagination">` + `<ul>`, `aria-current="page"` on the active page,
+  labelled prev/next/first/last buttons disabled at the ends. Story covers Default,
+  MiddleOfRange, FewPages, WithEdges, MoreSiblings, Sizes, Disabled.
+- Added it to the `Introduction.mdx` component index.
+
+### Slice 24 — BaseTextarea (done)
+- Built **`BaseTextarea`**: mirrors `BaseInput`'s `label` / `hint` / `error` / `size` /
+  `disabled` / `required` API for multi-line input. Adds `rows`, a `resize` control
+  (none / vertical / both), optional `autoGrow` (auto-resize height to content via
+  scrollHeight; forces resize-none + overflow-hidden), and an optional character counter
+  (`maxlength` + `showCount`). A11y: `useId` label link, `aria-describedby` / `aria-invalid`
+  to hint/error. Story covers Default, WithHint, WithError, CharacterCount, AutoGrow,
+  Disabled, Sizes.
+- Added it to the `Introduction.mdx` component index.
+
+### Slice 25 — BaseSlider (done)
+- Built **`BaseSlider`**: a restyled native `<input type="range">` (keyboard + slider ARIA
+  for free). `v-model` number, `min` / `max` / `step`, `size` (sm / md / lg), the shared
+  `label` / `hint` / `error` / `disabled` / `required` API, and optional `showValue`. Filled
+  track via a computed CSS gradient; custom thumb/track through a scoped `<style>` sized by
+  CSS custom properties (`--track` / `--thumb` / `--fill`), with a focus ring via
+  `color-mix`; error turns the fill red. Story covers Default, Steps, CustomRange, WithHint,
+  WithError, Disabled, Sizes.
+- Added it to the `Introduction.mdx` component index.
+
 ### Next up
-- Add more presentational components one at a time (e.g. Pagination, Slider/Range,
-  Textarea), each as a fresh clean-room build following the `Base*` pattern.
+- Add more presentational components one at a time (e.g. Stat/KPI, Divider,
+  List/DescriptionList), each as a fresh clean-room build following the `Base*` pattern.
