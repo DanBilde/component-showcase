@@ -407,6 +407,25 @@ public/                  # static assets served at root (e.g. avatar.jpg)
   (alert/status). Story covers Subtle, Solid, Centered, WithAction, Dismissible, AllVariants.
 - Added all three to the `Introduction.mdx` component index.
 
+### Slice 38 — BasePopover (done)
+- Built **`BasePopover`**: click-triggered floating panel. `trigger` slot + default content
+  slot (exposes `close`), `placement` (bottom/top × start/end), `disabled`. Click-outside
+  (pointerdown) and Escape close; fade+scale transition. Inline-absolute positioning.
+  Story covers Default, AlignEnd, Top, WithCloseAction.
+
+### Slice 39 — BaseMenu (done)
+- Built **`BaseMenu`**: dropdown action menu. `items` array (`{ label?, value?, disabled?,
+  danger?, divider? }`) + `trigger` slot, `placement`, emits `select`. A11y: `role="menu"` /
+  `role="menuitem"` with real focus movement (Arrow/Home/End/Enter/Escape/Tab); Escape returns
+  focus to the trigger. Story covers Default, AlignEnd, WithDisabledItem.
+
+### Slice 40 — BaseChipInput (done)
+- Built **`BaseChipInput`**: tag/token input mirroring `BaseInput`'s label/hint/error/size
+  API. Array `v-model`; add on Enter/comma (and blur), remove via chip × or Backspace on an
+  empty input; `max`, `allowDuplicates`, `disabled`. Field uses `focus-within` ring.
+  Story covers Default, Empty, WithError, MaxThree, Disabled, Sizes.
+- Added all three to the `Introduction.mdx` component index.
+
 ### Next up
-- Add more presentational components one at a time (e.g. Popover/Menu, Chip input,
-  Calendar/Datepicker), each as a fresh clean-room build following the `Base*` pattern.
+- Add more presentational components one at a time (e.g. Calendar/Datepicker, Command
+  palette, Tree view), each as a fresh clean-room build following the `Base*` pattern.

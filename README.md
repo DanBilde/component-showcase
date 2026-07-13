@@ -47,7 +47,7 @@ src/
 
 ## Components
 
-36 components, each with a co-located `*.stories.ts` and autodocs.
+39 components, each with a co-located `*.stories.ts` and autodocs.
 
 ### Buttons & actions
 - **BaseButton** — variants (primary / secondary / ghost), sizes, disabled, link mode, icon slots.
@@ -63,6 +63,7 @@ src/
 - **BaseSlider** — range input with a filled track and value label.
 - **BaseRating** — star rating (read-only or interactive) with half-steps and keyboard support.
 - **BaseSegmentedControl** — iOS-style single-select toggle group with keyboard navigation.
+- **BaseChipInput** — tag/token input; add with Enter/comma, remove with × or Backspace.
 
 ### Data display
 - **BaseTag** — label chip with variants, pill shape, and a removable button.
@@ -95,6 +96,8 @@ src/
 ### Overlays
 - **BaseModal** — teleported dialog with backdrop, Escape, and scroll-lock handling.
 - **BaseTooltip** — hover/focus tooltip with four placements and an open delay.
+- **BasePopover** — click-triggered floating panel with placement and click-outside.
+- **BaseMenu** — dropdown action menu with keyboard navigation, dividers, and danger items.
 
 ### Layout
 - **BaseDivider** — horizontal/vertical separator with an optional label.
