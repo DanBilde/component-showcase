@@ -386,6 +386,27 @@ public/                  # static assets served at root (e.g. avatar.jpg)
   Inline, PlainBlock, WithLanguageOnly, Copyable.
 - Added both to the `Introduction.mdx` component index.
 
+### Slice 35 — BaseSegmentedControl (done)
+- Built **`BaseSegmentedControl`**: iOS-style single-select toggle group. `options` array
+  (`{ label, value, disabled? }`), `v-model`, `size`, `fullWidth`, `disabled`. Selected
+  segment gets a white "pill" (bg-white + shadow) on a slate track. A11y: `role="radiogroup"`
+  / `role="radio"` with roving tabindex and Arrow/Home/End keys. Story covers Default,
+  TwoOptions, FullWidth, WithDisabledOption, Sizes.
+
+### Slice 36 — BaseStepper (done)
+- Built **`BaseStepper`**: horizontal step indicator. `steps` array (`{ label, description? }`),
+  `v-model` active index (0-based), optional `clickable`. Completed steps show a check +
+  brand fill, active is brand-outlined, upcoming is grey; connector lines fill brand up to the
+  active step. A11y: `<ol>` with `aria-current="step"`. Story covers Default, FirstStep,
+  Completed, LabelsOnly, InteractiveWizard (Back/Next).
+
+### Slice 37 — BaseAlertBanner (done)
+- Built **`BaseAlertBanner`**: full-width page banner (distinct from the card-like
+  `BaseNotification`). `variant` (info/success/warning/error), `appearance` (subtle/solid),
+  `dismissible`, `icon`, `center`, plus an `actions` slot. Severity-aware `role`
+  (alert/status). Story covers Subtle, Solid, Centered, WithAction, Dismissible, AllVariants.
+- Added all three to the `Introduction.mdx` component index.
+
 ### Next up
-- Add more presentational components one at a time (e.g. Alert banner, Segmented control,
-  Stepper), each as a fresh clean-room build following the `Base*` pattern.
+- Add more presentational components one at a time (e.g. Popover/Menu, Chip input,
+  Calendar/Datepicker), each as a fresh clean-room build following the `Base*` pattern.

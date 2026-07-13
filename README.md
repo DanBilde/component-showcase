@@ -47,7 +47,7 @@ src/
 
 ## Components
 
-33 components, each with a co-located `*.stories.ts` and autodocs.
+36 components, each with a co-located `*.stories.ts` and autodocs.
 
 ### Buttons & actions
 - **BaseButton** — variants (primary / secondary / ghost), sizes, disabled, link mode, icon slots.
@@ -62,6 +62,7 @@ src/
 - **BaseSwitch** — accessible on/off toggle.
 - **BaseSlider** — range input with a filled track and value label.
 - **BaseRating** — star rating (read-only or interactive) with half-steps and keyboard support.
+- **BaseSegmentedControl** — iOS-style single-select toggle group with keyboard navigation.
 
 ### Data display
 - **BaseTag** — label chip with variants, pill shape, and a removable button.
@@ -80,6 +81,7 @@ src/
 - **BaseProgress** — determinate/indeterminate progress bar.
 - **BaseSkeleton** — loading placeholder (text/rect/circle) with pulse or shimmer.
 - **BaseNotification** — info/success/warning/error alert with auto-dismiss.
+- **BaseAlertBanner** — full-width page banner (subtle/solid) with actions and dismiss.
 - **BaseToast** — teleported toast stack (6 positions) with animated enter/leave.
 - **BaseEmptyState** — centered icon + heading + description + actions for empty screens.
 
@@ -87,6 +89,7 @@ src/
 - **BaseTabs** — accessible tabs (underline / pills) with arrow-key navigation.
 - **BaseBreadcrumbs** — breadcrumb trail with a custom separator and middle-collapse.
 - **BasePagination** — page navigation with prev/next and ellipsis for long ranges.
+- **BaseStepper** — horizontal step indicator for wizards, with optional clickable steps.
 - **BaseAccordion** — collapsible panels (single or multiple open) with animated height.
 
 ### Overlays
