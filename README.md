@@ -47,7 +47,7 @@ src/
 
 ## Components
 
-39 components, each with a co-located `*.stories.ts` and autodocs.
+40 components, each with a co-located `*.stories.ts` and autodocs.
 
 ### Buttons & actions
 - **BaseButton** — variants (primary / secondary / ghost), sizes, disabled, link mode, icon slots.
@@ -64,6 +64,7 @@ src/
 - **BaseRating** — star rating (read-only or interactive) with half-steps and keyboard support.
 - **BaseSegmentedControl** — iOS-style single-select toggle group with keyboard navigation.
 - **BaseChipInput** — tag/token input; add with Enter/comma, remove with × or Backspace.
+- **BaseCalendar** — month-grid date picker with min/max, week-start, and keyboard navigation.
 
 ### Data display
 - **BaseTag** — label chip with variants, pill shape, and a removable button.

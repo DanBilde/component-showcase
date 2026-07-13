@@ -426,6 +426,17 @@ public/                  # static assets served at root (e.g. avatar.jpg)
   Story covers Default, Empty, WithError, MaxThree, Disabled, Sizes.
 - Added all three to the `Introduction.mdx` component index.
 
+### Slice 41 — BaseCalendar (done)
+- Built **`BaseCalendar`**: month-grid date picker. `v-model` is an ISO `YYYY-MM-DD` string;
+  `min` / `max` bounds, `weekStartsOn` (0 Sun / 1 Mon). Prev/next month nav, today highlight
+  (ring), selected day (brand fill), adjacent-month days greyed. Full keyboard date nav:
+  Arrows (±1 day / ±7), PageUp/Down (±month), Home/End (week edges), Enter/Space to select;
+  `role="grid"`/`row`/`gridcell` with roving tabindex on the focused date and
+  `aria-selected`/`aria-current="date"`. Dates built in local time and formatted manually to
+  avoid UTC shifts. Story covers Default, WeekStartsSunday, WithMinMax, NoSelection.
+- Added it to the `Introduction.mdx` component index.
+
 ### Next up
-- Add more presentational components one at a time (e.g. Calendar/Datepicker, Command
-  palette, Tree view), each as a fresh clean-room build following the `Base*` pattern.
+- Add more presentational components one at a time (e.g. BaseDatepicker (input + calendar
+  popover), Command palette, Tree view), each as a fresh clean-room build following the
+  `Base*` pattern.
