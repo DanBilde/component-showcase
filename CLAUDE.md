@@ -364,6 +364,28 @@ public/                  # static assets served at root (e.g. avatar.jpg)
   SpaceSeparator, InText, Sizes.
 - Added it to the `Introduction.mdx` component index.
 
+### Slice 32 — BaseTimeline (done)
+- Built **`BaseTimeline`**: vertical event timeline from an `items` array
+  (`{ title, description?, time?, variant? }`). Flex layout (marker column + content) so the
+  connecting line `flex-1`-grows to fill the gap to the next dot; per-item `variant`-colored
+  dot with a white ring. Scoped `marker` and `content` slots for customization. Semantic
+  `<ol>`/`<li>`. Story covers Default, Variants, TitleOnly, CustomMarkers, InCard.
+- Added it to the `Introduction.mdx` component index.
+
+### Slice 33 — BaseRating (done)
+- Built **`BaseRating`**: star rating with `v-model`, `max`, `readonly`, `allowHalf`
+  (half-star via pointer x within a star), `size`, and `showValue`. Stars are a grey base
+  with a colour-clipped overlay (`width: fill%`) for partial fill. A11y: interactive is
+  `role="slider"` with `aria-valuemin/max/now` and Arrow/Home/End keys; readonly is
+  `role="img"`. Story covers Default, HalfSteps, ReadOnly, TenStars, Sizes.
+
+### Slice 34 — BaseCode (done)
+- Built **`BaseCode`**: `inline` (`<code>` chip) or `block` (`<pre><code>` on a dark
+  background). Block supports a `language` label and a `copyable` button (reads the code
+  element's textContent → `navigator.clipboard`, shows "Copied!"). Story covers Block,
+  Inline, PlainBlock, WithLanguageOnly, Copyable.
+- Added both to the `Introduction.mdx` component index.
+
 ### Next up
-- Add more presentational components one at a time (e.g. Timeline, Rating,
-  Alert banner), each as a fresh clean-room build following the `Base*` pattern.
+- Add more presentational components one at a time (e.g. Alert banner, Segmented control,
+  Stepper), each as a fresh clean-room build following the `Base*` pattern.
