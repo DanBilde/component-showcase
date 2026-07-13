@@ -47,7 +47,7 @@ src/
 
 ## Components
 
-30 components, each with a co-located `*.stories.ts` and autodocs.
+33 components, each with a co-located `*.stories.ts` and autodocs.
 
 ### Buttons & actions
 - **BaseButton** — variants (primary / secondary / ghost), sizes, disabled, link mode, icon slots.
@@ -61,6 +61,7 @@ src/
 - **BaseCheckbox** — checkbox with an indeterminate (tri-state) mode.
 - **BaseSwitch** — accessible on/off toggle.
 - **BaseSlider** — range input with a filled track and value label.
+- **BaseRating** — star rating (read-only or interactive) with half-steps and keyboard support.
 
 ### Data display
 - **BaseTag** — label chip with variants, pill shape, and a removable button.
@@ -71,6 +72,8 @@ src/
 - **BaseList** — list container (plain/divided/bordered) with interactive rows and slots.
 - **BaseDescriptionList** — semantic key/value pairs (inline or stacked).
 - **BaseKbd** — inline keyboard-key styling for shortcuts.
+- **BaseCode** — inline or block code styling with a language label and copy button.
+- **BaseTimeline** — vertical event timeline with a connecting line and colored markers.
 
 ### Feedback & status
 - **BaseSpinner** — loading spinner with sizes and colors.
