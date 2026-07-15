@@ -33,7 +33,9 @@ const meta = {
       watch(() => args.modelValue, (v) => (value.value = v ?? null))
       return { args, value }
     },
-    template: '<div style="max-width:280px"><BaseDatepicker v-bind="args" v-model="value" /></div>',
+    // min-height reserves room so the (absolutely-positioned) calendar popover is
+    // fully visible within the Storybook frame; not needed in a real app.
+    template: '<div style="max-width:280px; min-height:420px"><BaseDatepicker v-bind="args" v-model="value" /></div>',
   }),
 } satisfies Meta<typeof BaseDatepicker>
 
