@@ -47,7 +47,7 @@ src/
 
 ## Components
 
-40 components, each with a co-located `*.stories.ts` and autodocs.
+41 components, each with a co-located `*.stories.ts` and autodocs.
 
 ### Buttons & actions
 - **BaseButton** — variants (primary / secondary / ghost), sizes, disabled, link mode, icon slots.
@@ -65,6 +65,7 @@ src/
 - **BaseSegmentedControl** — iOS-style single-select toggle group with keyboard navigation.
 - **BaseChipInput** — tag/token input; add with Enter/comma, remove with × or Backspace.
 - **BaseCalendar** — month-grid date picker with min/max, week-start, and keyboard navigation.
+- **BaseDatepicker** — date field that opens a calendar popover (composes Popover + Calendar).
 
 ### Data display
 - **BaseTag** — label chip with variants, pill shape, and a removable button.

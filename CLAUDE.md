@@ -434,9 +434,19 @@ public/                  # static assets served at root (e.g. avatar.jpg)
   `role="grid"`/`row`/`gridcell` with roving tabindex on the focused date and
   `aria-selected`/`aria-current="date"`. Dates built in local time and formatted manually to
   avoid UTC shifts. Story covers Default, WeekStartsSunday, WithMinMax, NoSelection.
+### Slice 42 — BaseDatepicker (done)
+- Built **`BaseDatepicker`** by **composing** `BasePopover` + `BaseCalendar`: a field-style
+  trigger button (formatted display like "Jul 16, 2026" or placeholder + calendar icon) that
+  opens the calendar in a popover; selecting a date emits and closes. ISO `YYYY-MM-DD`
+  `v-model` passed through to the calendar; `min`/`max`/`weekStartsOn`, `size`, and the shared
+  `label`/`hint`/`error`/`disabled`/`required` field API. `aria-haspopup="dialog"` +
+  `aria-expanded` on the trigger.
+- Enhancements to reuse cleanly: added a **`block`** prop to `BasePopover` (full-width root +
+  trigger) and a **`bordered`** prop to `BaseCalendar` (default true; false = bare grid for
+  embedding). Both additive/back-compatible.
+- Story covers Default, Preselected, WithMinMax, WithError, Disabled.
 - Added it to the `Introduction.mdx` component index.
 
 ### Next up
-- Add more presentational components one at a time (e.g. BaseDatepicker (input + calendar
-  popover), Command palette, Tree view), each as a fresh clean-room build following the
-  `Base*` pattern.
+- Add more presentational components one at a time (e.g. Command palette, Tree view,
+  Time picker), each as a fresh clean-room build following the `Base*` pattern.
