@@ -47,19 +47,15 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {}
 
-export const OpenByDefault: Story = {
-  render: (args) => ({
-    components: { BaseCommandPalette },
-    setup: () => {
-      const open = ref(true)
-      const last = ref('')
-      return { args, open, last }
-    },
-    template: `
-      <div style="min-height:420px">
-        <p style="font-size:14px; color:#64748b">Last run: {{ last || '—' }}</p>
-        <BaseCommandPalette v-bind="args" v-model="open" @select="(item) => (last = item.label)" />
-      </div>
-    `,
-  }),
+// Fewer items + custom placeholder; still opened via the button (a command
+// palette is a full-viewport overlay, so it can't be shown "inside" a story box).
+export const CustomPlaceholder: Story = {
+  args: {
+    placeholder: 'Search actions…',
+    items: [
+      { value: 'new', label: 'New file', shortcut: '⌘N' },
+      { value: 'search', label: 'Search everywhere', shortcut: '⌘⇧F' },
+      { value: 'settings', label: 'Open settings', shortcut: '⌘,' },
+    ],
+  },
 }
