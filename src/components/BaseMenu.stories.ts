@@ -31,7 +31,7 @@ const meta = {
       return { args, last }
     },
     template: `
-      <div style="padding:40px">
+      <div style="padding:40px; min-height:300px">
         <BaseMenu v-bind="args" @select="(item) => (last = item.value)">
           <template #trigger><BaseButton variant="secondary">Actions ▾</BaseButton></template>
         </BaseMenu>

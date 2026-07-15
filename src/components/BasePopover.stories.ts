@@ -21,7 +21,7 @@ const meta = {
     components: { BasePopover, BaseButton },
     setup: () => ({ args }),
     template: `
-      <div style="padding:40px">
+      <div style="padding:40px; min-height:260px">
         <BasePopover v-bind="args">
           <template #trigger><BaseButton variant="secondary">Open popover</BaseButton></template>
           <div style="font-size:14px; color:#334155">
@@ -62,7 +62,7 @@ export const WithCloseAction: Story = {
     components: { BasePopover, BaseButton },
     setup: () => ({ args }),
     template: `
-      <div style="padding:40px">
+      <div style="padding:40px; min-height:260px">
         <BasePopover v-bind="args">
           <template #trigger><BaseButton>Delete item</BaseButton></template>
           <template #default="{ close }">
