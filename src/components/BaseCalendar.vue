@@ -11,10 +11,13 @@ const props = withDefaults(
     max?: string
     /** 0 = Sunday, 1 = Monday */
     weekStartsOn?: 0 | 1
+    /** Wrap in a bordered card (set false when embedding, e.g. in a popover) */
+    bordered?: boolean
   }>(),
   {
     modelValue: null,
     weekStartsOn: 1,
+    bordered: true,
   },
 )
 
@@ -185,7 +188,7 @@ const navButton =
 </script>
 
 <template>
-  <div class="inline-block rounded-[var(--radius)] border border-slate-200 bg-white p-3">
+  <div :class="['inline-block', bordered ? 'rounded-[var(--radius)] border border-slate-200 bg-white p-3' : '']">
     <div class="mb-2 flex items-center justify-between">
       <button type="button" :class="navButton" aria-label="Previous month" @click="goToMonth(-1)">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">

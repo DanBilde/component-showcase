@@ -7,10 +7,13 @@ const props = withDefaults(
   defineProps<{
     placement?: Placement
     disabled?: boolean
+    /** Make the root and trigger full-width (for field-style triggers) */
+    block?: boolean
   }>(),
   {
     placement: 'bottom-start',
     disabled: false,
+    block: false,
   },
 )
 
@@ -49,8 +52,8 @@ const placementClasses: Record<Placement, string> = {
 </script>
 
 <template>
-  <div ref="root" class="relative inline-block" @keydown.escape="close">
-    <div class="inline-flex" @click="toggle">
+  <div ref="root" :class="[block ? 'relative block w-full' : 'relative inline-block']" @keydown.escape="close">
+    <div :class="[block ? 'flex w-full' : 'inline-flex']" @click="toggle">
       <slot name="trigger" :open="open" />
     </div>
 
