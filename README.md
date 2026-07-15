@@ -47,7 +47,7 @@ src/
 
 ## Components
 
-41 components, each with a co-located `*.stories.ts` and autodocs.
+43 components, each with a co-located `*.stories.ts` and autodocs.
 
 ### Buttons & actions
 - **BaseButton** — variants (primary / secondary / ghost), sizes, disabled, link mode, icon slots.
@@ -75,6 +75,7 @@ src/
 - **BaseStat** — KPI/metric block with a colored trend delta.
 - **BaseList** — list container (plain/divided/bordered) with interactive rows and slots.
 - **BaseDescriptionList** — semantic key/value pairs (inline or stacked).
+- **BaseTreeView** — nested expandable tree with full keyboard navigation.
 - **BaseKbd** — inline keyboard-key styling for shortcuts.
 - **BaseCode** — inline or block code styling with a language label and copy button.
 - **BaseTimeline** — vertical event timeline with a connecting line and colored markers.
@@ -97,6 +98,7 @@ src/
 
 ### Overlays
 - **BaseModal** — teleported dialog with backdrop, Escape, and scroll-lock handling.
+- **BaseCommandPalette** — ⌘K searchable command list with grouping and keyboard navigation.
 - **BaseTooltip** — hover/focus tooltip with four placements and an open delay.
 - **BasePopover** — click-triggered floating panel with placement and click-outside.
 - **BaseMenu** — dropdown action menu with keyboard navigation, dividers, and danger items.

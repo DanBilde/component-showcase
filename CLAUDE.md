@@ -447,6 +447,22 @@ public/                  # static assets served at root (e.g. avatar.jpg)
 - Story covers Default, Preselected, WithMinMax, WithError, Disabled.
 - Added it to the `Introduction.mdx` component index.
 
+### Slice 43 — BaseCommandPalette (done)
+- Built **`BaseCommandPalette`**: teleported ⌘K-style modal. `v-model` open state, `items`
+  (`{ value, label, description?, group?, keywords?, shortcut?, disabled? }`), emits `select`.
+  Search input filters on label/description/keywords; results grouped by `group`; Arrow/Home/
+  End/Enter/Escape keyboard nav with `aria-activedescendant`; backdrop + Escape close; body
+  scroll-lock + input auto-focus on open. Story covers Default (⌘K button), OpenByDefault.
+
+### Slice 44 — BaseTreeView (done)
+- Built **`BaseTreeView`**: nested expandable tree. `nodes` (`{ label, value?, children?,
+  disabled? }`), `v-model` selected value, `defaultExpandAll`, emits `select`. Rendered as a
+  **flattened visible list** (path-based ids) for simple roving-tabindex keyboard nav:
+  Up/Down move, Right expands/enters, Left collapses/goes to parent, Home/End, Enter/Space
+  toggles or selects. A11y: `role="tree"`/`treeitem` with `aria-level`/`aria-expanded`/
+  `aria-selected`. Story covers Default, ExpandedByDefault, WithDisabledNode.
+- Added both to the `Introduction.mdx` component index.
+
 ### Next up
-- Add more presentational components one at a time (e.g. Command palette, Tree view,
-  Time picker), each as a fresh clean-room build following the `Base*` pattern.
+- Add more presentational components one at a time (e.g. Time picker, Color picker,
+  Splitter/Resizable), each as a fresh clean-room build following the `Base*` pattern.
