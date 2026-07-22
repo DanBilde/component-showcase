@@ -6,7 +6,9 @@ import BaseStat from './components/BaseStat.vue'
 import BaseCard from './components/BaseCard.vue'
 import TheShowcase from './landing/TheShowcase.vue'
 
-const storybookUrl = '/storybook/'
+// In production Storybook is served at /storybook/; in `npm run dev` it runs
+// separately on :6006, so point there for a working local link.
+const storybookUrl = import.meta.env.DEV ? 'http://localhost:6006/' : '/storybook/'
 const repoUrl = 'https://github.com/DanBilde/component-showcase'
 const year = 2026
 
@@ -37,8 +39,8 @@ const categories = [
           Component Showcase
         </a>
         <nav class="flex items-center gap-2">
-          <a :href="storybookUrl"><BaseButton variant="ghost" size="sm">Components</BaseButton></a>
-          <a :href="repoUrl" target="_blank" rel="noopener"><BaseButton variant="secondary" size="sm">GitHub ↗</BaseButton></a>
+          <BaseButton variant="ghost" size="sm" :href="storybookUrl">Components</BaseButton>
+          <BaseButton variant="secondary" size="sm" :href="repoUrl" target="_blank" rel="noopener">GitHub ↗</BaseButton>
         </nav>
       </div>
     </header>
@@ -58,8 +60,8 @@ const categories = [
           generic building block. Props in, UI out. Keyboard and screen-reader support built in.
         </p>
         <div class="flex flex-wrap items-center gap-3">
-          <a :href="storybookUrl"><BaseButton size="lg">Browse components →</BaseButton></a>
-          <a :href="repoUrl" target="_blank" rel="noopener"><BaseButton variant="secondary" size="lg">View source</BaseButton></a>
+          <BaseButton size="lg" :href="storybookUrl">Browse components →</BaseButton>
+          <BaseButton variant="secondary" size="lg" :href="repoUrl" target="_blank" rel="noopener">View source</BaseButton>
         </div>
         <div class="flex items-center gap-3 pt-2">
           <BaseAvatar src="/avatar.jpg" name="Mihai Bilde" size="md" />
@@ -101,7 +103,7 @@ const categories = [
           </BaseCard>
         </div>
         <div class="mt-8">
-          <a :href="storybookUrl"><BaseButton>Explore the full docs →</BaseButton></a>
+          <BaseButton :href="storybookUrl">Explore the full docs →</BaseButton>
         </div>
       </div>
     </section>

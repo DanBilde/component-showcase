@@ -21,6 +21,8 @@ import BaseModal from '../components/BaseModal.vue'
 import BaseToast, { type Toast } from '../components/BaseToast.vue'
 import BaseCommandPalette from '../components/BaseCommandPalette.vue'
 
+const storybookUrl = import.meta.env.DEV ? 'http://localhost:6006/' : '/storybook/'
+
 // Form demo state
 const name = ref('')
 const framework = ref<string | number | null>('vue')
@@ -90,7 +92,7 @@ function runCommand(item: { value: string | number }) {
   if (item.value === 'toast') showToast()
   else if (item.value === 'modal') modalOpen.value = true
   else if (item.value === 'github') window.open('https://github.com/DanBilde/component-showcase', '_blank')
-  else if (item.value === 'docs') window.location.href = '/storybook/'
+  else if (item.value === 'docs') window.location.href = storybookUrl
 }
 </script>
 
@@ -197,7 +199,7 @@ function runCommand(item: { value: string | number }) {
       </template>
       <p class="text-sm">Explore every component, prop, and state in the full Storybook.</p>
       <template #footer>
-        <a href="/storybook/"><BaseButton size="sm">Open Storybook →</BaseButton></a>
+        <BaseButton size="sm" :href="storybookUrl">Open Storybook →</BaseButton>
       </template>
     </BaseCard>
   </div>
