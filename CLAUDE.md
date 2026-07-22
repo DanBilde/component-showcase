@@ -16,15 +16,18 @@ here is copied from any employer codebase.
 
 ## Commands
 
-- `npm run storybook` — run the showcase at http://localhost:6006 (primary workflow)
+- `npm run storybook` — run the component docs at http://localhost:6006
 - `npm run build-storybook` — build static Storybook into `./storybook-static`
-- `npm run dev` — plain Vite app (incidental; the showcase is Storybook)
-- `npm run build` — `vue-tsc -b && vite build` (also serves as the type-check)
+- `npm run dev` — run the **Vue landing page** (the portfolio home; `src/App.vue`)
+- `npm run build` — `vue-tsc -b && vite build` (landing page only; also the type-check)
+- `npm run build:site` — combined deploy build: landing page → `dist/`, Storybook → `dist/storybook/`
 
 ## Structure
 
 ```
 src/
+  App.vue                # Vue landing page (portfolio home, dogfoods the components)
+  landing/               # landing-page sections (e.g. TheShowcase.vue — live demos)
   components/            # Components + co-located *.stories.ts (Base* prefix)
   Introduction.mdx       # Storybook landing page (pinned first via storySort)
   style.css              # `@import 'tailwindcss'` + generic design tokens
@@ -33,6 +36,12 @@ public/                  # static assets served at root (e.g. avatar.jpg)
   main.ts                # story globs + addons + framework + staticDirs
   preview.ts             # imports src/style.css, padding decorator, controls, storySort
 ```
+
+## Deployment
+
+Vercel runs `npm run build:site` and serves `dist/`: the **Vue landing page at `/`** and
+**Storybook at `/storybook/`** (Storybook uses relative asset paths, so it works from the
+subpath). The landing page links to `/storybook/` and the GitHub repo.
 
 ## Conventions
 
@@ -463,6 +472,16 @@ public/                  # static assets served at root (e.g. avatar.jpg)
   `aria-selected`. Story covers Default, ExpandedByDefault, WithDisabledNode.
 - Added both to the `Introduction.mdx` component index.
 
+### Slice 45 — Portfolio landing page + deploy restructure (done)
+- Turned the unused Vite app into a real **Vue landing page** (`src/App.vue` +
+  `src/landing/TheShowcase.vue`) that **dogfoods the real components**: sticky nav, hero with
+  gradient accent + avatar, a stats row (BaseStat cards), a **live interactive showcase**
+  (buttons, form controls, toggles, data display, feedback with an animated progress + toast,
+  tabs, overlays: modal/menu/tooltip/command-palette), a category gallery, and a footer.
+- Restructured deploy: added `build:site` (landing → `dist/`, Storybook → `dist/storybook/`),
+  pointed `vercel.json` at it (`outputDirectory: dist`). Landing at `/`, Storybook at
+  `/storybook/`. Removed the `HelloWorld.vue` scaffold; updated `index.html` title/meta.
+
 ### Next up
-- Add more presentational components one at a time (e.g. Time picker, Color picker,
-  Splitter/Resizable), each as a fresh clean-room build following the `Base*` pattern.
+- Optional: more components (Time/Color picker, Splitter). Or polish the landing page
+  (global ⌘K, dark mode, per-category Storybook deep-links). Each a clean-room addition.

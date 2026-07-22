@@ -21,22 +21,25 @@ documented with live, interactive previews.
 ```bash
 npm install
 
-# Run the component showcase (Storybook) — the primary workflow
+# Run the Vue landing page (portfolio home)
+npm run dev              # → http://localhost:5173
+
+# Run the component docs (Storybook)
 npm run storybook        # → http://localhost:6006
 
-# Build a static Storybook site
-npm run build-storybook  # → ./storybook-static
-
-# Type-check + production build
-npm run build
+# Combined production build: landing page → dist/, Storybook → dist/storybook/
+npm run build:site
 ```
 
-The Vite app itself (`npm run dev`) is incidental; the showcase lives in Storybook.
+The deployed site serves the **landing page at `/`** and the full **Storybook at
+`/storybook/`**.
 
 ## Project structure
 
 ```
 src/
+  App.vue                # Vue landing page (dogfoods the components)
+  landing/               # landing-page sections
   components/            # Components + co-located *.stories.ts (Base* prefix)
   Introduction.mdx       # Storybook landing page
   style.css              # Tailwind import + generic design tokens
