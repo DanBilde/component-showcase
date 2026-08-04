@@ -518,7 +518,19 @@ subpath). The landing page links to `/storybook/` and the GitHub repo.
   shimmer highlight in `BaseSkeleton` (so it stays lighter than the base in dark), and a
   white-center slider thumb.
 
+### Slice 48 — Storybook manager + docs-chrome dark theming (done)
+- **Manager chrome** (sidebar / toolbar / search): `.storybook/manager.ts` defines
+  brand-matched light + dark `create()` themes (token hex values) and applies them via
+  `addons.register('…', (api) => api.setOptions({ theme }))`. **Gotcha:** `addons.setConfig({
+  theme })` is read-once at mount and does NOT hot-swap — the dynamic path is
+  `api.setOptions` (obtained from the `register` callback), the pattern dark-mode addons use.
+  Seeds from the shared `localStorage['theme']` on load and follows the Theme toolbar live.
+- **Docs chrome** (`.storybook/preview.css`): the autodocs **Controls / args table**
+  (`.docblock-argstable*`) defaulted to a white surface with faded text. Overrode its
+  background, borders, row-hover (`tr:hover` → surface-sunken), and text (name column →
+  `fg`, rest → `fg-muted`) under `.dark`. Needs `!important` to beat Storybook's runtime
+  emotion styles. Text rules are scoped to `span`/`p`/`a`/`code` so Control-column form
+  widgets are left alone.
+
 ### Next up
 - Optional: more components (Time/Color picker, Splitter). Or landing polish (global ⌘K).
-- Optional dark-mode follow-up: theme the **Storybook manager chrome** (sidebar/toolbar) to
-  match — currently only the preview/docs canvas is themed, not the outer Storybook UI.

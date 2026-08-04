@@ -57,3 +57,49 @@
 .dark .sbdocs-preview {
   background-color: var(--color-canvas);
 }
+
+/* Autodocs Controls / args table. Storybook injects its background via emotion
+   at runtime (a class that can match our specificity and load later), so beat
+   it with !important on the table, tbody, rows, and cells. */
+.dark .docblock-argstable,
+.dark .docblock-argstable-body,
+.dark .docblock-argstable-body tr,
+.dark .docblock-argstable-body td,
+.dark .docblock-argstable-body th {
+  background-color: var(--color-surface) !important;
+  border-color: var(--color-border) !important;
+}
+
+/* Row hover highlight (Storybook's default is a near-white tint). */
+.dark .docblock-argstable-body tr:hover,
+.dark .docblock-argstable-body tr:hover td,
+.dark .docblock-argstable-body tr:hover th {
+  background-color: var(--color-surface-sunken) !important;
+}
+
+/* Text colors are tuned by Storybook for a white table and fade on the dark
+   surface — force them brighter (again !important to beat emotion). Text
+   elements only (span/p/a/code), never the Control-column form widgets. */
+.dark .docblock-argstable-head th,
+.dark .docblock-argstable-body td,
+.dark .docblock-argstable-body td span,
+.dark .docblock-argstable-body td p,
+.dark .docblock-argstable-body td a,
+.dark .docblock-argstable-body td code {
+  color: var(--color-fg-muted) !important;
+}
+
+/* The property name (first column) stays the brightest for scannability. */
+.dark .docblock-argstable-body td:first-child,
+.dark .docblock-argstable-body td:first-child span,
+.dark .docblock-argstable-body td:first-child code,
+.dark .docblock-argstable-body td:first-child strong {
+  color: var(--color-fg) !important;
+}
+
+/* "No inputs" placeholder block */
+.dark .docblock-emptyblock {
+  background-color: var(--color-surface-muted);
+  border-color: var(--color-border);
+  color: var(--color-fg-muted);
+}
