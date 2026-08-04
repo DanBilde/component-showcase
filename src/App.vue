@@ -12,6 +12,11 @@ const storybookUrl = import.meta.env.DEV ? 'http://localhost:6006/' : '/storyboo
 const repoUrl = 'https://github.com/DanBilde/component-showcase'
 const year = 2026
 
+// Deep-link to a component's autodocs page. Stories are titled `Components/BaseX`,
+// so Storybook's autodocs id is `components-basex--docs`.
+const storyUrl = (component: string) =>
+  `${storybookUrl}?path=/docs/components-${component.toLowerCase()}--docs`
+
 const stats = [
   { value: '43', label: 'Components' },
   { value: '100%', label: 'TypeScript' },
@@ -19,13 +24,14 @@ const stats = [
   { value: '0', label: 'Runtime deps' },
 ]
 
+// `lead` is the representative component the category card deep-links into.
 const categories = [
-  { name: 'Form controls', count: 9, blurb: 'Input, Textarea, Select, MultiSelect, Radio, Checkbox, Switch, Slider, ChipInput.' },
-  { name: 'Overlays', count: 5, blurb: 'Modal, Tooltip, Popover, Menu, Command palette.' },
-  { name: 'Feedback', count: 6, blurb: 'Spinner, Progress, Skeleton, Notification, Toast, Alert banner.' },
-  { name: 'Navigation', count: 5, blurb: 'Tabs, Breadcrumbs, Pagination, Stepper, Accordion.' },
-  { name: 'Data display', count: 10, blurb: 'Card, Stat, List, DescriptionList, Badge, Tag, Avatar, Timeline, Tree view.' },
-  { name: 'Dates', count: 2, blurb: 'Calendar and a composed Datepicker (input + popover).' },
+  { name: 'Form controls', count: 9, lead: 'BaseInput', blurb: 'Input, Textarea, Select, MultiSelect, Radio, Checkbox, Switch, Slider, ChipInput.' },
+  { name: 'Overlays', count: 5, lead: 'BaseModal', blurb: 'Modal, Tooltip, Popover, Menu, Command palette.' },
+  { name: 'Feedback', count: 6, lead: 'BaseProgress', blurb: 'Spinner, Progress, Skeleton, Notification, Toast, Alert banner.' },
+  { name: 'Navigation', count: 5, lead: 'BaseTabs', blurb: 'Tabs, Breadcrumbs, Pagination, Stepper, Accordion.' },
+  { name: 'Data display', count: 10, lead: 'BaseCard', blurb: 'Card, Stat, List, DescriptionList, Badge, Tag, Avatar, Timeline, Tree view.' },
+  { name: 'Dates', count: 2, lead: 'BaseCalendar', blurb: 'Calendar and a composed Datepicker (input + popover).' },
 ]
 </script>
 
@@ -94,13 +100,24 @@ const categories = [
       <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6">
         <h2 class="mb-6 text-2xl font-semibold text-slate-900">Everything you need</h2>
         <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <BaseCard v-for="c in categories" :key="c.name">
-            <div class="flex items-center justify-between gap-2">
-              <h3 class="font-semibold text-slate-900">{{ c.name }}</h3>
-              <BaseBadge variant="neutral">{{ c.count }}</BaseBadge>
-            </div>
-            <p class="mt-1 text-sm text-slate-600">{{ c.blurb }}</p>
-          </BaseCard>
+          <a
+            v-for="c in categories"
+            :key="c.name"
+            :href="storyUrl(c.lead)"
+            class="group block rounded-[var(--radius)] transition hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand)]"
+          >
+            <BaseCard class="h-full transition group-hover:border-[var(--color-brand)] group-hover:shadow-md">
+              <div class="flex items-center justify-between gap-2">
+                <h3 class="font-semibold text-slate-900 group-hover:text-[var(--color-brand)]">{{ c.name }}</h3>
+                <BaseBadge variant="neutral">{{ c.count }}</BaseBadge>
+              </div>
+              <p class="mt-1 text-sm text-slate-600">{{ c.blurb }}</p>
+              <span class="mt-3 inline-flex items-center gap-1 text-sm font-medium text-[var(--color-brand)]">
+                Open in Storybook
+                <span class="transition group-hover:translate-x-0.5">→</span>
+              </span>
+            </BaseCard>
+          </a>
         </div>
         <div class="mt-8">
           <BaseButton :href="storybookUrl">Explore the full docs →</BaseButton>
