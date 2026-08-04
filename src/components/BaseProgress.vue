@@ -42,11 +42,11 @@ const trackSize: Record<Size, string> = {
 }
 
 const variantColor: Record<Variant, string> = {
-  brand: 'bg-[var(--color-brand)]',
-  success: 'bg-green-500',
-  warning: 'bg-amber-500',
-  danger: 'bg-red-500',
-  neutral: 'bg-slate-500',
+  brand: 'bg-brand',
+  success: 'bg-success',
+  warning: 'bg-warning',
+  danger: 'bg-danger',
+  neutral: 'bg-fg-subtle',
 }
 </script>
 
@@ -54,10 +54,10 @@ const variantColor: Record<Variant, string> = {
   <div>
     <div
       v-if="showHeader"
-      class="mb-1 flex items-center justify-between text-sm text-slate-600"
+      class="mb-1 flex items-center justify-between text-sm text-fg-muted"
     >
       <span>{{ label }}</span>
-      <span v-if="showValue && !indeterminate" class="tabular-nums text-slate-500">
+      <span v-if="showValue && !indeterminate" class="tabular-nums text-fg-subtle">
         {{ Math.round(pct) }}%
       </span>
     </div>
@@ -68,7 +68,7 @@ const variantColor: Record<Variant, string> = {
       :aria-valuemax="max"
       :aria-valuenow="indeterminate ? undefined : value"
       :aria-label="label || undefined"
-      :class="['relative w-full overflow-hidden rounded-full bg-slate-200', trackSize[size]]"
+      :class="['relative w-full overflow-hidden rounded-full bg-surface-strong', trackSize[size]]"
     >
       <div
         v-if="!indeterminate"

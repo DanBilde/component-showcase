@@ -74,14 +74,14 @@ const textSize: Record<Size, string> = {
 }
 
 const controlClasses = computed(() => [
-  'flex shrink-0 items-center justify-center rounded border-2 text-white transition-colors',
-  'peer-focus-visible:ring-2 peer-focus-visible:ring-[var(--color-brand)] peer-focus-visible:ring-offset-1',
+  'flex shrink-0 items-center justify-center rounded border-2 text-brand-on transition-colors',
+  'peer-focus-visible:ring-2 peer-focus-visible:ring-brand peer-focus-visible:ring-offset-1',
   'peer-disabled:opacity-50',
   marked.value
-    ? 'border-[var(--color-brand)] bg-[var(--color-brand)]'
+    ? 'border-brand bg-brand'
     : props.error
-      ? 'border-red-400 bg-white'
-      : 'border-slate-300 bg-white peer-hover:border-slate-400',
+      ? 'border-danger bg-surface'
+      : 'border-border-strong bg-surface peer-hover:border-border-strong',
   controlSize[props.size],
 ])
 </script>
@@ -133,17 +133,17 @@ const controlClasses = computed(() => [
 
       <span
         v-if="label"
-        :class="[textSize[size], disabled ? 'text-slate-400' : 'text-slate-700']"
+        :class="[textSize[size], disabled ? 'text-fg-subtle' : 'text-fg-muted']"
       >
         {{ label }}
-        <span v-if="required" class="text-red-600" aria-hidden="true">*</span>
+        <span v-if="required" class="text-danger" aria-hidden="true">*</span>
       </span>
     </label>
 
-    <p v-if="error" :id="`${uid}-error`" class="text-sm text-red-600">
+    <p v-if="error" :id="`${uid}-error`" class="text-sm text-danger">
       {{ error }}
     </p>
-    <p v-else-if="hint" :id="`${uid}-hint`" class="text-sm text-slate-500">
+    <p v-else-if="hint" :id="`${uid}-hint`" class="text-sm text-fg-subtle">
       {{ hint }}
     </p>
   </div>

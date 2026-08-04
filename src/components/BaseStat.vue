@@ -35,9 +35,9 @@ const trend = computed<Trend>(() => {
 })
 
 const deltaColor = computed(() => {
-  if (trend.value === 'neutral') return 'text-slate-500'
+  if (trend.value === 'neutral') return 'text-fg-subtle'
   const good = trend.value === 'up' ? props.positiveIsGood : !props.positiveIsGood
-  return good ? 'text-green-600' : 'text-red-600'
+  return good ? 'text-success' : 'text-danger'
 })
 
 const formattedDelta = computed(() => {
@@ -61,13 +61,13 @@ const hasDelta = computed(() => props.delta != null || Boolean(props.deltaLabel)
 <template>
   <div>
     <div class="flex items-start justify-between gap-2">
-      <span v-if="label" class="text-sm font-medium text-slate-500">{{ label }}</span>
-      <span v-if="$slots.icon" class="shrink-0 text-slate-400">
+      <span v-if="label" class="text-sm font-medium text-fg-subtle">{{ label }}</span>
+      <span v-if="$slots.icon" class="shrink-0 text-fg-subtle">
         <slot name="icon" />
       </span>
     </div>
 
-    <div :class="['mt-1 font-semibold tracking-tight text-slate-900', valueSize[size]]">
+    <div :class="['mt-1 font-semibold tracking-tight text-fg', valueSize[size]]">
       <slot name="value">{{ value }}</slot>
     </div>
 
@@ -91,7 +91,7 @@ const hasDelta = computed(() => props.delta != null || Boolean(props.deltaLabel)
         </svg>
         {{ formattedDelta }}
       </span>
-      <span v-if="deltaLabel" class="text-slate-400">{{ deltaLabel }}</span>
+      <span v-if="deltaLabel" class="text-fg-subtle">{{ deltaLabel }}</span>
     </div>
   </div>
 </template>

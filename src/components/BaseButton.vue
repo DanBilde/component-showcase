@@ -27,11 +27,11 @@ const tag = computed(() => (props.href ? 'a' : 'button'))
 
 const variantClasses: Record<Variant, string> = {
   primary:
-    'bg-[var(--color-brand)] text-white hover:bg-[var(--color-brand-hover)] border border-transparent',
+    'bg-brand text-brand-on hover:bg-brand-hover border border-transparent',
   secondary:
-    'bg-white text-[var(--color-brand)] border border-[var(--color-brand)] hover:bg-slate-50',
+    'bg-surface text-brand border border-brand hover:bg-surface-muted',
   ghost:
-    'bg-transparent text-[var(--color-brand)] border border-transparent hover:bg-slate-100',
+    'bg-transparent text-brand border border-transparent hover:bg-surface-sunken',
 }
 
 const sizeClasses: Record<Size, string> = {
@@ -42,7 +42,7 @@ const sizeClasses: Record<Size, string> = {
 
 const classes = computed(() => [
   'inline-flex items-center justify-center font-medium rounded-[var(--radius)]',
-  'transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand)]',
+  'transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand',
   'disabled:opacity-50 disabled:cursor-not-allowed',
   variantClasses[props.variant],
   sizeClasses[props.size],

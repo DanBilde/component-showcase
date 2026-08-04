@@ -75,10 +75,10 @@ const positionClasses: Record<Position, string> = {
 }
 
 const variantClasses: Record<Variant, { container: string; icon: string; title: string; text: string }> = {
-  info: { container: 'bg-blue-50 border-blue-200', icon: 'text-blue-500', title: 'text-blue-900', text: 'text-blue-800' },
-  success: { container: 'bg-green-50 border-green-200', icon: 'text-green-600', title: 'text-green-900', text: 'text-green-800' },
-  warning: { container: 'bg-amber-50 border-amber-200', icon: 'text-amber-600', title: 'text-amber-900', text: 'text-amber-800' },
-  error: { container: 'bg-red-50 border-red-200', icon: 'text-red-600', title: 'text-red-900', text: 'text-red-800' },
+  info: { container: 'bg-info-soft border-info-line', icon: 'text-info', title: 'text-info-fg', text: 'text-info-fg' },
+  success: { container: 'bg-success-soft border-success-line', icon: 'text-success', title: 'text-success-fg', text: 'text-success-fg' },
+  warning: { container: 'bg-warning-soft border-warning-line', icon: 'text-warning', title: 'text-warning-fg', text: 'text-warning-fg' },
+  error: { container: 'bg-danger-soft border-danger-line', icon: 'text-danger', title: 'text-danger-fg', text: 'text-danger-fg' },
 }
 
 const styleFor = (v: Variant = 'info') => variantClasses[v]

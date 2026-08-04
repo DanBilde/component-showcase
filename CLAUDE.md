@@ -55,8 +55,20 @@ subpath). The landing page links to `/storybook/` and the GitHub repo.
 - `<script setup lang="ts">` with typed `defineProps` / `defineEmits` and
   `withDefaults` for defaults.
 - Styling via Tailwind utility classes. Brand-neutral tokens only, defined in
-  `src/style.css`: `--color-brand`, `--color-brand-hover`, `--radius`. **Do not**
-  introduce company-specific theme tokens, assets, or naming.
+  `src/style.css`. **Do not** introduce company-specific theme tokens, assets, or naming.
+- **Semantic color tokens + dark mode.** Colors come from a semantic token system
+  registered in Tailwind v4 `@theme` (light values) with a `.dark {}` block that
+  re-points the same custom properties. Because Tailwind utilities compile to
+  `var(--color-*)`, flipping the `.dark` class on an ancestor themes everything with no
+  per-component work. **Components must use the semantic utilities** — `bg-surface`,
+  `bg-canvas`, `text-fg` / `text-fg-muted` / `text-fg-subtle`, `border-border` /
+  `border-border-muted` / `border-border-strong`, `bg-inverse`/`text-inverse-fg`, the
+  brand family (`bg-brand`, `text-brand`, `text-brand-on`, `bg-brand-soft`, …), and the
+  status families `{info|success|warning|danger}` (`bg-{v}`, `text-{v}`, `text-{v}-on`,
+  `bg-{v}-soft`, `text-{v}-fg`, `border-{v}-line`) — **never** raw `slate-*` / `white` /
+  `blue-50` etc. New components inherit dark mode for free by following this. Exceptions
+  that stay literal: modal/palette backdrops (`bg-slate-900/50`), the spinner `white`
+  option, and the decorative `BaseAvatar` initials palette.
 - Prefer a `variant` + `size` prop pattern with `Record<Variant, string>` class maps
   (see `BaseButton.vue`).
 - Tailwind utilities only, **except** where keyframe animations or pseudo-element styling
@@ -482,6 +494,31 @@ subpath). The landing page links to `/storybook/` and the GitHub repo.
   pointed `vercel.json` at it (`outputDirectory: dist`). Landing at `/`, Storybook at
   `/storybook/`. Removed the `HelloWorld.vue` scaffold; updated `index.html` title/meta.
 
+### Slice 46 — Category deep-links (done)
+- Landing-page **category cards are now links** into the relevant component's Storybook
+  autodocs page (e.g. Form controls → `BaseInput`). Added a `storyUrl(component)` helper
+  (`?path=/docs/components-<name>--docs`, dev-aware) and a `lead` component per category;
+  each card is an `<a>` with a hover lift, brand border/title, focus ring, and an
+  "Open in Storybook →" affordance.
+
+### Slice 47 — Dark mode, full library (done)
+- **Semantic token system** in `src/style.css` (`@theme` light values + `.dark {}`
+  overrides) — see the theming convention above. Converted **all 43 components** + the
+  landing page + `Introduction.mdx` off raw `slate/white/tint` colors onto the tokens.
+- **Landing page**: sun/moon toggle in the nav backed by `src/composables/useTheme.ts`
+  (persists to `localStorage['theme']`, OS-preference fallback); a pre-paint inline script
+  in `index.html` prevents a flash.
+- **Storybook**: a **Theme** toolbar toggle; `.storybook/preview.ts` toggles `.dark` on the
+  preview `<html>` via a channel listener (covers story canvases *and* MDX docs pages), and
+  `.storybook/preview.css` re-themes Storybook's docs chrome in dark. **Theme syncs both
+  ways with the landing page** via the shared `localStorage['theme']` key (same origin in
+  prod: `/` and `/storybook/`) — Storybook seeds its toolbar from it and writes back on
+  toggle. (Note: not shared in local dev — different ports/origins.)
+- A few hand-tuned refinements: `--color-star` gold for `BaseRating`, a `color-mix`
+  shimmer highlight in `BaseSkeleton` (so it stays lighter than the base in dark), and a
+  white-center slider thumb.
+
 ### Next up
-- Optional: more components (Time/Color picker, Splitter). Or polish the landing page
-  (global ⌘K, dark mode, per-category Storybook deep-links). Each a clean-room addition.
+- Optional: more components (Time/Color picker, Splitter). Or landing polish (global ⌘K).
+- Optional dark-mode follow-up: theme the **Storybook manager chrome** (sidebar/toolbar) to
+  match — currently only the preview/docs canvas is themed, not the outer Storybook UI.

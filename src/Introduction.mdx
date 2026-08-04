@@ -52,13 +52,13 @@ the built-in **a11y** addon.
     ['Typed & documented', 'Written in <script setup lang="ts"> with typed props, and auto-documented via Storybook autodocs.'],
   ].map(([title, body]) => (
     <div key={title} style={{
-      border: '1px solid #e5e7eb',
+      border: '1px solid var(--color-border)',
       borderRadius: 'var(--radius)',
       padding: '1.1rem 1.2rem',
-      background: '#fff',
+      background: 'var(--color-surface)',
     }}>
       <h3 style={{ margin: '0 0 0.4rem', fontSize: '1rem', color: 'var(--color-brand)' }}>{title}</h3>
-      <p style={{ margin: 0, fontSize: '0.9rem', lineHeight: 1.5, color: '#4b5563' }}>{body}</p>
+      <p style={{ margin: 0, fontSize: '0.9rem', lineHeight: 1.5, color: 'var(--color-fg-muted)' }}>{body}</p>
     </div>
   ))}
 </div>
@@ -122,7 +122,7 @@ the built-in **a11y** addon.
 
 ---
 
-<p style={{ fontSize: '0.85rem', color: '#6b7280' }}>
+<p style={{ fontSize: '0.85rem', color: 'var(--color-fg-subtle)' }}>
   Browse the components in the sidebar to see each one in action. New components are added
   one at a time, each as a fresh clean-room build.
 </p>

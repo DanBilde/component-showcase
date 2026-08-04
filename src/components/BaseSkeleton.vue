@@ -27,7 +27,7 @@ const norm = (v?: string | number) =>
 
 const blockClasses = computed(() => {
   if (props.animation === 'shimmer') return 'skeleton-shimmer'
-  return props.animation === 'pulse' ? 'bg-slate-200 animate-pulse' : 'bg-slate-200'
+  return props.animation === 'pulse' ? 'bg-surface-strong animate-pulse' : 'bg-surface-strong'
 })
 
 const circleSize = computed(() => norm(props.width) ?? norm(props.height) ?? '3rem')
@@ -74,7 +74,15 @@ const rectStyle = computed(() => ({
 
 <style scoped>
 .skeleton-shimmer {
-  background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 37%, #e2e8f0 63%);
+  /* Highlight is mixed toward white so the sweep stays *lighter* than the
+     base in both light and dark themes (surface-sunken is darker than the
+     base in dark mode, which would invert the effect). */
+  background: linear-gradient(
+    90deg,
+    var(--color-surface-strong) 25%,
+    color-mix(in srgb, var(--color-surface-strong) 55%, white) 37%,
+    var(--color-surface-strong) 63%
+  );
   background-size: 400% 100%;
   animation: skeleton-wave 1.4s ease infinite;
 }

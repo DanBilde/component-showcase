@@ -40,7 +40,7 @@ const rowPadding: Record<Size, string> = {
 
 const listClasses = computed(() => [
   'flex flex-col',
-  props.divided ? 'divide-y divide-slate-200' : 'gap-3',
+  props.divided ? 'divide-y divide-border' : 'gap-3',
 ])
 
 const rowClasses = computed(() => [
@@ -49,12 +49,12 @@ const rowClasses = computed(() => [
 ])
 
 const termClasses = computed(() => [
-  'text-sm font-medium text-slate-500',
+  'text-sm font-medium text-fg-subtle',
   props.layout === 'inline' ? 'w-1/3 shrink-0' : '',
 ])
 
 const descClasses = computed(() => [
-  'text-slate-900',
+  'text-fg',
   descSize[props.size],
   props.layout === 'inline' ? 'flex-1' : 'mt-0.5',
 ])

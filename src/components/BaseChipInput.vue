@@ -93,31 +93,31 @@ const minHeight: Record<Size, string> = {
 const containerClasses = computed(() => [
   'flex flex-wrap items-center gap-1.5 rounded-[var(--radius)] border px-2 py-1 transition-colors',
   minHeight[props.size],
-  props.disabled ? 'cursor-not-allowed bg-slate-50' : 'cursor-text bg-white',
+  props.disabled ? 'cursor-not-allowed bg-surface-muted' : 'cursor-text bg-surface',
   props.error
-    ? 'border-red-500 focus-within:ring-2 focus-within:ring-red-500'
-    : 'border-slate-300 focus-within:border-[var(--color-brand)] focus-within:ring-2 focus-within:ring-[var(--color-brand)]',
+    ? 'border-danger focus-within:ring-2 focus-within:ring-danger'
+    : 'border-border-strong focus-within:border-brand focus-within:ring-2 focus-within:ring-brand',
 ])
 </script>
 
 <template>
   <div class="flex flex-col gap-1.5">
-    <label v-if="label" :for="fieldId" class="text-sm font-medium text-slate-700">
+    <label v-if="label" :for="fieldId" class="text-sm font-medium text-fg-muted">
       {{ label }}
-      <span v-if="required" class="text-red-600" aria-hidden="true">*</span>
+      <span v-if="required" class="text-danger" aria-hidden="true">*</span>
     </label>
 
     <div :class="containerClasses" @click="inputEl?.focus()">
       <span
         v-for="(chip, i) in modelValue"
         :key="i"
-        class="inline-flex items-center gap-1 rounded bg-slate-100 px-2 py-0.5 text-sm text-slate-700"
+        class="inline-flex items-center gap-1 rounded bg-surface-sunken px-2 py-0.5 text-sm text-fg-muted"
       >
         {{ chip }}
         <button
           v-if="!disabled"
           type="button"
-          class="-mr-0.5 flex items-center rounded text-slate-500 transition-colors hover:text-slate-700 focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-[var(--color-brand)]"
+          class="-mr-0.5 flex items-center rounded text-fg-subtle transition-colors hover:text-fg-muted focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-brand"
           :aria-label="`Remove ${chip}`"
           @click.stop="removeChip(i)"
         >
@@ -137,14 +137,14 @@ const containerClasses = computed(() => [
         :disabled="disabled || atMax"
         :aria-invalid="error ? true : undefined"
         :aria-describedby="describedBy"
-        class="min-w-[6rem] flex-1 border-0 bg-transparent px-1 py-1 text-slate-900 outline-none placeholder:text-slate-400 disabled:cursor-not-allowed"
+        class="min-w-[6rem] flex-1 border-0 bg-transparent px-1 py-1 text-fg outline-none placeholder:text-fg-subtle disabled:cursor-not-allowed"
         :class="sizeText[size]"
         @keydown="onKeydown"
         @blur="addChip(inputText)"
       />
     </div>
 
-    <p v-if="error" :id="`${fieldId}-error`" class="text-sm text-red-600">{{ error }}</p>
-    <p v-else-if="hint" :id="`${fieldId}-hint`" class="text-sm text-slate-500">{{ hint }}</p>
+    <p v-if="error" :id="`${fieldId}-error`" class="text-sm text-danger">{{ error }}</p>
+    <p v-else-if="hint" :id="`${fieldId}-hint`" class="text-sm text-fg-subtle">{{ hint }}</p>
   </div>
 </template>

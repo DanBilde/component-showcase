@@ -38,7 +38,7 @@ async function copy() {
 <template>
   <code
     v-if="!block"
-    class="rounded bg-slate-100 px-1.5 py-0.5 font-mono text-[0.85em] text-slate-800"
+    class="rounded bg-surface-sunken px-1.5 py-0.5 font-mono text-[0.85em] text-fg"
   >
     <slot>{{ code }}</slot>
   </code>
@@ -46,19 +46,19 @@ async function copy() {
   <div v-else class="overflow-hidden rounded-[var(--radius)]">
     <div
       v-if="language || copyable"
-      class="flex items-center justify-between bg-slate-800 px-4 py-1.5"
+      class="flex items-center justify-between bg-inverse px-4 py-1.5"
     >
-      <span class="font-mono text-xs text-slate-400">{{ language }}</span>
+      <span class="font-mono text-xs text-fg-subtle">{{ language }}</span>
       <button
         v-if="copyable"
         type="button"
-        class="rounded text-xs text-slate-400 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-500"
+        class="rounded text-xs text-fg-subtle transition-colors hover:text-inverse-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fg-subtle"
         @click="copy"
       >
         {{ copied ? 'Copied!' : 'Copy' }}
       </button>
     </div>
 
-    <pre class="overflow-x-auto bg-slate-900 p-4 text-sm leading-relaxed"><code ref="codeEl" class="font-mono text-slate-100"><slot>{{ code }}</slot></code></pre>
+    <pre class="overflow-x-auto bg-inverse p-4 text-sm leading-relaxed"><code ref="codeEl" class="font-mono text-inverse-fg"><slot>{{ code }}</slot></code></pre>
   </div>
 </template>

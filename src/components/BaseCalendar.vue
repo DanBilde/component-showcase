@@ -171,31 +171,31 @@ function onKeydown(event: KeyboardEvent) {
 
 function cellClasses(cell: Cell) {
   return [
-    'flex h-9 w-9 items-center justify-center rounded-full text-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand)]',
+    'flex h-9 w-9 items-center justify-center rounded-full text-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand',
     cell.disabled ? 'cursor-not-allowed opacity-40' : 'cursor-pointer',
     cell.isSelected
-      ? 'bg-[var(--color-brand)] font-medium text-white'
+      ? 'bg-brand font-medium text-brand-on'
       : cell.isToday
-        ? 'font-semibold text-[var(--color-brand)] ring-1 ring-[var(--color-brand)]'
+        ? 'font-semibold text-brand ring-1 ring-brand'
         : cell.inMonth
-          ? 'text-slate-900 hover:bg-slate-100'
-          : 'text-slate-400 hover:bg-slate-100',
+          ? 'text-fg hover:bg-surface-sunken'
+          : 'text-fg-subtle hover:bg-surface-sunken',
   ]
 }
 
 const navButton =
-  'flex h-8 w-8 items-center justify-center rounded-[var(--radius)] text-slate-500 transition-colors hover:bg-slate-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand)]'
+  'flex h-8 w-8 items-center justify-center rounded-[var(--radius)] text-fg-subtle transition-colors hover:bg-surface-sunken focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand'
 </script>
 
 <template>
-  <div :class="['inline-block', bordered ? 'rounded-[var(--radius)] border border-slate-200 bg-white p-3' : '']">
+  <div :class="['inline-block', bordered ? 'rounded-[var(--radius)] border border-border bg-surface p-3' : '']">
     <div class="mb-2 flex items-center justify-between">
       <button type="button" :class="navButton" aria-label="Previous month" @click="goToMonth(-1)">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
       </button>
-      <div aria-live="polite" class="text-sm font-medium text-slate-900">{{ monthLabel }}</div>
+      <div aria-live="polite" class="text-sm font-medium text-fg">{{ monthLabel }}</div>
       <button type="button" :class="navButton" aria-label="Next month" @click="goToMonth(1)">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -209,7 +209,7 @@ const navButton =
           v-for="wd in weekdays"
           :key="wd"
           role="columnheader"
-          class="flex h-8 items-center justify-center text-xs font-medium text-slate-400"
+          class="flex h-8 items-center justify-center text-xs font-medium text-fg-subtle"
         >
           {{ wd }}
         </span>

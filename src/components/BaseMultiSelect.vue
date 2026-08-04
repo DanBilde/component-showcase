@@ -244,16 +244,16 @@ const sizeClasses: Record<Size, string> = {
 
 const stateClasses = computed(() =>
   props.error
-    ? 'border-red-500 focus-visible:border-red-500 focus-visible:ring-red-500'
-    : 'border-slate-300 focus-visible:border-[var(--color-brand)] focus-visible:ring-[var(--color-brand)]',
+    ? 'border-danger focus-visible:border-danger focus-visible:ring-danger'
+    : 'border-border-strong focus-visible:border-brand focus-visible:ring-brand',
 )
 
 const triggerClasses = computed(() => [
   'flex w-full items-center justify-between gap-2 rounded-[var(--radius)] border px-3 py-1 text-left',
   'transition-colors focus:outline-none focus-visible:ring-2',
   props.disabled
-    ? 'cursor-not-allowed bg-slate-50 text-slate-400'
-    : 'cursor-pointer bg-white',
+    ? 'cursor-not-allowed bg-surface-muted text-fg-subtle'
+    : 'cursor-pointer bg-surface',
   sizeClasses[props.size],
   stateClasses.value,
 ])
@@ -262,9 +262,9 @@ function optionClasses(index: number, opt: SelectOption) {
   return [
     'flex items-center gap-2.5 px-3 py-2 text-sm',
     opt.disabled
-      ? 'cursor-not-allowed text-slate-400'
-      : 'cursor-pointer text-slate-900',
-    index === activeIndex.value && !opt.disabled ? 'bg-slate-100' : '',
+      ? 'cursor-not-allowed text-fg-subtle'
+      : 'cursor-pointer text-fg',
+    index === activeIndex.value && !opt.disabled ? 'bg-surface-sunken' : '',
   ]
 }
 </script>
@@ -275,10 +275,10 @@ function optionClasses(index: number, opt: SelectOption) {
       v-if="label"
       :id="labelId"
       :for="baseId"
-      class="text-sm font-medium text-slate-700"
+      class="text-sm font-medium text-fg-muted"
     >
       {{ label }}
-      <span v-if="required" class="text-red-600" aria-hidden="true">*</span>
+      <span v-if="required" class="text-danger" aria-hidden="true">*</span>
     </label>
 
     <div class="relative">
@@ -306,13 +306,13 @@ function optionClasses(index: number, opt: SelectOption) {
             <span
               v-for="chip in selectedChips"
               :key="chip.value"
-              class="inline-flex items-center gap-1 rounded bg-slate-100 px-2 py-0.5 text-sm text-slate-700"
+              class="inline-flex items-center gap-1 rounded bg-surface-sunken px-2 py-0.5 text-sm text-fg-muted"
             >
               {{ chip.label }}
               <button
                 v-if="!disabled"
                 type="button"
-                class="-mr-0.5 flex items-center rounded text-slate-500 transition-colors hover:text-slate-700 focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-[var(--color-brand)]"
+                class="-mr-0.5 flex items-center rounded text-fg-subtle transition-colors hover:text-fg-muted focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-brand"
                 :aria-label="`Remove ${chip.label}`"
                 @click.stop="removeValue(chip.value)"
                 @keydown.stop
@@ -328,12 +328,12 @@ function optionClasses(index: number, opt: SelectOption) {
               </button>
             </span>
           </template>
-          <span v-else class="text-slate-400">{{ placeholder }}</span>
+          <span v-else class="text-fg-subtle">{{ placeholder }}</span>
         </span>
 
         <svg
           :class="[
-            'shrink-0 text-slate-400 transition-transform',
+            'shrink-0 text-fg-subtle transition-transform',
             isOpen ? 'rotate-180' : '',
           ]"
           width="18"
@@ -358,7 +358,7 @@ function optionClasses(index: number, opt: SelectOption) {
         role="listbox"
         aria-multiselectable="true"
         :aria-labelledby="label ? labelId : undefined"
-        class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-[var(--radius)] border border-slate-200 bg-white py-1 shadow-lg"
+        class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-[var(--radius)] border border-border bg-surface py-1 shadow-lg"
       >
         <li
           v-for="(opt, i) in options"
@@ -375,8 +375,8 @@ function optionClasses(index: number, opt: SelectOption) {
             :class="[
               'flex h-4 w-4 shrink-0 items-center justify-center rounded border',
               isSelected(opt.value)
-                ? 'border-[var(--color-brand)] bg-[var(--color-brand)] text-white'
-                : 'border-slate-300 bg-white',
+                ? 'border-brand bg-brand text-brand-on'
+                : 'border-border-strong bg-surface',
             ]"
             aria-hidden="true"
           >
@@ -401,10 +401,10 @@ function optionClasses(index: number, opt: SelectOption) {
       </ul>
     </div>
 
-    <p v-if="error" :id="`${baseId}-error`" class="text-sm text-red-600">
+    <p v-if="error" :id="`${baseId}-error`" class="text-sm text-danger">
       {{ error }}
     </p>
-    <p v-else-if="hint" :id="`${baseId}-hint`" class="text-sm text-slate-500">
+    <p v-else-if="hint" :id="`${baseId}-hint`" class="text-sm text-fg-subtle">
       {{ hint }}
     </p>
   </div>

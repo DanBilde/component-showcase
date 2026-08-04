@@ -52,7 +52,7 @@ const palette = [
   'bg-cyan-100 text-cyan-700',
 ]
 const fallbackColor = computed(() => {
-  if (!props.name) return 'bg-slate-100 text-slate-500'
+  if (!props.name) return 'bg-surface-sunken text-fg-subtle'
   let sum = 0
   for (const ch of props.name) sum += ch.charCodeAt(0)
   return palette[sum % palette.length]
@@ -72,10 +72,10 @@ const shapeClasses: Record<Shape, string> = {
 }
 
 const statusColor: Record<Status, string> = {
-  online: 'bg-green-500',
-  away: 'bg-amber-500',
-  busy: 'bg-red-500',
-  offline: 'bg-slate-400',
+  online: 'bg-success',
+  away: 'bg-warning',
+  busy: 'bg-danger',
+  offline: 'bg-surface-strong',
 }
 
 const dotSize: Record<Size, string> = {
@@ -95,7 +95,7 @@ const dotSize: Record<Size, string> = {
         sizeClasses[size],
         shapeClasses[shape],
         showImage ? '' : fallbackColor,
-        ring ? 'ring-2 ring-white' : '',
+        ring ? 'ring-2 ring-surface' : '',
       ]"
       :role="showImage ? undefined : 'img'"
       :aria-label="showImage ? undefined : name || 'avatar'"
@@ -120,7 +120,7 @@ const dotSize: Record<Size, string> = {
     <span
       v-if="status"
       :class="[
-        'absolute bottom-0 right-0 rounded-full ring-2 ring-white',
+        'absolute bottom-0 right-0 rounded-full ring-2 ring-surface',
         dotSize[size],
         statusColor[status],
       ]"

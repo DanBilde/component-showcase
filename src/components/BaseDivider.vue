@@ -29,7 +29,7 @@ const hasLabel = computed(
 )
 
 const lineClasses = computed(() => [
-  'border-slate-200',
+  'border-border',
   props.variant === 'dashed' ? 'border-dashed' : 'border-solid',
 ])
 
@@ -55,7 +55,7 @@ const spacingClasses = computed(() => {
     v-else-if="hasLabel"
     role="separator"
     aria-orientation="horizontal"
-    :class="['flex items-center gap-3 text-sm text-slate-500', spacingClasses]"
+    :class="['flex items-center gap-3 text-sm text-fg-subtle', spacingClasses]"
   >
     <span v-if="labelPosition !== 'left'" :class="['flex-1 border-t', lineClasses]" />
     <span><slot>{{ label }}</slot></span>

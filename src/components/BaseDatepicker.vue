@@ -68,21 +68,21 @@ const sizeClasses: Record<Size, string> = {
 }
 
 const triggerClasses = computed(() => [
-  'flex w-full items-center justify-between gap-2 rounded-[var(--radius)] border bg-white px-3 text-left',
+  'flex w-full items-center justify-between gap-2 rounded-[var(--radius)] border bg-surface px-3 text-left',
   'transition-colors focus:outline-none focus-visible:ring-2',
-  'disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400',
+  'disabled:cursor-not-allowed disabled:bg-surface-muted disabled:text-fg-subtle',
   sizeClasses[props.size],
   props.error
-    ? 'border-red-500 focus-visible:border-red-500 focus-visible:ring-red-500'
-    : 'border-slate-300 focus-visible:border-[var(--color-brand)] focus-visible:ring-[var(--color-brand)]',
+    ? 'border-danger focus-visible:border-danger focus-visible:ring-danger'
+    : 'border-border-strong focus-visible:border-brand focus-visible:ring-brand',
 ])
 </script>
 
 <template>
   <div class="flex flex-col gap-1.5">
-    <label v-if="label" :for="fieldId" class="text-sm font-medium text-slate-700">
+    <label v-if="label" :for="fieldId" class="text-sm font-medium text-fg-muted">
       {{ label }}
-      <span v-if="required" class="text-red-600" aria-hidden="true">*</span>
+      <span v-if="required" class="text-danger" aria-hidden="true">*</span>
     </label>
 
     <BasePopover block :disabled="disabled" placement="bottom-start">
@@ -97,10 +97,10 @@ const triggerClasses = computed(() => [
           :aria-describedby="describedBy"
           :class="triggerClasses"
         >
-          <span :class="display ? 'text-slate-900' : 'text-slate-400'">
+          <span :class="display ? 'text-fg' : 'text-fg-subtle'">
             {{ display || placeholder }}
           </span>
-          <svg class="shrink-0 text-slate-400" width="18" height="18" viewBox="0 0 24 24" fill="none"
+          <svg class="shrink-0 text-fg-subtle" width="18" height="18" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <rect x="3" y="4" width="18" height="18" rx="2" />
             <path d="M16 2v4M8 2v4M3 10h18" />
@@ -120,7 +120,7 @@ const triggerClasses = computed(() => [
       </template>
     </BasePopover>
 
-    <p v-if="error" :id="`${fieldId}-error`" class="text-sm text-red-600">{{ error }}</p>
-    <p v-else-if="hint" :id="`${fieldId}-hint`" class="text-sm text-slate-500">{{ hint }}</p>
+    <p v-if="error" :id="`${fieldId}-error`" class="text-sm text-danger">{{ error }}</p>
+    <p v-else-if="hint" :id="`${fieldId}-hint`" class="text-sm text-fg-subtle">{{ hint }}</p>
   </div>
 </template>

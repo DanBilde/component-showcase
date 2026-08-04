@@ -62,8 +62,8 @@ const sizeVars: Record<Size, { track: string; thumb: string }> = {
 const inputStyle = computed<Record<string, string>>(() => ({
   '--track': sizeVars[props.size].track,
   '--thumb': sizeVars[props.size].thumb,
-  '--fill': props.error ? '#ef4444' : 'var(--color-brand)',
-  background: `linear-gradient(to right, var(--fill) ${pct.value}%, rgb(226 232 240) ${pct.value}%)`,
+  '--fill': props.error ? 'var(--color-danger)' : 'var(--color-brand)',
+  background: `linear-gradient(to right, var(--fill) ${pct.value}%, var(--color-surface-strong) ${pct.value}%)`,
 }))
 
 function onInput(event: Event) {
@@ -76,12 +76,12 @@ function onInput(event: Event) {
 <template>
   <div class="flex flex-col gap-1.5">
     <div v-if="label || showValue" class="flex items-center justify-between gap-2">
-      <label v-if="label" :for="fieldId" class="text-sm font-medium text-slate-700">
+      <label v-if="label" :for="fieldId" class="text-sm font-medium text-fg-muted">
         {{ label }}
-        <span v-if="required" class="text-red-600" aria-hidden="true">*</span>
+        <span v-if="required" class="text-danger" aria-hidden="true">*</span>
       </label>
       <span v-else />
-      <span v-if="showValue" class="text-sm tabular-nums text-slate-600">{{ modelValue }}</span>
+      <span v-if="showValue" class="text-sm tabular-nums text-fg-muted">{{ modelValue }}</span>
     </div>
 
     <input
@@ -100,8 +100,8 @@ function onInput(event: Event) {
       @input="onInput"
     />
 
-    <p v-if="error" :id="`${fieldId}-error`" class="text-sm text-red-600">{{ error }}</p>
-    <p v-else-if="hint" :id="`${fieldId}-hint`" class="text-sm text-slate-500">{{ hint }}</p>
+    <p v-if="error" :id="`${fieldId}-error`" class="text-sm text-danger">{{ error }}</p>
+    <p v-else-if="hint" :id="`${fieldId}-hint`" class="text-sm text-fg-subtle">{{ hint }}</p>
   </div>
 </template>
 
@@ -127,6 +127,7 @@ function onInput(event: Event) {
   height: var(--thumb);
   margin-top: calc((var(--track) - var(--thumb)) / 2);
   border-radius: 9999px;
+  /* White center + colored ring — reads well on both light and dark tracks. */
   background: #fff;
   border: 2px solid var(--fill);
   box-shadow: 0 1px 2px rgb(0 0 0 / 0.2);
@@ -141,6 +142,7 @@ function onInput(event: Event) {
   width: var(--thumb);
   height: var(--thumb);
   border-radius: 9999px;
+  /* White center + colored ring — reads well on both light and dark tracks. */
   background: #fff;
   border: 2px solid var(--fill);
   box-shadow: 0 1px 2px rgb(0 0 0 / 0.2);

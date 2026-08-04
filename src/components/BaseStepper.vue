@@ -35,11 +35,11 @@ function circleClasses(index: number) {
   return [
     'flex h-8 w-8 items-center justify-center rounded-full border-2 text-sm font-medium transition-colors',
     completed
-      ? 'border-[var(--color-brand)] bg-[var(--color-brand)] text-white'
+      ? 'border-brand bg-brand text-brand-on'
       : active
-        ? 'border-[var(--color-brand)] bg-white text-[var(--color-brand)]'
-        : 'border-slate-300 bg-white text-slate-400',
-    props.clickable ? 'cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand)]' : '',
+        ? 'border-brand bg-surface text-brand'
+        : 'border-border-strong bg-surface text-fg-subtle',
+    props.clickable ? 'cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand' : '',
   ]
 }
 </script>
@@ -72,12 +72,12 @@ function circleClasses(index: number) {
           <div
             :class="[
               'text-sm font-medium',
-              i <= modelValue ? 'text-slate-900' : 'text-slate-400',
+              i <= modelValue ? 'text-fg' : 'text-fg-subtle',
             ]"
           >
             {{ step.label }}
           </div>
-          <div v-if="step.description" class="mt-0.5 text-xs text-slate-400">
+          <div v-if="step.description" class="mt-0.5 text-xs text-fg-subtle">
             {{ step.description }}
           </div>
         </div>
@@ -86,7 +86,7 @@ function circleClasses(index: number) {
       <li
         v-if="i < steps.length - 1"
         class="mt-4 h-0.5 flex-1 rounded"
-        :class="i < modelValue ? 'bg-[var(--color-brand)]' : 'bg-slate-200'"
+        :class="i < modelValue ? 'bg-brand' : 'bg-surface-strong'"
         aria-hidden="true"
       />
     </template>

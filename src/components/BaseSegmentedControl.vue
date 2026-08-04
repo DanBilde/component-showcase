@@ -75,13 +75,13 @@ const sizeClasses: Record<Size, string> = {
 function segmentClasses(option: SegmentOption) {
   const active = option.value === props.modelValue
   return [
-    'rounded-[calc(var(--radius)-2px)] font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-[var(--color-brand)]',
+    'rounded-[calc(var(--radius)-2px)] font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-brand',
     sizeClasses[props.size],
     props.fullWidth ? 'flex-1' : '',
     option.disabled || props.disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
     active
-      ? 'bg-white text-slate-900 shadow-sm'
-      : 'text-slate-600 hover:text-slate-900',
+      ? 'bg-surface text-fg shadow-sm'
+      : 'text-fg-muted hover:text-fg',
   ]
 }
 </script>
@@ -91,7 +91,7 @@ function segmentClasses(option: SegmentOption) {
     role="radiogroup"
     :aria-label="ariaLabel"
     :class="[
-      'inline-flex gap-1 rounded-[var(--radius)] bg-slate-100 p-1',
+      'inline-flex gap-1 rounded-[var(--radius)] bg-surface-sunken p-1',
       fullWidth ? 'flex w-full' : '',
     ]"
   >

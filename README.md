@@ -3,7 +3,8 @@
 A personal, portfolio-safe component library and Storybook showcase built with
 **Vue 3, TypeScript, Tailwind CSS v4, and Storybook 10**. Every component is written from
 scratch as a clean, generic, reusable building block — presentational, dependency-free, and
-documented with live, interactive previews.
+documented with live, interactive previews. Ships with **light/dark theming** across the
+whole library, driven by semantic design tokens.
 
 **▶ Live showcase: https://component-showcase-alpha.vercel.app/**
 
@@ -114,9 +115,15 @@ src/
 - **Presentational & self-contained:** props in, UI out — no router, store, API, or
   app-specific data dependencies.
 - **`Base*` naming**, `<script setup lang="ts">` with typed props/emits.
-- **Styling via Tailwind utilities** plus a few brand-neutral CSS tokens in `src/style.css`
-  (`--color-brand`, `--radius`). A small scoped `<style>` is used only where keyframe or
+- **Styling via Tailwind utilities** on top of a **semantic design-token system** in
+  `src/style.css` — tokens are registered in Tailwind v4 `@theme` and re-pointed under a
+  `.dark {}` block, so components use semantic utilities (`bg-surface`, `text-fg`,
+  `border-border`, `bg-info-soft`, …) and **light/dark theming flows from one place** with
+  no per-component dark classes. A small scoped `<style>` is used only where keyframe or
   pseudo-element styling is unavoidable (e.g. progress, skeleton, slider, toast).
+- **Dark mode:** a toggle in the landing-page nav (persisted to `localStorage`, with an
+  OS-preference fallback) and a **Theme** toolbar in Storybook; the choice syncs both ways
+  between the landing page and Storybook (same origin in production).
 - **Accessibility** is built in: semantic elements, ARIA roles/attributes, and keyboard
   support throughout.
 - Every component ships a co-located `*.stories.ts` using `args` / `argTypes` and

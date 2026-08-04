@@ -97,7 +97,7 @@ const starPath =
         'inline-flex rounded',
         readonly
           ? ''
-          : 'cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand)]',
+          : 'cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand',
       ]"
       :role="readonly ? 'img' : 'slider'"
       :tabindex="readonly ? undefined : 0"
@@ -116,18 +116,18 @@ const starPath =
         @mousemove="onMove($event, i - 1)"
         @click="onClick($event, i - 1)"
       >
-        <svg :class="[sizeClasses[size], 'text-slate-300']" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <svg :class="[sizeClasses[size], 'text-fg-subtle']" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path :d="starPath" />
         </svg>
         <span class="absolute inset-0 overflow-hidden" :style="{ width: `${fill(i - 1) * 100}%` }">
-          <svg :class="[sizeClasses[size], 'text-amber-400']" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <svg :class="[sizeClasses[size], 'text-star']" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path :d="starPath" />
           </svg>
         </span>
       </span>
     </div>
 
-    <span v-if="showValue" class="text-sm tabular-nums text-slate-600">
+    <span v-if="showValue" class="text-sm tabular-nums text-fg-muted">
       {{ modelValue }}
     </span>
   </div>

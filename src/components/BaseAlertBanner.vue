@@ -31,17 +31,17 @@ const role = computed(() =>
 )
 
 const subtle: Record<Variant, string> = {
-  info: 'bg-blue-50 text-blue-800',
-  success: 'bg-green-50 text-green-800',
-  warning: 'bg-amber-50 text-amber-900',
-  error: 'bg-red-50 text-red-800',
+  info: 'bg-info-soft text-info-fg',
+  success: 'bg-success-soft text-success-fg',
+  warning: 'bg-warning-soft text-warning-fg',
+  error: 'bg-danger-soft text-danger-fg',
 }
 
 const solid: Record<Variant, string> = {
-  info: 'bg-blue-600 text-white',
-  success: 'bg-green-600 text-white',
-  warning: 'bg-amber-500 text-white',
-  error: 'bg-red-600 text-white',
+  info: 'bg-info text-info-on',
+  success: 'bg-success text-success-on',
+  warning: 'bg-warning text-warning-on',
+  error: 'bg-danger text-danger-on',
 }
 
 const containerClasses = computed(() =>

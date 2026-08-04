@@ -147,8 +147,8 @@ function itemClasses(item: MenuItem, index: number) {
   return [
     'flex w-full items-center gap-2 rounded px-3 py-1.5 text-left text-sm transition-colors focus:outline-none',
     item.disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
-    item.danger ? 'text-red-600' : 'text-slate-700',
-    index === activeIndex.value && !item.disabled ? (item.danger ? 'bg-red-50' : 'bg-slate-100') : '',
+    item.danger ? 'text-danger' : 'text-fg-muted',
+    index === activeIndex.value && !item.disabled ? (item.danger ? 'bg-danger-soft' : 'bg-surface-sunken') : '',
   ]
 }
 </script>
@@ -176,12 +176,12 @@ function itemClasses(item: MenuItem, index: number) {
         v-if="open"
         role="menu"
         :class="[
-          'absolute z-30 min-w-[12rem] origin-top rounded-[var(--radius)] border border-slate-200 bg-white p-1 shadow-lg',
+          'absolute z-30 min-w-[12rem] origin-top rounded-[var(--radius)] border border-border bg-surface p-1 shadow-lg',
           placementClasses[placement],
         ]"
       >
         <template v-for="(item, i) in items" :key="i">
-          <li v-if="item.divider" role="separator" class="my-1 border-t border-slate-100" />
+          <li v-if="item.divider" role="separator" class="my-1 border-t border-border-muted" />
           <li v-else role="none">
             <button
               :id="itemId(i)"

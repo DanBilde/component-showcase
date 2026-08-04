@@ -59,14 +59,14 @@ const paddingClasses = computed(() => {
 
 const stateClasses = computed(() =>
   props.error
-    ? 'border-red-500 focus-visible:border-red-500 focus-visible:ring-red-500'
-    : 'border-slate-300 focus-visible:border-[var(--color-brand)] focus-visible:ring-[var(--color-brand)]',
+    ? 'border-danger focus-visible:border-danger focus-visible:ring-danger'
+    : 'border-border-strong focus-visible:border-brand focus-visible:ring-brand',
 )
 
 const inputClasses = computed(() => [
-  'w-full rounded-[var(--radius)] border bg-white text-slate-900 placeholder:text-slate-400',
+  'w-full rounded-[var(--radius)] border bg-surface text-fg placeholder:text-fg-subtle',
   'transition-colors focus:outline-none focus-visible:ring-2',
-  'disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400',
+  'disabled:cursor-not-allowed disabled:bg-surface-muted disabled:text-fg-subtle',
   sizeClasses[props.size],
   paddingClasses.value,
   stateClasses.value,
@@ -78,16 +78,16 @@ const inputClasses = computed(() => [
     <label
       v-if="label"
       :for="inputId"
-      class="text-sm font-medium text-slate-700"
+      class="text-sm font-medium text-fg-muted"
     >
       {{ label }}
-      <span v-if="required" class="text-red-600" aria-hidden="true">*</span>
+      <span v-if="required" class="text-danger" aria-hidden="true">*</span>
     </label>
 
     <div class="relative flex items-center">
       <span
         v-if="$slots.prefix"
-        class="pointer-events-none absolute inset-y-0 left-3 flex items-center text-slate-400"
+        class="pointer-events-none absolute inset-y-0 left-3 flex items-center text-fg-subtle"
       >
         <slot name="prefix" />
       </span>
@@ -108,7 +108,7 @@ const inputClasses = computed(() => [
 
       <span
         v-if="$slots.suffix"
-        class="absolute inset-y-0 right-3 flex items-center text-slate-400"
+        class="absolute inset-y-0 right-3 flex items-center text-fg-subtle"
       >
         <slot name="suffix" />
       </span>
@@ -117,14 +117,14 @@ const inputClasses = computed(() => [
     <p
       v-if="error"
       :id="`${inputId}-error`"
-      class="text-sm text-red-600"
+      class="text-sm text-danger"
     >
       {{ error }}
     </p>
     <p
       v-else-if="hint"
       :id="`${inputId}-hint`"
-      class="text-sm text-slate-500"
+      class="text-sm text-fg-subtle"
     >
       {{ hint }}
     </p>

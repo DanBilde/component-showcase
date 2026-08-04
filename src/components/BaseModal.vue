@@ -100,19 +100,19 @@ onBeforeUnmount(() => {
           aria-modal="true"
           :aria-labelledby="title ? titleId : undefined"
           :class="[
-            'relative flex max-h-[85vh] w-full flex-col rounded-[var(--radius)] bg-white shadow-xl',
+            'relative flex max-h-[85vh] w-full flex-col rounded-[var(--radius)] bg-surface shadow-xl',
             sizeClasses[size],
           ]"
         >
           <header
             v-if="showHeader"
-            class="flex items-center justify-between gap-4 border-b border-slate-200 px-5 py-4"
+            class="flex items-center justify-between gap-4 border-b border-border px-5 py-4"
           >
             <slot name="header">
               <h2
                 v-if="title"
                 :id="titleId"
-                class="text-lg font-semibold text-slate-900"
+                class="text-lg font-semibold text-fg"
               >
                 {{ title }}
               </h2>
@@ -122,7 +122,7 @@ onBeforeUnmount(() => {
             <button
               v-if="!hideClose"
               type="button"
-              class="-mr-1 inline-flex items-center justify-center rounded-md p-1 text-slate-400 transition-colors hover:text-slate-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand)]"
+              class="-mr-1 inline-flex items-center justify-center rounded-md p-1 text-fg-subtle transition-colors hover:text-fg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
               aria-label="Close"
               @click="close"
             >
@@ -137,13 +137,13 @@ onBeforeUnmount(() => {
             </button>
           </header>
 
-          <div class="overflow-y-auto px-5 py-4 text-slate-700">
+          <div class="overflow-y-auto px-5 py-4 text-fg-muted">
             <slot />
           </div>
 
           <footer
             v-if="$slots.footer"
-            class="flex items-center justify-end gap-3 border-t border-slate-200 px-5 py-4"
+            class="flex items-center justify-end gap-3 border-t border-border px-5 py-4"
           >
             <slot name="footer" />
           </footer>

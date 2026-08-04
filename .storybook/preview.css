@@ -1,0 +1,59 @@
+/*
+ * Storybook-only overrides. Storybook's Docs pages (autodocs + MDX like the
+ * Introduction) render their prose/background from Storybook's own docs theme,
+ * which our token classes don't reach. When `.dark` is on <html> (set by the
+ * Theme toolbar in preview.ts), re-point that chrome at our semantic tokens so
+ * docs pages read correctly in dark mode. Kept here rather than in the app's
+ * src/style.css since these selectors are Storybook internals.
+ *
+ * The docs prose is plain <h1>/<p>/<a>/<code> elements inside `.sbdocs-content`
+ * (SB10 no longer puts `sbdocs-*` classes on each one), so we target descendants;
+ * `.dark .sbdocs-content h2` (specificity 0,2,1) beats the theme's emotion class.
+ */
+.dark .sbdocs-wrapper {
+  background-color: var(--color-canvas);
+}
+
+.dark .sbdocs-title,
+.dark .sbdocs-content h1,
+.dark .sbdocs-content h2,
+.dark .sbdocs-content h3,
+.dark .sbdocs-content h4,
+.dark .sbdocs-content strong {
+  color: var(--color-fg);
+}
+
+.dark .sbdocs-subtitle,
+.dark .sbdocs-content p,
+.dark .sbdocs-content li,
+.dark .sbdocs-content td,
+.dark .sbdocs-content th {
+  color: var(--color-fg-muted);
+}
+
+.dark .sbdocs-content a {
+  color: var(--color-brand);
+}
+
+.dark .sbdocs-content h1,
+.dark .sbdocs-content h2 {
+  border-bottom-color: var(--color-border);
+}
+
+.dark .sbdocs-content hr,
+.dark .sbdocs-content td,
+.dark .sbdocs-content th {
+  border-color: var(--color-border);
+}
+
+.dark .sbdocs-content code {
+  background-color: var(--color-surface-sunken);
+  border-color: var(--color-border);
+  color: var(--color-fg);
+}
+
+/* Story preview blocks embedded in docs pages */
+.dark .docs-story,
+.dark .sbdocs-preview {
+  background-color: var(--color-canvas);
+}

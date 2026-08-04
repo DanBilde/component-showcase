@@ -90,12 +90,12 @@ const optionsWrapper = computed(() =>
 )
 
 const controlClasses = computed(() => [
-  'shrink-0 rounded-full border-2 border-slate-300 bg-white transition-all',
-  'peer-hover:border-slate-400',
-  'peer-checked:border-[var(--color-brand)] peer-checked:bg-[var(--color-brand)] peer-checked:shadow-[inset_0_0_0_2px_#fff]',
-  'peer-focus-visible:ring-2 peer-focus-visible:ring-[var(--color-brand)] peer-focus-visible:ring-offset-1',
+  'shrink-0 rounded-full border-2 border-border-strong bg-surface transition-all',
+  'peer-hover:border-border-strong',
+  'peer-checked:border-brand peer-checked:bg-brand peer-checked:shadow-[inset_0_0_0_2px_var(--color-brand-on)]',
+  'peer-focus-visible:ring-2 peer-focus-visible:ring-brand peer-focus-visible:ring-offset-1',
   'peer-disabled:opacity-50',
-  props.error ? 'border-red-400' : '',
+  props.error ? 'border-danger' : '',
   controlSize[props.size],
 ])
 </script>
@@ -106,9 +106,9 @@ const controlClasses = computed(() => [
     :aria-invalid="error ? true : undefined"
     :aria-describedby="describedBy"
   >
-    <legend v-if="label" class="mb-0.5 p-0 text-sm font-medium text-slate-700">
+    <legend v-if="label" class="mb-0.5 p-0 text-sm font-medium text-fg-muted">
       {{ label }}
-      <span v-if="required" class="text-red-600" aria-hidden="true">*</span>
+      <span v-if="required" class="text-danger" aria-hidden="true">*</span>
     </legend>
 
     <div :class="optionsWrapper">
@@ -134,7 +134,7 @@ const controlClasses = computed(() => [
         <span
           :class="[
             textSize[size],
-            disabled || opt.disabled ? 'text-slate-400' : 'text-slate-700',
+            disabled || opt.disabled ? 'text-fg-subtle' : 'text-fg-muted',
           ]"
         >
           {{ opt.label }}
@@ -142,10 +142,10 @@ const controlClasses = computed(() => [
       </label>
     </div>
 
-    <p v-if="error" :id="`${uid}-error`" class="text-sm text-red-600">
+    <p v-if="error" :id="`${uid}-error`" class="text-sm text-danger">
       {{ error }}
     </p>
-    <p v-else-if="hint" :id="`${uid}-hint`" class="text-sm text-slate-500">
+    <p v-else-if="hint" :id="`${uid}-hint`" class="text-sm text-fg-subtle">
       {{ hint }}
     </p>
   </fieldset>

@@ -62,7 +62,7 @@ const sizeClasses: Record<Size, string> = {
 }
 
 const linkClasses =
-  'rounded text-slate-500 transition-colors hover:text-slate-800 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand)]'
+  'rounded text-fg-subtle transition-colors hover:text-fg hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand'
 
 function onSelect(item: BreadcrumbItem, event: MouseEvent) {
   emit('select', item, event)
@@ -82,11 +82,11 @@ const keyFor = (entry: Entry, index: number): Value =>
         class="inline-flex items-center"
         :class="sizeClasses[size]"
       >
-        <span v-if="entry.ellipsis" class="px-0.5 text-slate-400" aria-hidden="true">…</span>
+        <span v-if="entry.ellipsis" class="px-0.5 text-fg-subtle" aria-hidden="true">…</span>
 
         <span
           v-else-if="entry.current"
-          class="font-medium text-slate-700"
+          class="font-medium text-fg-muted"
           aria-current="page"
         >
           {{ entry.item.label }}
@@ -112,7 +112,7 @@ const keyFor = (entry: Entry, index: number): Value =>
 
         <span
           v-if="i < entries.length - 1"
-          class="text-slate-400 select-none"
+          class="text-fg-subtle select-none"
           aria-hidden="true"
         >
           <slot name="separator">{{ separator }}</slot>

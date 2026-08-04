@@ -69,18 +69,18 @@ const textSize: Record<Size, string> = {
 
 const trackClasses = computed(() => [
   'inline-flex shrink-0 items-center rounded-full p-0.5 transition-colors',
-  'peer-focus-visible:ring-2 peer-focus-visible:ring-[var(--color-brand)] peer-focus-visible:ring-offset-2',
+  'peer-focus-visible:ring-2 peer-focus-visible:ring-brand peer-focus-visible:ring-offset-2',
   'peer-disabled:opacity-50',
   props.modelValue
-    ? 'bg-[var(--color-brand)]'
+    ? 'bg-brand'
     : props.error
-      ? 'bg-red-300'
-      : 'bg-slate-300',
+      ? 'bg-danger-line'
+      : 'bg-surface-strong',
   trackSize[props.size],
 ])
 
 const knobClasses = computed(() => [
-  'pointer-events-none rounded-full bg-white shadow transition-transform',
+  'pointer-events-none rounded-full bg-brand-on shadow transition-transform',
   knobSize[props.size],
   props.modelValue ? knobTranslate[props.size] : 'translate-x-0',
 ])
@@ -112,17 +112,17 @@ const knobClasses = computed(() => [
 
       <span
         v-if="label"
-        :class="[textSize[size], disabled ? 'text-slate-400' : 'text-slate-700']"
+        :class="[textSize[size], disabled ? 'text-fg-subtle' : 'text-fg-muted']"
       >
         {{ label }}
-        <span v-if="required" class="text-red-600" aria-hidden="true">*</span>
+        <span v-if="required" class="text-danger" aria-hidden="true">*</span>
       </span>
     </label>
 
-    <p v-if="error" :id="`${uid}-error`" class="text-sm text-red-600">
+    <p v-if="error" :id="`${uid}-error`" class="text-sm text-danger">
       {{ error }}
     </p>
-    <p v-else-if="hint" :id="`${uid}-hint`" class="text-sm text-slate-500">
+    <p v-else-if="hint" :id="`${uid}-hint`" class="text-sm text-fg-subtle">
       {{ hint }}
     </p>
   </div>

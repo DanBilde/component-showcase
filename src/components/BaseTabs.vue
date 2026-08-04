@@ -94,14 +94,14 @@ const sizeClasses: Record<Size, string> = {
 
 const tablistClasses = computed(() => [
   'flex gap-1',
-  props.variant === 'underline' ? 'border-b border-slate-200' : '',
+  props.variant === 'underline' ? 'border-b border-border' : '',
 ])
 
 function tabClasses(tab: TabItem) {
   const isActive = tab.value === activeValue.value
   const classes = [
     'font-medium transition-colors focus:outline-none',
-    'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand)]',
+    'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand',
     sizeClasses[props.size],
     tab.disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
   ]
@@ -110,16 +110,16 @@ function tabClasses(tab: TabItem) {
     classes.push('rounded-[var(--radius)]')
     classes.push(
       isActive
-        ? 'bg-[var(--color-brand)] text-white'
-        : `text-slate-600${tab.disabled ? '' : ' hover:bg-slate-100'}`,
+        ? 'bg-brand text-brand-on'
+        : `text-fg-muted${tab.disabled ? '' : ' hover:bg-surface-sunken'}`,
     )
   } else {
     classes.push('-mb-px border-b-2')
     classes.push(
       isActive
-        ? 'border-[var(--color-brand)] text-[var(--color-brand)]'
-        : `border-transparent text-slate-500${
-            tab.disabled ? '' : ' hover:border-slate-300 hover:text-slate-800'
+        ? 'border-brand text-brand'
+        : `border-transparent text-fg-subtle${
+            tab.disabled ? '' : ' hover:border-border-strong hover:text-fg'
           }`,
     )
   }

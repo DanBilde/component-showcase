@@ -30,8 +30,8 @@ const emit = defineEmits<{ select: [item: ListItem, index: number] }>()
 
 const containerClasses: Record<Variant, string> = {
   plain: '',
-  divided: 'divide-y divide-slate-200',
-  bordered: 'divide-y divide-slate-200 rounded-[var(--radius)] border border-slate-200 overflow-hidden',
+  divided: 'divide-y divide-border',
+  bordered: 'divide-y divide-border rounded-[var(--radius)] border border-border overflow-hidden',
 }
 
 const sizeClasses: Record<Size, string> = {
@@ -50,7 +50,7 @@ function rowClasses(item: ListItem) {
     'flex w-full items-center gap-3 text-left',
     sizeClasses[props.size],
     props.interactive && !item.disabled
-      ? 'cursor-pointer transition-colors hover:bg-slate-50 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-[var(--color-brand)]'
+      ? 'cursor-pointer transition-colors hover:bg-surface-muted focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-brand'
       : '',
     item.disabled ? 'opacity-50' : '',
   ]
@@ -80,8 +80,8 @@ function onSelect(item: ListItem, index: number) {
 
         <div class="min-w-0 flex-1">
           <slot name="item" :item="item" :index="index">
-            <div class="font-medium text-slate-900">{{ item.label }}</div>
-            <div v-if="item.description" class="text-sm text-slate-500">
+            <div class="font-medium text-fg">{{ item.label }}</div>
+            <div v-if="item.description" class="text-sm text-fg-subtle">
               {{ item.description }}
             </div>
           </slot>

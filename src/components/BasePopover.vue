@@ -69,7 +69,7 @@ const placementClasses: Record<Placement, string> = {
         v-if="open"
         role="dialog"
         :class="[
-          'absolute z-30 min-w-[12rem] origin-top rounded-[var(--radius)] border border-slate-200 bg-white p-3 shadow-lg',
+          'absolute z-30 min-w-[12rem] origin-top rounded-[var(--radius)] border border-border bg-surface p-3 shadow-lg',
           placementClasses[placement],
         ]"
       >

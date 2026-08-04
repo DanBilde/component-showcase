@@ -25,8 +25,8 @@ const sizeClasses: Record<Size, string> = {
 }
 
 const colorClasses: Record<Color, string> = {
-  brand: 'text-[var(--color-brand)]',
-  neutral: 'text-slate-500',
+  brand: 'text-brand',
+  neutral: 'text-fg-subtle',
   white: 'text-white',
   current: '',
 }

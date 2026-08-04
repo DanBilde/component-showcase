@@ -139,7 +139,7 @@ function optionClasses(index: number, item: CommandItem) {
   return [
     'flex cursor-pointer items-center gap-3 rounded-[calc(var(--radius)-2px)] px-3 py-2 text-sm',
     item.disabled ? 'cursor-not-allowed opacity-50' : '',
-    index === activeIndex.value && !item.disabled ? 'bg-slate-100' : '',
+    index === activeIndex.value && !item.disabled ? 'bg-surface-sunken' : '',
   ]
 }
 </script>
@@ -164,10 +164,10 @@ function optionClasses(index: number, item: CommandItem) {
           role="dialog"
           aria-modal="true"
           aria-label="Command palette"
-          class="relative w-full max-w-lg overflow-hidden rounded-[var(--radius)] bg-white shadow-xl"
+          class="relative w-full max-w-lg overflow-hidden rounded-[var(--radius)] bg-surface shadow-xl"
         >
-          <div class="flex items-center gap-2 border-b border-slate-200 px-4">
-            <svg class="shrink-0 text-slate-400" width="18" height="18" viewBox="0 0 24 24" fill="none"
+          <div class="flex items-center gap-2 border-b border-border px-4">
+            <svg class="shrink-0 text-fg-subtle" width="18" height="18" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <circle cx="11" cy="11" r="7" /><path d="M21 21l-4.3-4.3" />
             </svg>
@@ -180,7 +180,7 @@ function optionClasses(index: number, item: CommandItem) {
               :aria-controls="listId"
               :aria-activedescendant="results.length ? optionId(activeIndex) : undefined"
               :placeholder="placeholder"
-              class="w-full bg-transparent py-3.5 text-sm text-slate-900 outline-none placeholder:text-slate-400"
+              class="w-full bg-transparent py-3.5 text-sm text-fg outline-none placeholder:text-fg-subtle"
               @keydown="onKeydown"
             />
           </div>
@@ -190,7 +190,7 @@ function optionClasses(index: number, item: CommandItem) {
               <template v-for="group in groups" :key="group.name">
                 <li
                   v-if="group.name"
-                  class="px-2 pb-1 pt-2 text-xs font-medium text-slate-400"
+                  class="px-2 pb-1 pt-2 text-xs font-medium text-fg-subtle"
                   role="presentation"
                 >
                   {{ group.name }}
@@ -207,18 +207,18 @@ function optionClasses(index: number, item: CommandItem) {
                   @mousemove="activeIndex = entry.index"
                 >
                   <div class="min-w-0 flex-1">
-                    <div class="truncate text-slate-900">{{ entry.item.label }}</div>
-                    <div v-if="entry.item.description" class="truncate text-xs text-slate-500">
+                    <div class="truncate text-fg">{{ entry.item.label }}</div>
+                    <div v-if="entry.item.description" class="truncate text-xs text-fg-subtle">
                       {{ entry.item.description }}
                     </div>
                   </div>
-                  <span v-if="entry.item.shortcut" class="shrink-0 text-xs text-slate-400">
+                  <span v-if="entry.item.shortcut" class="shrink-0 text-xs text-fg-subtle">
                     {{ entry.item.shortcut }}
                   </span>
                 </li>
               </template>
             </template>
-            <li v-else class="px-3 py-8 text-center text-sm text-slate-400">{{ emptyText }}</li>
+            <li v-else class="px-3 py-8 text-center text-sm text-fg-subtle">{{ emptyText }}</li>
           </ul>
         </div>
       </div>

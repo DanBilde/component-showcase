@@ -19,11 +19,11 @@ const props = withDefaults(
 )
 
 const dotColor: Record<Variant, string> = {
-  neutral: 'bg-slate-300',
-  brand: 'bg-[var(--color-brand)]',
-  success: 'bg-green-500',
-  warning: 'bg-amber-500',
-  danger: 'bg-red-500',
+  neutral: 'bg-surface-strong',
+  brand: 'bg-brand',
+  success: 'bg-success',
+  warning: 'bg-warning',
+  danger: 'bg-danger',
 }
 
 const isLast = (index: number) => index === props.items.length - 1
@@ -37,18 +37,18 @@ const isLast = (index: number) => index === props.items.length - 1
         <slot name="marker" :item="item" :index="index">
           <span
             :class="[
-              'mt-1 h-3 w-3 shrink-0 rounded-full ring-4 ring-white',
+              'mt-1 h-3 w-3 shrink-0 rounded-full ring-4 ring-surface',
               dotColor[item.variant ?? 'neutral'],
             ]"
           />
         </slot>
-        <span v-if="!isLast(index)" class="mt-1 w-px flex-1 bg-slate-200" />
+        <span v-if="!isLast(index)" class="mt-1 w-px flex-1 bg-border" />
       </div>
 
       <div :class="['flex-1', isLast(index) ? '' : 'pb-6']">
-        <div v-if="item.time" class="text-xs font-medium text-slate-400">{{ item.time }}</div>
-        <div class="font-medium text-slate-900">{{ item.title }}</div>
-        <div v-if="item.description" class="mt-0.5 text-sm text-slate-600">
+        <div v-if="item.time" class="text-xs font-medium text-fg-subtle">{{ item.time }}</div>
+        <div class="font-medium text-fg">{{ item.title }}</div>
+        <div v-if="item.description" class="mt-0.5 text-sm text-fg-muted">
           {{ item.description }}
         </div>
         <slot name="content" :item="item" :index="index" />

@@ -87,14 +87,14 @@ function onHeaderKeydown(event: KeyboardEvent, index: number) {
 
 <template>
   <div
-    class="divide-y divide-slate-200 overflow-hidden rounded-[var(--radius)] border border-slate-200"
+    class="divide-y divide-border overflow-hidden rounded-[var(--radius)] border border-border"
   >
     <div v-for="(item, i) in items" :key="item.value">
       <component :is="headingTag" class="m-0">
         <button
           :id="headerId(item.value)"
           type="button"
-          class="flex w-full items-center justify-between gap-4 px-4 py-3 text-left font-medium text-slate-900 transition-colors hover:bg-slate-50 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-[var(--color-brand)] disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-transparent"
+          class="flex w-full items-center justify-between gap-4 px-4 py-3 text-left font-medium text-fg transition-colors hover:bg-surface-muted focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-brand disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-transparent"
           :aria-expanded="isOpen(item.value)"
           :aria-controls="panelId(item.value)"
           :disabled="item.disabled"
@@ -104,7 +104,7 @@ function onHeaderKeydown(event: KeyboardEvent, index: number) {
           <span>{{ item.title }}</span>
           <svg
             :class="[
-              'shrink-0 text-slate-400 transition-transform duration-200',
+              'shrink-0 text-fg-subtle transition-transform duration-200',
               isOpen(item.value) ? 'rotate-180' : '',
             ]"
             width="18"
@@ -133,7 +133,7 @@ function onHeaderKeydown(event: KeyboardEvent, index: number) {
         :style="{ gridTemplateRows: isOpen(item.value) ? '1fr' : '0fr' }"
       >
         <div class="overflow-hidden">
-          <div :inert="!isOpen(item.value)" class="px-4 pb-4 text-sm text-slate-600">
+          <div :inert="!isOpen(item.value)" class="px-4 pb-4 text-sm text-fg-muted">
             <slot :name="item.value" />
           </div>
         </div>

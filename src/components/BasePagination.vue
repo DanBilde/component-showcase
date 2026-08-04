@@ -86,22 +86,22 @@ const sizeClasses: Record<Size, string> = {
 }
 
 const baseButton =
-  'inline-flex items-center justify-center rounded-[var(--radius)] border px-2 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand)] disabled:cursor-not-allowed disabled:opacity-50'
+  'inline-flex items-center justify-center rounded-[var(--radius)] border px-2 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand disabled:cursor-not-allowed disabled:opacity-50'
 
 function pageButtonClasses(active: boolean) {
   return [
     baseButton,
     sizeClasses[props.size],
     active
-      ? 'border-[var(--color-brand)] bg-[var(--color-brand)] font-medium text-white'
-      : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50',
+      ? 'border-brand bg-brand font-medium text-brand-on'
+      : 'border-border bg-surface text-fg-muted hover:bg-surface-muted',
   ]
 }
 
 const navButtonClasses = computed(() => [
   baseButton,
   sizeClasses[props.size],
-  'border-slate-200 bg-white text-slate-600 hover:bg-slate-50',
+  'border-border bg-surface text-fg-muted hover:bg-surface-muted',
 ])
 </script>
 
@@ -139,7 +139,7 @@ const navButtonClasses = computed(() => [
       <li v-for="entry in entries" :key="entry">
         <span
           v-if="entry === 'left-dots' || entry === 'right-dots'"
-          :class="['inline-flex items-center justify-center text-slate-400', sizeClasses[size]]"
+          :class="['inline-flex items-center justify-center text-fg-subtle', sizeClasses[size]]"
           aria-hidden="true"
         >
           …

@@ -24,9 +24,9 @@ const props = withDefaults(
 const slots = useSlots()
 
 const variantClasses: Record<Variant, string> = {
-  outlined: 'border border-slate-200 bg-white',
-  elevated: 'bg-white shadow-md',
-  filled: 'border border-slate-100 bg-slate-50',
+  outlined: 'border border-border bg-surface',
+  elevated: 'bg-surface shadow-md',
+  filled: 'border border-border-muted bg-surface-muted',
 }
 
 const paddingClasses: Record<Padding, string> = {
@@ -51,7 +51,7 @@ const hasHeader = computed(() => Boolean(slots.header) || Boolean(props.title) |
     <div
       v-if="$slots.icon"
       :class="[
-        'mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 text-[var(--color-brand)]',
+        'mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-surface-sunken text-brand',
         centered ? 'mx-auto' : '',
       ]"
     >
@@ -60,18 +60,18 @@ const hasHeader = computed(() => Boolean(slots.header) || Boolean(props.title) |
 
     <div v-if="hasHeader" :class="$slots.default ? 'mb-2' : ''">
       <slot name="header">
-        <h3 v-if="title" class="text-lg font-semibold text-slate-900">{{ title }}</h3>
-        <p v-if="subtitle" class="mt-1 text-sm text-slate-500">{{ subtitle }}</p>
+        <h3 v-if="title" class="text-lg font-semibold text-fg">{{ title }}</h3>
+        <p v-if="subtitle" class="mt-1 text-sm text-fg-subtle">{{ subtitle }}</p>
       </slot>
     </div>
 
-    <div v-if="$slots.default" class="text-sm text-slate-600">
+    <div v-if="$slots.default" class="text-sm text-fg-muted">
       <slot />
     </div>
 
     <div
       v-if="$slots.footer"
-      class="mt-4 border-t border-slate-100 pt-4"
+      class="mt-4 border-t border-border-muted pt-4"
     >
       <slot name="footer" />
     </div>

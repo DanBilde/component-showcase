@@ -29,7 +29,7 @@ const sizeClasses: Record<Size, string> = {
 }
 
 const kbdClasses = computed(() => [
-  'inline-flex items-center justify-center rounded border border-slate-300 bg-slate-50 font-medium text-slate-600 shadow-[inset_0_-1px_0_rgb(0_0_0/0.08)]',
+  'inline-flex items-center justify-center rounded border border-border-strong bg-surface-sunken font-medium text-fg-muted shadow-[inset_0_-1px_0_rgb(0_0_0/0.08)]',
   sizeClasses[props.size],
 ])
 </script>
@@ -40,7 +40,7 @@ const kbdClasses = computed(() => [
       <kbd :class="kbdClasses">{{ k }}</kbd>
       <span
         v-if="i < keyList.length - 1"
-        class="text-xs text-slate-400"
+        class="text-xs text-fg-subtle"
         aria-hidden="true"
       >
         {{ separator }}

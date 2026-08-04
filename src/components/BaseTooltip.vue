@@ -86,13 +86,13 @@ const arrowPlacement: Record<Placement, string> = {
         :id="tooltipId"
         role="tooltip"
         :class="[
-          'pointer-events-none absolute z-20 max-w-xs rounded bg-slate-900 px-2 py-1 text-xs text-white shadow-md',
+          'pointer-events-none absolute z-20 max-w-xs rounded bg-inverse px-2 py-1 text-xs text-inverse-fg shadow-md',
           panelPlacement[placement],
         ]"
       >
         <slot name="content">{{ content }}</slot>
         <span
-          :class="['absolute h-2 w-2 rotate-45 bg-slate-900', arrowPlacement[placement]]"
+          :class="['absolute h-2 w-2 rotate-45 bg-inverse', arrowPlacement[placement]]"
           aria-hidden="true"
         />
       </span>

@@ -157,9 +157,9 @@ const isSelected = (row: FlatNode) =>
 
 function rowClasses(row: FlatNode) {
   return [
-    'flex w-full items-center gap-1.5 rounded px-2 py-1.5 text-left text-sm transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand)]',
+    'flex w-full items-center gap-1.5 rounded px-2 py-1.5 text-left text-sm transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand',
     row.node.disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
-    isSelected(row) ? 'bg-[var(--color-brand)] font-medium text-white' : 'text-slate-700 hover:bg-slate-100',
+    isSelected(row) ? 'bg-brand font-medium text-brand-on' : 'text-fg-muted hover:bg-surface-sunken',
   ]
 }
 </script>

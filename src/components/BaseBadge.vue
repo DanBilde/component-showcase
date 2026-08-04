@@ -25,27 +25,27 @@ const slots = useSlots()
 const hasContent = computed(() => Boolean(slots.default))
 
 const subtleClasses: Record<Variant, string> = {
-  neutral: 'bg-slate-100 text-slate-700',
-  brand: 'bg-blue-100 text-blue-800',
-  success: 'bg-green-100 text-green-800',
-  warning: 'bg-amber-100 text-amber-900',
-  danger: 'bg-red-100 text-red-800',
+  neutral: 'bg-surface-sunken text-fg-muted',
+  brand: 'bg-brand-soft text-brand-fg',
+  success: 'bg-success-soft text-success-fg',
+  warning: 'bg-warning-soft text-warning-fg',
+  danger: 'bg-danger-soft text-danger-fg',
 }
 
 const solidClasses: Record<Variant, string> = {
-  neutral: 'bg-slate-600 text-white',
-  brand: 'bg-[var(--color-brand)] text-white',
-  success: 'bg-green-600 text-white',
-  warning: 'bg-amber-500 text-white',
-  danger: 'bg-red-600 text-white',
+  neutral: 'bg-inverse text-inverse-fg',
+  brand: 'bg-brand text-brand-on',
+  success: 'bg-success text-success-on',
+  warning: 'bg-warning text-warning-on',
+  danger: 'bg-danger text-danger-on',
 }
 
 const strongColor: Record<Variant, string> = {
-  neutral: 'bg-slate-500',
-  brand: 'bg-[var(--color-brand)]',
-  success: 'bg-green-500',
-  warning: 'bg-amber-500',
-  danger: 'bg-red-500',
+  neutral: 'bg-fg-subtle',
+  brand: 'bg-brand',
+  success: 'bg-success',
+  warning: 'bg-warning',
+  danger: 'bg-danger',
 }
 
 const sizeClasses: Record<Size, string> = {

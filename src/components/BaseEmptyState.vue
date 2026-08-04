@@ -34,21 +34,21 @@ const padding: Record<Size, string> = {
     <div
       v-if="$slots.icon"
       :class="[
-        'flex items-center justify-center rounded-full bg-slate-100 text-slate-400',
+        'flex items-center justify-center rounded-full bg-surface-sunken text-fg-subtle',
         iconWrap[size],
       ]"
     >
       <slot name="icon" />
     </div>
 
-    <h3 v-if="title" :class="['mt-4 font-semibold text-slate-900', titleSize[size]]">
+    <h3 v-if="title" :class="['mt-4 font-semibold text-fg', titleSize[size]]">
       {{ title }}
     </h3>
-    <p v-if="description" class="mt-1 max-w-sm text-sm text-slate-500">
+    <p v-if="description" class="mt-1 max-w-sm text-sm text-fg-subtle">
       {{ description }}
     </p>
 
-    <div v-if="$slots.default" class="mt-3 text-sm text-slate-600">
+    <div v-if="$slots.default" class="mt-3 text-sm text-fg-muted">
       <slot />
     </div>
 

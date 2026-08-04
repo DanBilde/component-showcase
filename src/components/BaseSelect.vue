@@ -223,14 +223,14 @@ const sizeClasses: Record<Size, string> = {
 
 const stateClasses = computed(() =>
   props.error
-    ? 'border-red-500 focus-visible:border-red-500 focus-visible:ring-red-500'
-    : 'border-slate-300 focus-visible:border-[var(--color-brand)] focus-visible:ring-[var(--color-brand)]',
+    ? 'border-danger focus-visible:border-danger focus-visible:ring-danger'
+    : 'border-border-strong focus-visible:border-brand focus-visible:ring-brand',
 )
 
 const triggerClasses = computed(() => [
-  'flex w-full items-center justify-between gap-2 rounded-[var(--radius)] border bg-white px-3 text-left',
+  'flex w-full items-center justify-between gap-2 rounded-[var(--radius)] border bg-surface px-3 text-left',
   'transition-colors focus:outline-none focus-visible:ring-2',
-  'disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400',
+  'disabled:cursor-not-allowed disabled:bg-surface-muted disabled:text-fg-subtle',
   sizeClasses[props.size],
   stateClasses.value,
 ])
@@ -239,9 +239,9 @@ function optionClasses(index: number, opt: SelectOption) {
   return [
     'flex items-center justify-between gap-2 px-3 py-2 text-sm',
     opt.disabled
-      ? 'cursor-not-allowed text-slate-400'
-      : 'cursor-pointer text-slate-900',
-    index === activeIndex.value && !opt.disabled ? 'bg-slate-100' : '',
+      ? 'cursor-not-allowed text-fg-subtle'
+      : 'cursor-pointer text-fg',
+    index === activeIndex.value && !opt.disabled ? 'bg-surface-sunken' : '',
   ]
 }
 </script>
@@ -252,10 +252,10 @@ function optionClasses(index: number, opt: SelectOption) {
       v-if="label"
       :id="labelId"
       :for="baseId"
-      class="text-sm font-medium text-slate-700"
+      class="text-sm font-medium text-fg-muted"
     >
       {{ label }}
-      <span v-if="required" class="text-red-600" aria-hidden="true">*</span>
+      <span v-if="required" class="text-danger" aria-hidden="true">*</span>
     </label>
 
     <div class="relative">
@@ -278,12 +278,12 @@ function optionClasses(index: number, opt: SelectOption) {
         @click="toggle"
         @keydown="onKeydown"
       >
-        <span :class="selectedOption ? 'text-slate-900' : 'text-slate-400'">
+        <span :class="selectedOption ? 'text-fg' : 'text-fg-subtle'">
           {{ selectedLabel }}
         </span>
         <svg
           :class="[
-            'shrink-0 text-slate-400 transition-transform',
+            'shrink-0 text-fg-subtle transition-transform',
             isOpen ? 'rotate-180' : '',
           ]"
           width="18"
@@ -307,7 +307,7 @@ function optionClasses(index: number, opt: SelectOption) {
         :id="listboxId"
         role="listbox"
         :aria-labelledby="label ? labelId : undefined"
-        class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-[var(--radius)] border border-slate-200 bg-white py-1 shadow-lg"
+        class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-[var(--radius)] border border-border bg-surface py-1 shadow-lg"
       >
         <li
           v-for="(opt, i) in options"
@@ -323,7 +323,7 @@ function optionClasses(index: number, opt: SelectOption) {
           <span>{{ opt.label }}</span>
           <svg
             v-if="opt.value === modelValue"
-            class="shrink-0 text-[var(--color-brand)]"
+            class="shrink-0 text-brand"
             width="16"
             height="16"
             viewBox="0 0 24 24"
@@ -342,10 +342,10 @@ function optionClasses(index: number, opt: SelectOption) {
       </ul>
     </div>
 
-    <p v-if="error" :id="`${baseId}-error`" class="text-sm text-red-600">
+    <p v-if="error" :id="`${baseId}-error`" class="text-sm text-danger">
       {{ error }}
     </p>
-    <p v-else-if="hint" :id="`${baseId}-hint`" class="text-sm text-slate-500">
+    <p v-else-if="hint" :id="`${baseId}-hint`" class="text-sm text-fg-subtle">
       {{ hint }}
     </p>
   </div>
