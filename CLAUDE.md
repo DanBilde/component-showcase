@@ -72,6 +72,12 @@ subpath). The landing page links to `/storybook/` and the GitHub repo.
   (`bg-white` — a surface on the track, not ink on a fill; see Slice 49).
 - Prefer a `variant` + `size` prop pattern with `Record<Variant, string>` class maps
   (see `BaseButton.vue`).
+- **`border-control` is the boundary of an interactive control** — fields, the checkbox and
+  radio outlines, the switch's off track — and it is the *only* border token tuned for WCAG
+  1.4.11's 3:1 (3.17:1 light / 3.97:1 dark against the canvas). `border-strong` and `border`
+  stay pale because they draw decorative hairlines (`BaseKbd`, `BaseTabs`' hover underline,
+  dividers), which the criterion does not cover. Reach for `border-border-control` on anything
+  the user operates, `border-border` / `border-border-strong` on anything they only look at.
 - **`--radius: 0.5rem` in `@theme` re-points the bare `rounded` utility**, so `rounded` is 8px,
   not Tailwind's 4px. On anything small that reads as a square — a checkbox box, a 16px marker —
   it is a full circle. Use an explicit `rounded-sm` there; `rounded` is fine on tooltips, chips,
@@ -577,9 +583,37 @@ all three are now fixed on both sides.
   checkbox and multi-select boxes at 4px radius, modal body focusable, hover ratios in both
   themes.
 
+### Slice 51 — Light-mode fills + control boundaries (done)
+Two token fixes, applied identically here and in the React library.
+- **Light mode, white ink on solid `success` / `warning`** was 3.29:1 and 3.18:1 (`BaseBadge`
+  solid, `BaseAlertBanner`) — the mirror of slice 49's dark-mode fix, which light mode never
+  received. **Darkened the fills** rather than the ink: `--color-success` → `#15803d`,
+  `--color-warning` → `#b45309`, both 5.02:1 under white. Dark ink on the existing fills would
+  also have passed (4.52 / 4.57), but darkening keeps light mode's white-on-color convention
+  *and* lifts the accents themselves from 3.30/3.19 to 5.02 on white, which every non-text use
+  of them (progress fills, slider fills, status dots, `BaseStepper`, icons) wanted anyway.
+  `--color-success-fg` → `#166534`, so `*-fg` stays a step darker than the fill in every family.
+- **Non-text contrast of control boundaries (WCAG 1.4.11)** — `border-strong` was 1.48:1 light /
+  2.12:1 dark, and the switch's off track (`surface-strong`) 1.23:1 in light. Added
+  **`--color-border-control`** (`#8492a4` / `#63748f`) rather than re-pointing `border-strong`,
+  which also draws decorative hairlines the criterion does not cover (see Conventions).
+  `BaseInput`, `BaseTextarea`, `BaseSelect`, `BaseCheckbox`, `BaseRadioGroup`, `BaseMultiSelect`,
+  `BaseChipInput` and `BaseDatepicker` now use it.
+- **`BaseSwitch`'s off track** is a fill, not a border, so it takes an inset outline
+  (`outline-1 -outline-offset-1 outline-border-control`) — an outline, not a border, so the
+  track size and the knob translate distances calibrated against it do not move.
+- Verified: light-mode contrast violations 44 → 32 across 248 stories, every other count
+  unchanged; boundaries measured in-browser at 3.17:1 light / 3.97:1 dark on field, checkbox,
+  radio and switch; and this stylesheet now produces a contrast profile identical to the React
+  library's across all 108 token pairs.
+- **Left alone deliberately:** `BaseSlider`'s unfilled track and `BaseStepper`'s upcoming-step
+  circle also sit near 1.2:1 against the canvas. Both convey their state through the *filled*
+  portion, which has plenty of contrast, so they were out of this pass — worth a look if the
+  slider ever needs its full extent to be readable.
+
 ### Next up
-- **Known a11y backlog** from that sweep (464 violation nodes across 248 stories × 2 themes,
-  where the React library sits at 2):
+- **Known a11y backlog** from that sweep (452 violation nodes across 248 stories × 2 themes
+  after slice 51, where the React library is now at 0):
   - `BaseCalendar` — 336 nodes of `aria-allowed-attr`: an ARIA attribute on a role that does
     not permit it. One markup fix, repeated across every day cell.
   - `BaseProgress` — 18 nodes of `aria-progressbar-name`: the bar has no accessible name. The
@@ -590,10 +624,4 @@ all three are now fixed on both sides.
   - Stories that hardcode `style="color: rgb(15, 23, 42)"` (`BaseList`, `BaseCard`,
     `BaseCalendar`, `BaseCode`) — invisible in dark mode. Story markup, not component code, but
     it is what a visitor sees in the docs.
-- **Light-mode `success` / `warning` solid fills**, shared with the React library: white ink is
-  3.29:1 and 3.18:1 (`BaseBadge` solid, `BaseAlertBanner`) — the mirror of slice 49's dark-mode
-  fix, which light mode never received. Either darken the fills (`--color-success: #15803d`,
-  `--color-warning: #b45309`, both 5.02:1 with white) or mirror dark mode with dark ink
-  (`success-on: #052e16` = 4.52, `warning-on: #422006` = 4.57). Decide once, apply to both
-  stylesheets.
 - Optional: more components (Time/Color picker, Splitter). Or landing polish (global ⌘K).

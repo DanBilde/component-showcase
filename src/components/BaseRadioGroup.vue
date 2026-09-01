@@ -90,8 +90,8 @@ const optionsWrapper = computed(() =>
 )
 
 const controlClasses = computed(() => [
-  'shrink-0 rounded-full border-2 border-border-strong bg-surface transition-all',
-  'peer-hover:border-border-strong',
+  'shrink-0 rounded-full border-2 border-border-control bg-surface transition-all',
+  'peer-hover:border-border-control',
   'peer-checked:border-brand peer-checked:bg-brand peer-checked:shadow-[inset_0_0_0_2px_var(--color-brand-on)]',
   'peer-focus-visible:ring-2 peer-focus-visible:ring-brand peer-focus-visible:ring-offset-1',
   'peer-disabled:opacity-50',

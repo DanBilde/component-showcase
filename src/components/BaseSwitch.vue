@@ -71,11 +71,16 @@ const trackClasses = computed(() => [
   'inline-flex shrink-0 items-center rounded-full p-0.5 transition-colors',
   'peer-focus-visible:ring-2 peer-focus-visible:ring-brand peer-focus-visible:ring-offset-2',
   'peer-disabled:opacity-50',
+  // The off track is a pale fill (1.23:1 against a white canvas), so on its own the
+  // off state all but disappears in light mode. An inset outline gives it a
+  // 1.4.11-compliant boundary without changing the track's size the way a border
+  // would. The on track (`bg-brand`) and the error track carry their own contrast.
+  'outline-1 -outline-offset-1',
   props.modelValue
-    ? 'bg-brand'
+    ? 'bg-brand outline-transparent'
     : props.error
-      ? 'bg-danger-line'
-      : 'bg-surface-strong',
+      ? 'bg-danger-line outline-danger'
+      : 'bg-surface-strong outline-border-control',
   trackSize[props.size],
 ])
 

@@ -84,7 +84,7 @@ const controlClasses = computed(() => [
     ? 'border-brand bg-brand'
     : props.error
       ? 'border-danger bg-surface'
-      : 'border-border-strong bg-surface peer-hover:border-border-strong',
+      : 'border-border-control bg-surface peer-hover:border-border-control',
   controlSize[props.size],
 ])
 </script>

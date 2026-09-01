@@ -74,7 +74,7 @@ const triggerClasses = computed(() => [
   sizeClasses[props.size],
   props.error
     ? 'border-danger focus-visible:border-danger focus-visible:ring-danger'
-    : 'border-border-strong focus-visible:border-brand focus-visible:ring-brand',
+    : 'border-border-control focus-visible:border-brand focus-visible:ring-brand',
 ])
 </script>
 

@@ -84,7 +84,7 @@ const resizeClasses: Record<Resize, string> = {
 const stateClasses = computed(() =>
   props.error
     ? 'border-danger focus-visible:border-danger focus-visible:ring-danger'
-    : 'border-border-strong focus-visible:border-brand focus-visible:ring-brand',
+    : 'border-border-control focus-visible:border-brand focus-visible:ring-brand',
 )
 
 const textareaClasses = computed(() => [

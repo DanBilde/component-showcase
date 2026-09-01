@@ -245,7 +245,7 @@ const sizeClasses: Record<Size, string> = {
 const stateClasses = computed(() =>
   props.error
     ? 'border-danger focus-visible:border-danger focus-visible:ring-danger'
-    : 'border-border-strong focus-visible:border-brand focus-visible:ring-brand',
+    : 'border-border-control focus-visible:border-brand focus-visible:ring-brand',
 )
 
 const triggerClasses = computed(() => [
@@ -378,7 +378,7 @@ function optionClasses(index: number, opt: SelectOption) {
               'flex h-4 w-4 shrink-0 items-center justify-center rounded-sm border',
               isSelected(opt.value)
                 ? 'border-brand bg-brand text-brand-on'
-                : 'border-border-strong bg-surface',
+                : 'border-border-control bg-surface',
             ]"
             aria-hidden="true"
           >

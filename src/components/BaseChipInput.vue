@@ -96,7 +96,7 @@ const containerClasses = computed(() => [
   props.disabled ? 'cursor-not-allowed bg-surface-muted' : 'cursor-text bg-surface',
   props.error
     ? 'border-danger focus-within:ring-2 focus-within:ring-danger'
-    : 'border-border-strong focus-within:border-brand focus-within:ring-2 focus-within:ring-brand',
+    : 'border-border-control focus-within:border-brand focus-within:ring-2 focus-within:ring-brand',
 ])
 </script>
 
