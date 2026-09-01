@@ -72,6 +72,10 @@ subpath). The landing page links to `/storybook/` and the GitHub repo.
   (`bg-white` — a surface on the track, not ink on a fill; see Slice 49).
 - Prefer a `variant` + `size` prop pattern with `Record<Variant, string>` class maps
   (see `BaseButton.vue`).
+- **`--radius: 0.5rem` in `@theme` re-points the bare `rounded` utility**, so `rounded` is 8px,
+  not Tailwind's 4px. On anything small that reads as a square — a checkbox box, a 16px marker —
+  it is a full circle. Use an explicit `rounded-sm` there; `rounded` is fine on tooltips, chips,
+  kbd and skeleton lines, which want the theme radius anyway.
 - Tailwind utilities only, **except** where keyframe animations or pseudo-element styling
   are unavoidable — then use a small scoped `<style>` in the component (e.g. `BaseProgress`
   indeterminate, `BaseSkeleton` shimmer, `BaseSlider` thumb/track, `BaseToast` transitions).
@@ -549,9 +553,47 @@ subpath). The landing page links to `/storybook/` and the GitHub repo.
   sitting on the track — not ink on the brand fill. Darkening the token dropped the **off**
   knob from 10.85:1 to 1.74:1 against `surface-strong` (and 1.61:1 on the error track), making
   it near-invisible. The knob is now a literal `bg-white`. Lesson: `*-on` means "ink on that
-  fill" — grep for non-text uses before re-pointing one. **The React library has the identical
-  latent bug** (`BaseSwitch.tsx` knob is still `bg-brand-on`); axe misses it because 1.4.11
-  non-text contrast is not auto-testable.
+  fill" — grep for non-text uses before re-pointing one. The React library hit the same thing
+  and its knob is literal `bg-white` too; axe misses it either way, because 1.4.11 non-text
+  contrast is not auto-testable.
+
+### Slice 50 — Shape + contrast fixes ported from the React sibling (done)
+The React library's full two-theme audit surfaced three defects that exist here identically;
+all three are now fixed on both sides.
+- **Checkboxes rendered as circles.** Bare `rounded` resolves to `--radius` (0.5rem), which on
+  a 16px box is fully round — `BaseCheckbox` was indistinguishable from `BaseRadioGroup`. Now
+  `rounded-sm`, in `BaseCheckbox.vue` **and** `BaseMultiSelect.vue`, whose option checkboxes
+  had the same 16px box (that one is unique to this library). See the radius note in
+  Conventions.
+- **Ghost button hover failed AA in dark**: `text-brand` on `hover:bg-surface-sunken` is 4.0:1.
+  Now `hover:bg-brand-soft` — 5.58:1 light / 4.56:1 dark, and the tint is *more* visible than
+  the old grey (`surface-muted` scores better on ink, 6.08/5.28, but its fill is 1.05:1 against
+  the light canvas — an invisible hover).
+- **`BaseModal`'s scrolling body was keyboard-unreachable** (axe `scrollable-region-focusable`).
+  It now takes `tabindex="0"` plus a `focus-visible` outline, since a tab stop needs a visible
+  focus indicator.
+- Verified by re-sweeping all 248 stories × light/dark with axe: `scrollable-region-focusable`
+  gone, every other count unchanged (no regressions), and the fixes re-measured directly —
+  checkbox and multi-select boxes at 4px radius, modal body focusable, hover ratios in both
+  themes.
 
 ### Next up
+- **Known a11y backlog** from that sweep (464 violation nodes across 248 stories × 2 themes,
+  where the React library sits at 2):
+  - `BaseCalendar` — 336 nodes of `aria-allowed-attr`: an ARIA attribute on a role that does
+    not permit it. One markup fix, repeated across every day cell.
+  - `BaseProgress` — 18 nodes of `aria-progressbar-name`: the bar has no accessible name. The
+    React port fixed this (`label` → `ariaLabel` → `'Progress'`); the fix never came back here.
+  - `BaseNotification` — ~50 contrast nodes, but the sampled colors are blends
+    (`#cbd3ec` on `#fbfdff`), so axe is almost certainly measuring mid-enter-animation. Confirm
+    against a settled toast before changing anything.
+  - Stories that hardcode `style="color: rgb(15, 23, 42)"` (`BaseList`, `BaseCard`,
+    `BaseCalendar`, `BaseCode`) — invisible in dark mode. Story markup, not component code, but
+    it is what a visitor sees in the docs.
+- **Light-mode `success` / `warning` solid fills**, shared with the React library: white ink is
+  3.29:1 and 3.18:1 (`BaseBadge` solid, `BaseAlertBanner`) — the mirror of slice 49's dark-mode
+  fix, which light mode never received. Either darken the fills (`--color-success: #15803d`,
+  `--color-warning: #b45309`, both 5.02:1 with white) or mirror dark mode with dark ink
+  (`success-on: #052e16` = 4.52, `warning-on: #422006` = 4.57). Decide once, apply to both
+  stylesheets.
 - Optional: more components (Time/Color picker, Splitter). Or landing polish (global ⌘K).

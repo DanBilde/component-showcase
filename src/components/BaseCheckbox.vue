@@ -74,7 +74,10 @@ const textSize: Record<Size, string> = {
 }
 
 const controlClasses = computed(() => [
-  'flex shrink-0 items-center justify-center rounded border-2 text-brand-on transition-colors',
+  // Explicit radius, not the bare `rounded`: that utility resolves to the theme's
+  // `--radius` (0.5rem), which on a 16px box is a full circle — the checkbox
+  // would be indistinguishable from a radio.
+  'flex shrink-0 items-center justify-center rounded-sm border-2 text-brand-on transition-colors',
   'peer-focus-visible:ring-2 peer-focus-visible:ring-brand peer-focus-visible:ring-offset-1',
   'peer-disabled:opacity-50',
   marked.value

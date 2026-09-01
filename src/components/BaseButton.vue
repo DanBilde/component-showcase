@@ -30,8 +30,11 @@ const variantClasses: Record<Variant, string> = {
     'bg-brand text-brand-on hover:bg-brand-hover border border-transparent',
   secondary:
     'bg-surface text-brand border border-brand hover:bg-surface-muted',
+  // Ghost hovers to `brand-soft`, not `surface-sunken`: in dark mode the sunken
+  // surface lifts far enough that `text-brand` on it lands at 4.0:1, below AA.
+  // The brand tint keeps the hover visible in both themes (5.6:1 / 4.6:1).
   ghost:
-    'bg-transparent text-brand border border-transparent hover:bg-surface-sunken',
+    'bg-transparent text-brand border border-transparent hover:bg-brand-soft',
 }
 
 const sizeClasses: Record<Size, string> = {

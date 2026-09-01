@@ -137,7 +137,13 @@ onBeforeUnmount(() => {
             </button>
           </header>
 
-          <div class="overflow-y-auto px-5 py-4 text-fg-muted">
+          <!-- tabindex="0": the body scrolls independently, so it needs to be
+               reachable by keyboard — without it there is no way to scroll long
+               content without a pointer. -->
+          <div
+            tabindex="0"
+            class="overflow-y-auto px-5 py-4 text-fg-muted focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-brand"
+          >
             <slot />
           </div>
 

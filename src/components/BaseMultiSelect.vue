@@ -373,7 +373,9 @@ function optionClasses(index: number, opt: SelectOption) {
         >
           <span
             :class="[
-              'flex h-4 w-4 shrink-0 items-center justify-center rounded border',
+              // `rounded-sm`, not `rounded`: the bare utility is the theme's
+              // `--radius` (0.5rem), which turns this 16px box into a circle.
+              'flex h-4 w-4 shrink-0 items-center justify-center rounded-sm border',
               isSelected(opt.value)
                 ? 'border-brand bg-brand text-brand-on'
                 : 'border-border-strong bg-surface',
