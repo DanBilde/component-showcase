@@ -80,7 +80,10 @@ const trackClasses = computed(() => [
 ])
 
 const knobClasses = computed(() => [
-  'pointer-events-none rounded-full bg-brand-on shadow transition-transform',
+  // Literal white, not `brand-on`: the knob is a surface that sits on the *track*
+  // (brand when on, `surface-strong` when off), not ink on the brand fill. Tying it to
+  // `brand-on` made it near-invisible on the off track once dark mode darkened that token.
+  'pointer-events-none rounded-full bg-white shadow transition-transform',
   knobSize[props.size],
   props.modelValue ? knobTranslate[props.size] : 'translate-x-0',
 ])

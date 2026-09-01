@@ -68,7 +68,8 @@ subpath). The landing page links to `/storybook/` and the GitHub repo.
   `bg-{v}-soft`, `text-{v}-fg`, `border-{v}-line`) — **never** raw `slate-*` / `white` /
   `blue-50` etc. New components inherit dark mode for free by following this. Exceptions
   that stay literal: modal/palette backdrops (`bg-slate-900/50`), the spinner `white`
-  option, and the decorative `BaseAvatar` initials palette.
+  option, the decorative `BaseAvatar` initials palette, and the `BaseSwitch` knob
+  (`bg-white` — a surface on the track, not ink on a fill; see Slice 49).
 - Prefer a `variant` + `size` prop pattern with `Record<Variant, string>` class maps
   (see `BaseButton.vue`).
 - Tailwind utilities only, **except** where keyframe animations or pseudo-element styling
@@ -544,6 +545,13 @@ subpath). The landing page links to `/storybook/` and the GitHub repo.
 - No component hardcodes `text-white` on a colored fill, so re-pointing the tokens fixes every
   consumer (`BaseButton`, `BaseBadge`, `BaseTag`, `BaseAlertBanner`, `BaseStepper`,
   `BasePagination`, `BaseCalendar`, the form controls' checked states, …) at once.
+- **Caught by the change:** `BaseSwitch` used `bg-brand-on` for its *knob*, which is a surface
+  sitting on the track — not ink on the brand fill. Darkening the token dropped the **off**
+  knob from 10.85:1 to 1.74:1 against `surface-strong` (and 1.61:1 on the error track), making
+  it near-invisible. The knob is now a literal `bg-white`. Lesson: `*-on` means "ink on that
+  fill" — grep for non-text uses before re-pointing one. **The React library has the identical
+  latent bug** (`BaseSwitch.tsx` knob is still `bg-brand-on`); axe misses it because 1.4.11
+  non-text contrast is not auto-testable.
 
 ### Next up
 - Optional: more components (Time/Color picker, Splitter). Or landing polish (global ⌘K).
