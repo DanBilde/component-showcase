@@ -532,5 +532,18 @@ subpath). The landing page links to `/storybook/` and the GitHub repo.
   emotion styles. Text rules are scoped to `span`/`p`/`a`/`code` so Control-column form
   widgets are left alone.
 
+### Slice 49 — Dark-mode contrast fixes (done)
+- Ported the `*-on` contrast fix from the React sibling library. In dark mode the `brand`,
+  `info`, and `danger` fills are lightened, so the inherited white ink sat below AA
+  (3.28:1 / 3.68:1 / 3.76:1). `--color-brand-on` → `#0b1120`, `--color-info-on` → `#0b1120`,
+  `--color-danger-on` → `#2a0707` — dark ink on a light fill, exactly what
+  `--color-success-on` / `--color-warning-on` already did in the same block. Now 5.73:1 /
+  5.12:1 / 4.93:1. Light mode is untouched (its fills are dark, white ink stays correct).
+- `BaseAvatar`'s nameless fallback used `text-fg-subtle` on `bg-surface-sunken` (4.34:1 light,
+  4.30:1 dark) — moved to `text-fg-muted` (6.92:1 / 7.28:1).
+- No component hardcodes `text-white` on a colored fill, so re-pointing the tokens fixes every
+  consumer (`BaseButton`, `BaseBadge`, `BaseTag`, `BaseAlertBanner`, `BaseStepper`,
+  `BasePagination`, `BaseCalendar`, the form controls' checked states, …) at once.
+
 ### Next up
 - Optional: more components (Time/Color picker, Splitter). Or landing polish (global ⌘K).

@@ -52,7 +52,8 @@ const palette = [
   'bg-cyan-100 text-cyan-700',
 ]
 const fallbackColor = computed(() => {
-  if (!props.name) return 'bg-surface-sunken text-fg-subtle'
+  // `fg-muted`, not `fg-subtle` — the latter falls under 4.5:1 on this background.
+  if (!props.name) return 'bg-surface-sunken text-fg-muted'
   let sum = 0
   for (const ch of props.name) sum += ch.charCodeAt(0)
   return palette[sum % palette.length]
