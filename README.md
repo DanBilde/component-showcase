@@ -42,11 +42,15 @@ src/
   App.vue                # Vue landing page (dogfoods the components)
   landing/               # landing-page sections
   components/            # Components + co-located *.stories.ts (Base* prefix)
+  composables/           # useTheme (light/dark, persisted to localStorage)
+  examples/              # Composed example screens (e.g. the Dashboard story)
   Introduction.mdx       # Storybook landing page
   style.css              # Tailwind import + generic design tokens
 .storybook/
   main.ts                # Story discovery + addons + staticDirs
   preview.ts             # Global styles, decorators, controls, story order
+  preview.css            # Dark theming for Storybook's docs chrome
+  manager.ts             # Light/dark themes for the Storybook manager UI
 ```
 
 ## Components
@@ -109,6 +113,16 @@ src/
 
 ### Layout
 - **BaseDivider** — horizontal/vertical separator with an optional label.
+
+## Examples
+
+Beyond the individual components, the Storybook includes a **composed screen** that puts them
+together:
+
+- **Dashboard** (`Examples → Dashboard`) — an admin console assembled entirely from the
+  library: a KPI row, a tool-launcher grid, an activity timeline, and a service-status panel,
+  with a range filter and toasts wired up. No new components and no new CSS — and because
+  everything uses the semantic tokens, the whole screen themes for free. All data is dummy.
 
 ## Conventions
 

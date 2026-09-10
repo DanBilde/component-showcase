@@ -29,12 +29,16 @@ src/
   App.vue                # Vue landing page (portfolio home, dogfoods the components)
   landing/               # landing-page sections (e.g. TheShowcase.vue — live demos)
   components/            # Components + co-located *.stories.ts (Base* prefix)
+  composables/           # useTheme.ts — light/dark, persisted to localStorage['theme']
+  examples/              # Composed example screens + their stories (Examples/* in the sidebar)
   Introduction.mdx       # Storybook landing page (pinned first via storySort)
   style.css              # `@import 'tailwindcss'` + generic design tokens
 public/                  # static assets served at root (e.g. avatar.jpg)
 .storybook/
   main.ts                # story globs + addons + framework + staticDirs
   preview.ts             # imports src/style.css, padding decorator, controls, storySort
+  preview.css            # dark theming for Storybook's docs chrome (argstable etc.)
+  manager.ts             # brand-matched light/dark themes for the manager UI
 ```
 
 ## Deployment
@@ -645,4 +649,9 @@ Two token fixes, applied identically here and in the React library.
   - Stories that hardcode `style="color: rgb(15, 23, 42)"` (`BaseList`, `BaseCard`,
     `BaseCalendar`, `BaseCode`) — invisible in dark mode. Story markup, not component code, but
     it is what a visitor sees in the docs.
+- **No `BaseTable` or `BaseChart`** — surfaced while building the Dashboard example, which is
+  a launcher and so did not need either. Any metrics- or data-heavy example screen needs one
+  of them built first; they are the most conspicuous gaps in the 43.
 - Optional: more components (Time/Color picker, Splitter). Or landing polish (global ⌘K).
+- Optional: more `Examples/*` screens now that the pattern exists (settings page, data table
+  view once `BaseTable` lands, onboarding wizard using `BaseStepper`).
