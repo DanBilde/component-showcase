@@ -92,6 +92,11 @@ const starPath =
 
 <template>
   <div class="inline-flex items-center gap-2">
+    <!--
+      Readonly renders role="img" (+ aria-label carrying the value); interactive renders a
+      real role="slider" with valuemin/max/now. Deliberately no `aria-readonly`: role="img"
+      does not allow it (axe `aria-allowed-attr`) and it is redundant either way.
+    -->
     <div
       :class="[
         'inline-flex rounded',
@@ -102,7 +107,6 @@ const starPath =
       :role="readonly ? 'img' : 'slider'"
       :tabindex="readonly ? undefined : 0"
       :aria-label="ariaLabel"
-      :aria-readonly="readonly || undefined"
       :aria-valuemin="readonly ? undefined : 0"
       :aria-valuemax="readonly ? undefined : max"
       :aria-valuenow="readonly ? undefined : modelValue"

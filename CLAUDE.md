@@ -653,11 +653,25 @@ axe run (wcag2a/aa + wcag21a/aa) over every story × both themes, before and aft
   **0** in both themes. It was sampling blended colors mid-enter-animation, exactly as the
   backlog note suspected. **Any future axe sweep needs a settle delay of ~1s**, or it will
   report phantom contrast failures on anything that animates in.
+- **`BaseRating` — the last 2 `aria-allowed-attr` nodes, gone.** Found by hunting the
+  post-fix remainder, not from the original backlog: readonly mode renders `role="img"` but
+  also set `aria-readonly="true"`, which `img` does not allow. Removed — redundant either way,
+  since an `img` is inherently non-interactive and the interactive branch is a real
+  `role="slider"` that is editable by default.
 - **Story markup hardcoding light-mode hexes — 18 occurrences across 9 story files, fixed.**
   (The fourth backlog item; cheap enough to fold in here.) `color:#64748b` / `#94a3b8` /
   `#334155` / `#0f172a` in inline `style` attributes were invisible or low-contrast in dark —
   one of them was a real dark-mode contrast violation in `BaseCalendar`'s own story (3.95:1).
   All now point at `var(--color-fg-subtle|fg-muted|fg)`, so they theme with everything else.
+- **Final measurement — full sweep, 249 stories × 2 themes: 12 violation nodes, all
+  `color-contrast`, all the BaseNotification artifact. `aria-allowed-attr` 0,
+  `aria-progressbar-name` 0.** Effectively **zero real violations library-wide**, matching the
+  React sibling. (The old "452" baseline came from a sweep with unknown settle timing, so
+  452 → 12 is not strictly apples-to-apples; the controlled before/after is the scoped run over
+  calendar/datepicker/progress/notification, **362 → 3**.)
+- The settle-delay evidence, for the next person who re-runs this: BaseNotification `WithActions`
+  reports 6 nodes at 200ms, 4 at 450ms, 1 at 800ms and **0 at 1200ms**, and the colors axe
+  samples are visibly blends (`#fffcee`, `#4180b7`) — partially-transparent composites mid-fade.
 
 ### Next up
 
@@ -678,10 +692,9 @@ a list of records in this library today. Sketch of the job:
   + the README component list.
 
 Also open:
-- **Last a11y item:** re-run the full sweep and confirm the totals below hold. Everything the
-  slice-51 backlog listed is now addressed except whatever the full run still turns up — the
-  scoped run over calendar/datepicker/progress/notification went **362 → 3 nodes**, and the
-  remaining 3 are the `BaseNotification` animation artifact (see slice 53; use a ~1s settle).
+- **a11y backlog: closed.** Full sweep after slice 53 is 12 nodes across 249 stories × 2
+  themes, all of them the `BaseNotification` animation artifact (use a ~1s settle and they go
+  to 0). Nothing real outstanding. Re-run the sweep after `BaseTable` lands.
 - `BaseChart` — the other real gap, but a much larger and more opinionated build than
   `BaseTable`. Only worth it if an example screen needs it.
 - Optional: more components (Time/Color picker, Splitter). Or landing polish (global ⌘K).

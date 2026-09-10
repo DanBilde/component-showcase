@@ -28,3 +28,6 @@ storybook-static
 
 # Vercel
 .vercel
+
+# Scratch scripts (axe sweeps, screenshot runs)
+.*.tmp.mjs
