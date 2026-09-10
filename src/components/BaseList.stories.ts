@@ -51,7 +51,7 @@ export const Interactive: Story = {
     template: `
       <div style="max-width:420px">
         <BaseList v-bind="args" @select="(item) => (selected = item.label)" />
-        <p style="margin-top:12px; font-size:14px; color:#64748b">Selected: {{ selected || '—' }}</p>
+        <p style="margin-top:12px; font-size:14px; color:var(--color-fg-subtle)">Selected: {{ selected || '—' }}</p>
       </div>
     `,
   }),
@@ -100,8 +100,8 @@ export const CustomItem: Story = {
         <BaseList variant="bordered" :items="files">
           <template #item="{ item }">
             <div style="display:flex; justify-content:space-between; gap:8px">
-              <span style="font-weight:500; color:#0f172a">{{ item.label }}</span>
-              <span style="color:#94a3b8; font-variant-numeric:tabular-nums">{{ item.value }}</span>
+              <span style="font-weight:500; color:var(--color-fg)">{{ item.label }}</span>
+              <span style="color:var(--color-fg-subtle); font-variant-numeric:tabular-nums">{{ item.value }}</span>
             </div>
           </template>
         </BaseList>

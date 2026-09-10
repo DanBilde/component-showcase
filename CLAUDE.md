@@ -636,22 +636,56 @@ Two token fixes, applied identically here and in the React library.
 - Note: there is still no `BaseTable` or `BaseChart`, so a metrics-heavy dashboard would need
   one of those built first. This screen is a launcher and does not.
 
+### Slice 53 — a11y backlog: calendar, progress, story colors (done)
+Cleared three of the four items from the slice-51 sweep's backlog; measured with a scripted
+axe run (wcag2a/aa + wcag21a/aa) over every story × both themes, before and after.
+- **`BaseCalendar` — 336 nodes of `aria-allowed-attr`, gone.** `aria-selected` sat on the day
+  `<button>`, and role `button` does not allow it. Moved it up one element to the wrapping
+  `role="gridcell"`, which does. `aria-current` / `aria-disabled` stayed on the button — both
+  are allowed there. One attribute, 42 cells × 4 stories × 2 themes. Fixes `BaseDatepicker`
+  too, which embeds the same grid. Verified the semantics still hold: exactly one gridcell
+  carries `aria-selected="true"` and it follows clicks.
+- **`BaseProgress` — 18 nodes of `aria-progressbar-name`, gone.** Ported the React port's fix:
+  a new `ariaLabel` prop and an `aria-label` chain of `label` → `ariaLabel` → `'Progress'`, so
+  the bar always has an accessible name. Visible label still wins when present.
+- **`BaseNotification`'s contrast nodes were an artifact — confirmed, no fix needed.** At a
+  450ms settle axe reports 1–3 nodes on `WithActions`, varying run to run; at 1200ms it reports
+  **0** in both themes. It was sampling blended colors mid-enter-animation, exactly as the
+  backlog note suspected. **Any future axe sweep needs a settle delay of ~1s**, or it will
+  report phantom contrast failures on anything that animates in.
+- **Story markup hardcoding light-mode hexes — 18 occurrences across 9 story files, fixed.**
+  (The fourth backlog item; cheap enough to fold in here.) `color:#64748b` / `#94a3b8` /
+  `#334155` / `#0f172a` in inline `style` attributes were invisible or low-contrast in dark —
+  one of them was a real dark-mode contrast violation in `BaseCalendar`'s own story (3.95:1).
+  All now point at `var(--color-fg-subtle|fg-muted|fg)`, so they theme with everything else.
+
 ### Next up
-- **Known a11y backlog** from that sweep (452 violation nodes across 248 stories × 2 themes
-  after slice 51, where the React library is now at 0):
-  - `BaseCalendar` — 336 nodes of `aria-allowed-attr`: an ARIA attribute on a role that does
-    not permit it. One markup fix, repeated across every day cell.
-  - `BaseProgress` — 18 nodes of `aria-progressbar-name`: the bar has no accessible name. The
-    React port fixed this (`label` → `ariaLabel` → `'Progress'`); the fix never came back here.
-  - `BaseNotification` — ~50 contrast nodes, but the sampled colors are blends
-    (`#cbd3ec` on `#fbfdff`), so axe is almost certainly measuring mid-enter-animation. Confirm
-    against a settled toast before changing anything.
-  - Stories that hardcode `style="color: rgb(15, 23, 42)"` (`BaseList`, `BaseCard`,
-    `BaseCalendar`, `BaseCode`) — invisible in dark mode. Story markup, not component code, but
-    it is what a visitor sees in the docs.
-- **No `BaseTable` or `BaseChart`** — surfaced while building the Dashboard example, which is
-  a launcher and so did not need either. Any metrics- or data-heavy example screen needs one
-  of them built first; they are the most conspicuous gaps in the 43.
+
+**Start here: build `BaseTable`.** It is the most conspicuous gap in the 43 and the reason the
+Dashboard example (slice 52) is a launcher rather than a data screen — there is no way to show
+a list of records in this library today. Sketch of the job:
+- Generic `columns` (`{ key, header, align?, width?, sortable? }`) + `rows` array, with a scoped
+  `cell` slot keyed by column so consumers can render anything, and `header` / `empty` slots.
+- Client-side sort via `v-model:sort` (`{ key, direction }`), left as the parent's job to apply
+  when server-side — the component only emits intent, keeping it presentational like the rest.
+- `variant` (plain / divided / bordered) and `size` (sm / md / lg) class maps, matching
+  `BaseList`, which it should feel like a sibling of.
+- Loading state composing `BaseSkeleton` rows; empty state composing `BaseEmptyState`.
+- A11y: real `<table>` / `<thead>` / `<th scope="col">`, `aria-sort` on sorted headers, and a
+  caption or `aria-label`. Wrap in an `overflow-x-auto` container so wide tables scroll rather
+  than breaking the page.
+- Then: a second `Examples/*` screen that actually uses it, and add it to `Introduction.mdx`
+  + the README component list.
+
+Also open:
+- **Last a11y item:** re-run the full sweep and confirm the totals below hold. Everything the
+  slice-51 backlog listed is now addressed except whatever the full run still turns up — the
+  scoped run over calendar/datepicker/progress/notification went **362 → 3 nodes**, and the
+  remaining 3 are the `BaseNotification` animation artifact (see slice 53; use a ~1s settle).
+- `BaseChart` — the other real gap, but a much larger and more opinionated build than
+  `BaseTable`. Only worth it if an example screen needs it.
 - Optional: more components (Time/Color picker, Splitter). Or landing polish (global ⌘K).
-- Optional: more `Examples/*` screens now that the pattern exists (settings page, data table
-  view once `BaseTable` lands, onboarding wizard using `BaseStepper`).
+- Optional: more `Examples/*` screens now that the pattern exists (settings page, onboarding
+  wizard using `BaseStepper`).
+- **Sync note:** the React sibling is at 12 of 43 components and has no `BaseTable` either;
+  if this one lands, it is a good candidate to port (see [[react-sibling-project]] memory).

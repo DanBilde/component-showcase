@@ -22,7 +22,7 @@ const meta = {
     components: { BaseDivider },
     setup: () => ({ args }),
     template: `
-      <div style="max-width:380px; color:#334155">
+      <div style="max-width:380px; color:var(--color-fg-muted)">
         <p style="margin:0">Content above the divider.</p>
         <BaseDivider v-bind="args" />
         <p style="margin:0">Content below the divider.</p>
@@ -53,7 +53,7 @@ export const Vertical: Story = {
     components: { BaseDivider },
     setup: () => ({ args }),
     template: `
-      <div style="display:flex; align-items:center; color:#334155">
+      <div style="display:flex; align-items:center; color:var(--color-fg-muted)">
         <span>Docs</span>
         <BaseDivider v-bind="args" orientation="vertical" />
         <span>API</span>
@@ -69,7 +69,7 @@ export const Spacings: Story = {
     components: { BaseDivider },
     setup: () => ({ args }),
     template: `
-      <div style="max-width:380px; color:#334155">
+      <div style="max-width:380px; color:var(--color-fg-muted)">
         <p style="margin:0">None</p>
         <BaseDivider spacing="none" />
         <p style="margin:0">Small</p>

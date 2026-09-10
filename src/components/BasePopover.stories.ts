@@ -24,8 +24,8 @@ const meta = {
       <div style="padding:40px; min-height:260px">
         <BasePopover v-bind="args">
           <template #trigger><BaseButton variant="secondary">Open popover</BaseButton></template>
-          <div style="font-size:14px; color:#334155">
-            <p style="margin:0 0 6px; font-weight:600; color:#0f172a">Popover title</p>
+          <div style="font-size:14px; color:var(--color-fg-muted)">
+            <p style="margin:0 0 6px; font-weight:600; color:var(--color-fg)">Popover title</p>
             <p style="margin:0">Any content can go here — text, forms, actions.</p>
           </div>
         </BasePopover>
@@ -50,7 +50,7 @@ export const Top: Story = {
       <div style="padding:120px 40px 40px">
         <BasePopover v-bind="args">
           <template #trigger><BaseButton variant="secondary">Open above</BaseButton></template>
-          <p style="margin:0; font-size:14px; color:#334155">This popover opens above the trigger.</p>
+          <p style="margin:0; font-size:14px; color:var(--color-fg-muted)">This popover opens above the trigger.</p>
         </BasePopover>
       </div>
     `,
@@ -66,7 +66,7 @@ export const WithCloseAction: Story = {
         <BasePopover v-bind="args">
           <template #trigger><BaseButton>Delete item</BaseButton></template>
           <template #default="{ close }">
-            <p style="margin:0 0 10px; font-size:14px; color:#334155">Delete this item?</p>
+            <p style="margin:0 0 10px; font-size:14px; color:var(--color-fg-muted)">Delete this item?</p>
             <div style="display:flex; gap:8px; justify-content:flex-end">
               <BaseButton size="sm" variant="ghost" @click="close">Cancel</BaseButton>
               <BaseButton size="sm" @click="close">Delete</BaseButton>

@@ -35,7 +35,7 @@ const meta = {
         <BaseButton variant="secondary" @click="open = true">
           Open command palette&nbsp; <BaseKbd :keys="['⌘','K']" size="sm" />
         </BaseButton>
-        <p style="margin-top:12px; font-size:14px; color:#64748b">Last run: {{ last || '—' }}</p>
+        <p style="margin-top:12px; font-size:14px; color:var(--color-fg-subtle)">Last run: {{ last || '—' }}</p>
         <BaseCommandPalette v-bind="args" v-model="open" @select="(item) => (last = item.label)" />
       </div>
     `,

@@ -47,7 +47,7 @@ export const InText: Story = {
     components: { BaseKbd },
     setup: () => ({ args }),
     template: `
-      <p style="color:#334155">
+      <p style="color:var(--color-fg-muted)">
         Press <BaseKbd :keys="['⌘','K']" /> to open the command palette, or <BaseKbd>/</BaseKbd> to search.
       </p>
     `,

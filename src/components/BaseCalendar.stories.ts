@@ -26,7 +26,7 @@ const meta = {
     template: `
       <div>
         <BaseCalendar v-bind="args" v-model="value" />
-        <p style="margin-top:12px; font-size:14px; color:#64748b">Selected: {{ value || '—' }}</p>
+        <p style="margin-top:12px; font-size:14px; color:var(--color-fg-subtle)">Selected: {{ value || '—' }}</p>
       </div>
     `,
   }),
@@ -55,7 +55,7 @@ export const NoSelection: Story = {
     template: `
       <div>
         <BaseCalendar v-bind="args" v-model="value" />
-        <p style="margin-top:12px; font-size:14px; color:#64748b">Selected: {{ value || '—' }}</p>
+        <p style="margin-top:12px; font-size:14px; color:var(--color-fg-subtle)">Selected: {{ value || '—' }}</p>
       </div>
     `,
   }),

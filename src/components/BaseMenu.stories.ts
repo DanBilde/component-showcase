@@ -35,7 +35,7 @@ const meta = {
         <BaseMenu v-bind="args" @select="(item) => (last = item.value)">
           <template #trigger><BaseButton variant="secondary">Actions ▾</BaseButton></template>
         </BaseMenu>
-        <p style="margin-top:12px; font-size:14px; color:#64748b">Last selected: {{ last || '—' }}</p>
+        <p style="margin-top:12px; font-size:14px; color:var(--color-fg-subtle)">Last selected: {{ last || '—' }}</p>
       </div>
     `,
   }),

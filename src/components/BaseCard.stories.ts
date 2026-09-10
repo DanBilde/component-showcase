@@ -93,7 +93,7 @@ export const CustomHeader: Story = {
         <BaseCard v-bind="args" :title="undefined" :subtitle="undefined">
           <template #header>
             <div style="display:flex; align-items:center; justify-content:space-between; gap:8px">
-              <h3 style="margin:0; font-weight:600; color:#0f172a">API keys</h3>
+              <h3 style="margin:0; font-weight:600; color:var(--color-fg)">API keys</h3>
               <BaseBadge variant="success" dot>Active</BaseBadge>
             </div>
           </template>

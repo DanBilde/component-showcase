@@ -36,7 +36,7 @@ export const Inline: Story = {
   render: () => ({
     components: { BaseCode },
     template: `
-      <p style="color:#334155">
+      <p style="color:var(--color-fg-muted)">
         Run <BaseCode code="npm run storybook" /> to start the showcase, then open
         <BaseCode code="localhost:6006" /> in your browser.
       </p>

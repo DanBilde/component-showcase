@@ -52,7 +52,7 @@ const meta = {
     template: `
       <div style="max-width:320px">
         <BaseTreeView v-bind="args" v-model="selected" />
-        <p style="margin-top:12px; font-size:14px; color:#64748b">Selected: {{ selected || '—' }}</p>
+        <p style="margin-top:12px; font-size:14px; color:var(--color-fg-subtle)">Selected: {{ selected || '—' }}</p>
       </div>
     `,
   }),

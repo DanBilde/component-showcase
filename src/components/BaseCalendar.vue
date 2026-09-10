@@ -216,12 +216,22 @@ const navButton =
       </div>
 
       <div v-for="(week, w) in weeks" :key="w" role="row" class="grid grid-cols-7">
-        <div v-for="cell in week" :key="cell.iso" role="gridcell" class="flex justify-center">
+        <!--
+          `aria-selected` lives on the gridcell, not the button: role="button" does not
+          allow it (axe `aria-allowed-attr`), while role="gridcell" does. `aria-current`
+          and `aria-disabled` are fine on the button — both are allowed there.
+        -->
+        <div
+          v-for="cell in week"
+          :key="cell.iso"
+          role="gridcell"
+          :aria-selected="cell.isSelected"
+          class="flex justify-center"
+        >
           <button
             :id="cellId(cell.iso)"
             type="button"
             :tabindex="cell.iso === focusedDate ? 0 : -1"
-            :aria-selected="cell.isSelected"
             :aria-current="cell.isToday ? 'date' : undefined"
             :aria-disabled="cell.disabled || undefined"
             :class="cellClasses(cell)"

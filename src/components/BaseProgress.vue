@@ -15,6 +15,8 @@ const props = withDefaults(
     variant?: Variant
     /** Optional label shown above the bar */
     label?: string
+    /** Accessible name when there is no visible `label` (falls back to "Progress") */
+    ariaLabel?: string
     /** Show the percentage on the right of the label row */
     showValue?: boolean
   }>(),
@@ -67,7 +69,7 @@ const variantColor: Record<Variant, string> = {
       :aria-valuemin="0"
       :aria-valuemax="max"
       :aria-valuenow="indeterminate ? undefined : value"
-      :aria-label="label || undefined"
+      :aria-label="label || ariaLabel || 'Progress'"
       :class="['relative w-full overflow-hidden rounded-full bg-surface-strong', trackSize[size]]"
     >
       <div
