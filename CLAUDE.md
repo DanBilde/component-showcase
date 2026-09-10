@@ -611,6 +611,27 @@ Two token fixes, applied identically here and in the React library.
   portion, which has plenty of contrast, so they were out of this pass — worth a look if the
   slider ever needs its full extent to be readable.
 
+### Slice 52 — Dashboard example screen (done)
+- Added **`src/examples/`** — the first *composed screen* in the library, as a story
+  (`Examples/Dashboard`), plus an `Examples` entry in `storySort` and `Introduction.mdx`.
+- `DashboardExample.vue` is a generic internal "Ops Console": greeting header + `BaseAvatar`,
+  a `BaseSegmentedControl` range filter that re-reads the KPI row (`BaseStat` in `BaseCard`),
+  an 8-card tool launcher (`BaseCard` centered-icon layout, `BaseBadge`), a two-column
+  `BaseTimeline` activity feed / service-status panel (`BaseProgress`, `BaseBadge`,
+  `BaseDivider`), a `BaseButton` link row, and a `BaseToast` fired by clicking a tool.
+  **No new components and no new CSS** — the point is that the library already covers a real
+  screen, and that the whole thing themes for free.
+- All data is invented and lives in `src/examples/dashboardData.ts`, kept separate from the
+  markup so the example reads as layout rather than fixtures.
+- Verified headless in both themes at 1280px: 0 console errors, no horizontal overflow,
+  `.dark` applies, and the three interactions work (range filter swaps the KPIs 8,431 →
+  34,905, tool click pushes a toast, dividers render).
+- **Testing gotcha:** `?globals=theme:dark` on the iframe URL does **not** flip the theme —
+  `preview.ts` forces the toolbar to the *stored* preference on `SET_GLOBALS`. Seed
+  `localStorage['theme']` before load instead (Playwright: `context.addInitScript`).
+- Note: there is still no `BaseTable` or `BaseChart`, so a metrics-heavy dashboard would need
+  one of those built first. This screen is a launcher and does not.
+
 ### Next up
 - **Known a11y backlog** from that sweep (452 violation nodes across 248 stories × 2 themes
   after slice 51, where the React library is now at 0):

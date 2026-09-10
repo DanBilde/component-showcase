@@ -61,7 +61,7 @@ const preview: Preview = {
     options: {
       // Keep the Introduction page pinned to the top of the sidebar.
       storySort: {
-        order: ['Introduction', 'Components'],
+        order: ['Introduction', 'Components', 'Examples'],
       },
     },
     controls: {
